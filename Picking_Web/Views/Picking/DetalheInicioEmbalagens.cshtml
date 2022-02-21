@@ -1,0 +1,21 @@
+﻿<div id="form_inicio_embalagens" style="display: none">
+    <form class="bootbox-form">
+        <div class="form-group">
+            <label class="control-label col-md-2">Pedido</label>
+            <input class="bootbox-input bootbox-input-text form-control" type="text" id="inicio_numdoc" disabled="disabled">
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Picking</label>
+            <input class="bootbox-input bootbox-input-text form-control" type="text" id="inicio_numpk" disabled="disabled">
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Local Físico</label>
+            <input class="bootbox-input bootbox-input-text form-control" type="text" id="inicio_local">
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Operador</label>
+            <select class="bootbox-input bootbox-input-select form-control" id="inicio_operadorespicking"></select>
+        </div>
+        <input type="hidden" id="operador" value="@User.Identity.Name" />
+    </form>
+</div>

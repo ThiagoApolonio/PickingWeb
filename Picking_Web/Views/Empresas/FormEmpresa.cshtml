@@ -1,0 +1,261 @@
+﻿@model Picking_Web.ViewModels.FormEmpresaViewModel
+@{
+
+    string userid = ViewBag.userid;
+}
+
+
+<div class="modal fade" id="ModalRegister" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modaLLabel">Novo Usuário</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+
+                @using (Html.BeginForm("Salvar", "Empresas"))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.Id)
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Ativo, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <div class="checkbox">
+                                    @Html.EditorFor(model => model.Ativo)
+                                    @Html.ValidationMessageFor(model => model.Ativo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ContadorLote, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <div class="checkbox">
+                                    @Html.EditorFor(model => model.ContadorLote)
+                                    @Html.ValidationMessageFor(model => model.ContadorLote, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.UsuarioSap, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.UsuarioSap, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.UsuarioSap, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SenhaSap, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.SenhaSap, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.SenhaSap, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.LicencaSap, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.LicencaSap, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.LicencaSap, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PortaSap, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.PortaSap, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.PortaSap, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        @if (Model != null)
+                        {
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TiposBancoId, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(m => m.TiposBancoId, new SelectList(Model.TiposBanco, "Id", "Nome"), "Selecione o Tipo de Banco", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.TiposBancoId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        }
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.InstanciaBanco, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.InstanciaBanco, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.InstanciaBanco, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NomeBanco, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.NomeBanco, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.NomeBanco, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.UsuarioBanco, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.UsuarioBanco, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.UsuarioBanco, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SenhaBanco, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.SenhaBanco, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.SenhaBanco, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        @if (Model != null)
+                        {
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DepoSapId, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.ListBoxFor(m => m.selectedDeposito, new MultiSelectList(Model.DepositoSAP, "Id", "Descricao"), new { @class = "form-control chosen", id = "select_deposito", multiple = "multiple" })
+                                    @Html.ValidationMessageFor(model => model.DepoSapId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        }
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DepoPadrao, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.DepoPadrao, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.DepoPadrao, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Timer, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Timer, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Timer, "", new { @class = "text-danger", type = "numeric" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset col-md modal-footer">
+                                <input type="submit" value="Salvar" class="btn btn-primary" />
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Scripts/Site/Globals.js"></script>
+</div>
+
+
+
+@section scripts
+{
+
+    <script type="text/javascript">
+        var DefaultApiPath = '@(Url.Action("", "api/empresas"))';
+    </script>
+    <script type="text/javascript">
+        var myModal = document.getElementById('modaL')
+        var myInput = document.getElementById('myInput')
+        myModal.addEventListener('shown.bs.modal', function () {
+            myInput.focus()
+        })
+        var $btnCriarCampos = $('#btn-criar-campos');
+        var $btnTestarConexao = $('#btn-testar-conexao');
+        var criar_campos_na_base = function() {
+            bootbox.confirm("Deseja criar os campos de usuário nesta empresa?",
+                function(result) {
+                    if (result) {
+
+                        $.ajax({
+                            url: DefaultApiPath + "/criarcampos/" + $('#Id').val(),
+                            method: "PUT",
+                            beforeSend: function() {
+                                $btnCriarCampos.button('loading');
+                                aguardeMsg();
+                            },
+                            success: function(data) {
+                                toastr.clear();
+                                toastr.success("campos de usuário criados com sucesso.");
+                            },
+                            error: _DEFAULT_ERROR_TREATMENT
+                        }).always(function() {
+                            $btnCriarCampos.button('reset');
+                        });
+                    }
+                }
+            );
+        };
+
+        var testar_conexao = function () {
+            bootbox.confirm("Deseja testar conexão?",
+                function (result) {
+                    if (result) {
+
+                        $.ajax({
+                            url: DefaultApiPath + "/testarconexao/" + $('#Id').val(),
+                            method: "PUT",
+                            beforeSend: function () {
+                                $btnTestarConexao.button('loading');
+                                aguardeMsg();
+                            },
+                            success: function (data) {
+                                toastr.clear();
+                                toastr.success("conexão realizada com sucesso.");
+                            },
+                            error: _DEFAULT_ERROR_TREATMENT
+                        }).always(function () {
+                            $btnTestarConexao.button('reset');
+                        });
+                    }
+                }
+            );
+        };
+
+        $(function () {
+            $("#select_deposito").chosen({
+                width: "30%"
+            });
+        });
+    //    $(document).ready(function () {
+
+    //$('.chzn-select').chosen();
+    //        });
+    //var selectedCategoryId = $('Select#select_deposito').val();
+    //var selectedCategories = "";
+
+    //if (selectedCategoryId != null) {
+    //    $.each(selectedCategoryId, function (index, value) {
+    //        selectedCategories = selectedCategories + value + ",";
+    //    });
+    //}
+        InitWS("@userid");
+    </script>
+}

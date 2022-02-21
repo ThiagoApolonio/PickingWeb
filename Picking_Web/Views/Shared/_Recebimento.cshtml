@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Sistema Logístico</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+<link href="~/Content/Chosen/chosen.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:gainsboro">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Início", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Etiquetas de Recebimento", "Index", "Recebimento")</li>
+                    <li>@Html.ActionLink("Reimpressão Etiquetas de Recebimento", "Reimpressao", "Recebimento")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Update Solution</p>
+        </footer>
+    </div>
+
+    <script type="text/javascript">
+        var DefaultScriptPath = '@Url.Action("","Scripts")';
+    </script>
+    @Scripts.Render("~/bundles/lib")
+<script src="~/Scripts/chosen.jquery.min.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

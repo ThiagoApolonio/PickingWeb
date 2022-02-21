@@ -1,0 +1,199 @@
+﻿@using Picking_Web.Models
+@{
+    ViewBag.Title = "Acompanhamento de Picking";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    string ControllerName = "picking";
+    string pode_ver_separacao = User.IsInRole(Privilegios.PodeGerenciarListaPicking) ? "" : "display:none;";
+    string pode_ver_conferencia = User.IsInRole(Privilegios.PodeConferirCodigoBarras) ? "" : "display:none;";
+    string pode_ver_embalagens = User.IsInRole(Privilegios.PodeGerenciarEtiqueta) ? "" : "display:none;";
+    string pode_ver_faturamento = User.IsInRole(Privilegios.PodeGerenciarListaPicking) && User.IsInRole(Privilegios.PodeConferirCodigoBarras) && User.IsInRole(Privilegios.PodeGerenciarEtiqueta) ? "" : "display:none;";
+    int empresa = ViewBag.empresa;
+    int timer = ViewBag.timer;
+    string userid = ViewBag.userid;
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <h2>Acompanhamento de Picking</h2>
+    </div>
+    <div class="col-md-4" style="margin-top: 13px;">
+        <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Pesquisar Pedido" id="campo_pesquisa">
+            </div>
+            <button type="submit" class="btn btn-primary" id="botao_pesquisa">OK</button>
+        </form>
+    </div>
+</div>
+<div class="container separador_tabelas" style="@pode_ver_separacao">
+    
+    <h4>EM SEPARAÇÃO</h4>
+    <table id="acompanhamento_em_separacao" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Pedido</th>
+                <th>Picking</th>
+                <th>Local Físico</th>
+                <th>Prioridade</th>
+                <th>Nome do Cliente</th>
+                <th>Status</th>
+                <th>Cidade Entrega</th>
+                <th>Data Entrega</th>
+                <th>Vendedor</th>
+                <th>Operador</th>
+                <th>Observações</th>
+                <th>Hora Inicial</th>
+                <th>Data</th>
+                <th>Cancelar</th>
+                <th>Reimprimir</th>
+                <th>Confirmar</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<div class="container separador_tabelas" style="@pode_ver_conferencia">
+    <h4>AGUARDANDO CONFERÊNCIA</h4>
+    <table id="acompanhamento_aguardando_conferencia" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Pedido</th>
+                <th>Picking</th>
+                <th>Local Físico</th>
+                <th>Prioridade</th>
+                <th>Nome do Cliente</th>
+                <th>Status</th>
+                <th>Cidade Entrega</th>
+                <th>Data Entrega</th>
+                <th>Vendedor</th>
+                <th>Operador</th>
+                <th>Observações</th>
+                <th>Hora Inicial</th>
+                <th>Data</th>
+                <th>Cancelar</th>
+                <th>Reimprimir</th>
+                <th>Confirmar</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<div class="container separador_tabelas" style="@pode_ver_conferencia">
+    <h4>EM CONFERÊNCIA</h4>
+    <table id="acompanhamento_em_conferencia" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Pedido</th>
+                <th>Picking</th>
+                <th>Local Físico</th>
+                <th>Prioridade</th>
+                <th>Nome do Cliente</th>
+                <th>Status</th>
+                <th>Cidade Entrega</th>
+                <th>Data Entrega</th>
+                <th>Vendedor</th>
+                <th>Operador</th>
+                <th>Observações</th>
+                <th>Hora Inicial</th>
+                <th>Data</th>
+                <th>Cancelar</th>
+                <th>Reimprimir</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<div class="container separador_tabelas" style="@pode_ver_embalagens">
+    <h4>AGUARDANDO EMBALAGEM</h4>
+    <table id="acompanhamento_aguardando_embalagens" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Pedido</th>
+                <th>Picking</th>
+                <th>Local Físico</th>
+                <th>Prioridade</th>
+                <th>Nome do Cliente</th>
+                <th>Status</th>
+                <th>Cidade Entrega</th>
+                <th>Data Entrega</th>
+                <th>Vendedor</th>
+                <th>Operador</th>
+                <th>Observações</th>
+                <th>Hora Inicial</th>
+                <th>Data</th>
+                <th>Cancelar</th>
+                <th>Reimprimir</th>
+                <th>Confirmar</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<div class="container separador_tabelas" style="@pode_ver_embalagens">
+    <h4>EM EMBALAGEM</h4>
+    <table id="acompanhamento_em_embalagens" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Pedido</th>
+                <th>Picking</th>
+                <th>Local Físico</th>
+                <th>Prioridade</th>
+                <th>Nome do Cliente</th>
+                <th>Status</th>
+                <th>Cidade Entrega</th>
+                <th>Data Entrega</th>
+                <th>Vendedor</th>
+                <th>Operador</th>
+                <th>Observações</th>
+                <th>Hora Inicial</th>
+                <th>Data</th>
+                <th>Cancelar</th>
+                <th>Reimprimir</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<div class="container separador_tabelas" style="@pode_ver_faturamento">
+    <h4>AGUARDANDO FATURAMENTO</h4>
+    <table id="acompanhamento_em_faturamento" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Pedido</th>
+                <th>Picking</th>
+                <th>Local Físico</th>
+                <th>Prioridade</th>
+                <th>Nome do Cliente</th>
+                <th>Status</th>
+                <th>Cidade Entrega</th>
+                <th>Data Entrega</th>
+                <th>Vendedor</th>
+                <th>Operador</th>
+                <th>Observações</th>
+                <th>Hora Inicial</th>
+                <th>Data</th>
+                <th>Cancelar</th>
+                <th>Reimprimir</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+
+@Html.Partial("DetalheEncerramentoSeparacao")
+@Html.Partial("DetalheInicioEmbalagens")
+<input type="hidden" value="@ViewBag.NomeImpressora" id="nome_impressora" />
+@section scripts
+{
+    <script type="text/javascript">
+        var DefaultApiPath = '@(Url.Action("", "api/" + ControllerName))';
+        InitWS("@userid");
+    </script>
+    <script id="script_acompanhamento_picking" src="~/Scripts/Site/AcompanhamentoPicking.js" data-empresa="@empresa" data-timer="@timer"></script>
+}

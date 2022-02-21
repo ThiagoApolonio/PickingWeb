@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Picking_Web.Models.Impressora>
+@{
+    ViewBag.Title = "Impressoras";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    string ControllerName = "impressoras";
+    string userid = ViewBag.userid;
+}
+
+<h2>@ViewBag.Title</h2>
+<p>
+    @Html.ActionLink("Nova Impressora","Novo","Impressoras", null, new { @class = "btn btn-primary" })
+</p>
+<table id="impressoras" class="table table-centered w-100 dt-responsive nowrap">
+    <thead>
+    <tr>
+        <th>Descrição</th>
+        <th>Tipo</th>
+        <th>Ativo?</th>
+        <th>IP</th>
+        <th>Porta</th>
+        <th>Localização</th>
+        <th>Deletar</th>
+    </tr>
+    </thead>
+    <tbody>
+        
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script type="text/javascript">
+        var DefaultApiPath = '@(Url.Action("", "api/" + ControllerName))';
+        var DefaultPath = '@(Url.Action("", "" + ControllerName))';
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+           var table =  $("#impressoras").DataTable({
+                ajax: {
+                    url: DefaultApiPath + "/getimpressoras",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "descricao",
+                        render: function(data, type, impressora) {
+                            return "<a href='" + DefaultPath + "/editar/" + impressora.id + "'>" + data + "</a>";
+                        }
+                    },
+                    {
+                        data: "tipoImpressora.descricao"
+                    },
+                    {
+                        data: "ativo"
+                    },
+                    {
+                        data: "ip"
+                    },
+                    {
+                        data: "porta"
+                    },
+                    {
+                        data: "localizacao"
+                    },
+                    {
+                        data: "id",
+                        render: function (data, type, empresa) {
+                            return "<button data-impressora-id='" +
+                                data +
+                                "' type='button' class='btn btn-danger js-delete'><span class='glyphicon glyphicon-trash'></span >&nbsp;</button>";
+                        }
+                    }
+                ],
+                "oLanguage": _DEFAULT_SCRIPT_LANG
+            });
+
+            $("#impressoras").on("click", ".js-delete", function() {
+
+                var button = $(this);
+
+                bootbox.confirm("Deseja deletar esta impressora?", function(result) {
+
+                    if (result) {
+                        $.ajax({
+                            url: DefaultApiPath + "/deletarimpressora/" + button.attr("data-impressora-id"),
+                            method: "DELETE",
+                            success: function() {
+                                table.row(button.parents("tr")).remove().draw();
+                                toastr.success("Impressora deletada com sucesso.");
+                            },
+                            error: _DEFAULT_ERROR_TREATMENT
+                        });
+                    }
+                });
+            });
+        });
+
+        InitWS("@userid");
+    </script>
+}

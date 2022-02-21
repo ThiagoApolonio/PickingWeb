@@ -1,0 +1,213 @@
+﻿@using Picking_Web.Models
+@model Picking_Web.Models.RegisterViewModel
+@{
+    ViewBag.Title = Model.Titulo;
+    Layout = "~/Views/Shared/_Index.cshtml";
+    string userid = ViewBag.userid;
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" })) {
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="row">
+            <div class="col-md-8">
+                <h4>
+                    Dados Gerais
+                </h4>
+                <hr />
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.QuantidadeLicencas, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.QuantidadeLicencas, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.QuantidadeLicencas, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Ativo, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.Ativo)
+                            @Html.ValidationMessageFor(model => model.Ativo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Licenciado, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.Licenciado)
+                            @Html.ValidationMessageFor(model => model.Licenciado, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Operador, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.Operador)
+                            @Html.ValidationMessageFor(model => model.Operador, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.EmpresaId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(m => m.EmpresaId, new SelectList(Model.Empresas, "Id", "Nome"), "Selecione a Empresa", new { @class = "form-control", id = "select_empresa", onchange = "CarregarUsuarios();" })
+                        @Html.ValidationMessageFor(model => model.EmpresaId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UsuariosSAPId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(m => m.UsuariosSAPId, new SelectList(Model.UsuariosSAP, "Id", "Nome"), "Selecione o Usuário SAP", new { @class = "form-control", id = "select_usuario" })
+                        @Html.ValidationMessageFor(model => model.UsuariosSAPId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @if (String.IsNullOrEmpty(Model.Id)) {
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        } else {
+                            <input type="password" class="form-control" data-toggle="tooltip" data-trigger="click" data-placement="right" title="Opicional em caso de edição." />
+                        }
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @if (String.IsNullOrEmpty(Model.Id)) {
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                        } else {
+                            <input type="password" class="form-control" data-toggle="tooltip" data-trigger="click" data-placement="right" title="Opicional em caso de edição." />
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div>
+                    <h4>
+                        Permissões
+                    </h4>
+                    <hr />
+                    <div class="checkbox">
+                        <label>
+                            @Html.CheckBoxFor(m => m.PodeGerenciarAdmin) Pode acessar Área Administrativa
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            @Html.CheckBoxFor(m => m.PodeGerenciarListaPicking) Pode realizar Separação
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            @Html.CheckBoxFor(m => m.PodeConferirCodigoBarras) Pode realizar Conferência
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            @Html.CheckBoxFor(m => m.PodeGerenciarEtiqueta) Pode gerenciar Embalagens
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            @Html.CheckBoxFor(m => m.PodeGerenciarRecebimento) Pode realizar Recebimento
+                        </label>
+                    </div>
+                    @*<div class="checkbox">
+                        <label>
+                            @Html.CheckBoxFor(m => m.PodeGerenciarDocumentos) Pode Gerenciar Documentos
+                        </label>
+                    </div>*@
+                    <div class="checkbox">
+                        <label>
+                            @Html.CheckBoxFor(m => m.PodeGerenciarBaixa) Pode Gerenciar Baixa 
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Salvar" class="btn btn-primary" />
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        var DefaultApiPath = '@(Url.Action("", "api/usuarios"))';
+    </script>
+    <script type="text/javascript">
+        var CarregarUsuarios = function () {
+            var opts = "<option>Selecione o Usuário SAP</option>";
+            var select_empresa = $('#select_empresa');
+            var select_usuario = $('#select_usuario');
+            var empresa_id = select_empresa.val();
+
+            if (empresa_id) {
+                $.ajax({
+                    url: DefaultApiPath + "/getusuariossap?empresa_id=" + empresa_id,
+                    method: "GET",
+                    beforeSend: function() {
+                        select_usuario.html("<option>Carregando...</option>");
+                    },
+                    success: function(data) {
+                        for (var i = 0; i < data.length; i++) {
+                            opts += "<option value='" + data[i]["id"] + "'>" + data[i]["nome"] + "</option>";
+                        }
+                        select_usuario.html(opts);
+                    },
+                    error: _DEFAULT_ERROR_TREATMENT
+                });
+            }
+            select_usuario.html(opts);
+        };
+        InitWS("@userid");
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+}
+<div>
+    @Html.ActionLink("Voltar à Lista", "Index", "Usuarios")
+</div>

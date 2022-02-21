@@ -1,0 +1,107 @@
+﻿@using Picking_Web.Models
+@{
+    ViewBag.Title = "EMBALAGEM";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    string ControllerName = "etiquetas";
+    int empresa = ViewBag.empresa;
+
+    string ip = ViewBag.IP;
+    string porta = ViewBag.Porta;
+    string dados_balanca_ok = ViewBag.DadosBalancaOK ? "display:none" : "";
+    string userid = ViewBag.userid;
+}
+
+
+<h2>@ViewBag.Title</h2>
+
+<div class="alert alert-danger alert-dismissible" role="alert" style="@dados_balanca_ok">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong>Não será possível buscar dados da Balança!</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dados de conexão com a balança não foram configurados corretamente.
+</div>
+
+<div class="row" style="margin-top:30px;">
+    <div class="col-xs-3">
+        <label for="operador">Operador</label>
+        <select class="form-control" id="operador" style="max-width: none">
+            <option value="">Selecione o Operador</option>
+            @{
+                var operadores = ViewBag.Operadores as IOrderedEnumerable<ApplicationUser>;
+                foreach (var operador in operadores) {
+                    <option value="@operador.Id">@operador.UserName</option>
+                }
+            }
+        </select>
+    </div>
+    <div class="col-xs-3">
+        <label for="numdoc">Lista Picking</label>
+        <input type="text" class="form-control" id="numdoc" disabled="disabled">
+    </div>
+    <div class="col-xs-3">
+        <label for="docped">Pedido de Venda</label>
+        <input type="text" class="form-control" id="docped" disabled="disabled">
+    </div>
+    <div class="col-xs-6">
+        <label for="parceiro">Parceiro de Negócios</label>
+        <input type="text" class="form-control" id="parceiro" disabled="disabled" style="max-width: none">
+    </div>
+</div>
+
+<div class="row" style="margin-top:15px;">
+    <div class="col-xs-6">
+        <label for="endereco">Endereço</label>
+        <input type="text" class="form-control" id="endereco" disabled="disabled" style="max-width: none">
+    </div>
+    <div class="col-xs-4">
+        <label for="transportadora">Transportadora</label>
+        <select class="form-control" id="transportadora" style="max-width: none" disabled="disabled">
+            <option value="">Selecione o Transportador</option>
+        </select>
+    </div>
+    <div class="col-xs-2">
+        <label for="peso">Peso</label>
+        <input type="number" min="0" class="form-control" id="peso" disabled="disabled" style="max-width: none">
+    </div>
+</div>
+
+<div class="row" style="margin-top: 20px; margin-left: 0px; margin-right: 0px;">
+    <table id="volumes" class="table table-bordered table-condensed table-hover">
+        <thead>
+            <tr>
+                <th>Volume</th>
+                <th>Peso</th>
+                <th>Reimprimir</th>
+                <th>Remover</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
+</div>
+<div class="row" style="margin-left: 0px; margin-right: 0px;">
+    <textarea id="observacoes" class="form-control" rows="2" placeholder="Observações" style="max-width:none;" disabled="disabled"></textarea>
+</div>
+<div class="row" style="margin-top: 30px;">
+    <div class="col-xs-3">
+        <button class="btn btn-success btn-block" type="submit" id="encerrar" data-loading-text="Aguarde...">Encerrar</button>
+    </div>
+    <div class="col-xs-3">
+        <button class="btn btn-primary btn-block" type="submit" id="imprimir" data-loading-text="Aguarde...">Reimprimir</button>
+    </div>
+    <div class="col-xs-3">
+        <button class="btn btn-warning btn-block" type="submit" id="reset" data-loading-text="Aguarde..." data-toggle="tooltip" data-placement="top" title="Reseta o Pedido possibilitando encerrar novamente">Reset</button>
+    </div>
+    <div class="col-xs-3">
+        <button class="btn btn-danger btn-block" type="submit" id="cancelar" data-loading-text="Aguarde..." data-toggle="tooltip" data-placement="top" title="Reseta toda a tela">Cancelar</button>
+    </div>
+</div>
+<input type="hidden" value="@ViewBag.NomeImpressora" id="nome_impressora" />
+@section scripts
+{
+    <script type="text/javascript">
+        var DefaultApiPath = '@(Url.Action("", "api/" + ControllerName))';
+        InitWS("@userid");
+    </script>
+    <script id="script_etiquetas" src="~/Scripts/Site/Etiquetas.js" data-empresa="@empresa" data-ip="@ip" data-porta="@porta"></script>
+}
+

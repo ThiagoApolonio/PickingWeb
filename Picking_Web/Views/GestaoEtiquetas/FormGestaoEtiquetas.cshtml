@@ -1,0 +1,130 @@
+﻿@using Picking_Web.ViewModels
+@model Picking_Web.ViewModels.FormGestaoEtiquetasViewModel
+@{
+
+    string userid = ViewBag.userid;
+}
+<!-- Modal -->
+<div class="modal fade" id="ModalRegister" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modaLLabel">Novo Usuário</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Salvar", "GestaoEtiquetas" ,FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+
+                    @Html.ValidationSummary(true, "Por favor, corrija os erro(s) abaixo:")
+                    @Html.HiddenFor(m => m.Id)
+                    @if (Model != null)
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.EmpresaId, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(m => m.EmpresaId, new SelectList(Model.Empresas, "Id", "Nome"), "Selecione a Empresa", new { @class = "form-control", id = "select_empresa", onchange = "CarregarUsuarios();" })
+                                @Html.ValidationMessageFor(model => model.EmpresaId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(m => m.UserId, new SelectList(Model.Users, "Id", "UserName"), "Selecione o Usuário", new { @class = "form-control", id = "select_usuario" })
+                                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NomeImpressoraEtiqueta, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(m => m.NomeImpressoraEtiqueta, new SelectList(Model.Impressoras, "Id", "Nome"), "Selecione a Impressora", new { @class = "form-control", id = "select_impressora" })
+                                @Html.ValidationMessageFor(model => model.NomeImpressoraEtiqueta, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    }
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.IP, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.IP, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.IP, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Porta, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Porta, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Porta, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset col-md modal-footer">
+                            <input type="submit" value="Salvar" class="btn btn-primary" />
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        </div>
+                    </div>
+                </div>
+                }
+               
+
+            </div>
+
+
+        </div>
+    
+    </div>
+ 
+
+</div>
+
+<script src="~/Scripts/Site/Globals.js"></script>
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        var DefaultApiPath = '@(Url.Action("", "api/gestaoetiquetas"))';
+    </script>
+    <script type="text/javascript">
+        var CarregarUsuarios = function () {
+            var opts = "<option>Selecione o Usuário</option>";
+            var select_empresa = $('#select_empresa');
+            var select_usuario = $('#select_usuario');
+            var empresa_id = select_empresa.val();
+
+            if (empresa_id) {
+                $.ajax({
+                    url: DefaultApiPath + "/getusuarios?empresa_id=" + empresa_id,
+                    method: "GET",
+                    beforeSend: function() {
+                        select_usuario.html("<option>Carregando...</option>");
+                    },
+                    success: function(data) {
+                        for (var i = 0; i < data.length; i++) {
+                            opts += "<option value='" + data[i]["id"] + "'>" + data[i]["userName"] + "</option>";
+                        }
+                        select_usuario.html(opts);
+                    },
+                    error: _DEFAULT_ERROR_TREATMENT
+                });
+            }
+            select_usuario.html(opts);
+        };
+
+        InitWS("@userid");
+    </script>
+}

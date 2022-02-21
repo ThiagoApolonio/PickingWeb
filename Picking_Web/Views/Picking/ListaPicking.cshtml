@@ -1,0 +1,243 @@
+﻿@using Picking_Web.Models
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Separação  ";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    string ControllerName = "picking";
+    int empresa = ViewBag.empresa;
+    string userid = ViewBag.userid;
+}
+<div class="container-fluid">
+
+    <div class="row">
+        <h2 style="margin-top:13px">@ViewBag.Title</h2>
+
+        <div class="col-xl-6 col-lg-6">
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card widget-flat">
+                        <div class="card-body">
+                            <div class="float-end">
+                                <i class="mdi mdi-account-multiple widget-icon"></i>
+                            </div>
+                            <h5 class="text-muted fw-normal mt-0" title="Numero de Sepração">Separação</h5>
+                            <h3 class="mt-1 mb-1">36,254</h3>
+                            <p class="mb-0 text-muted">
+                                <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 5.27%</span>
+                                <span class="text-nowrap">Desde o Ultimo Mes</span>
+                            </p>
+                        </div> <!-- end card-body-->
+                    </div> <!-- end card-->
+                </div> <!-- end col-->
+
+                <div class="col-sm-6">
+                    <div class="card widget-flat">
+                        <div class="card-body">
+                            <div class="float-end">
+                                <i class="mdi mdi-cart-plus widget-icon"></i>
+                            </div>
+                            <h5 class="text-muted fw-normal mt-0" title="Numero de Pedidos">Pedidos</h5>
+                            <h3 class="mt-1 mb-1">5,543</h3>
+                            <p class="mb-0 text-muted">
+                                <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i> 1.08%</span>
+                                <span class="text-nowrap">Desde o Ultimo Mes</span>
+                            </p>
+                        </div> <!-- end card-body-->
+                    </div> <!-- end card-->
+                </div> <!-- end col-->
+            </div> <!-- end row -->
+
+
+
+        </div> <!-- end col -->
+
+        <div class="col-xl-6 col-lg-6">
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card widget-flat">
+                        <div class="card-body">
+                            <div class="float-end">
+                                <i class="mdi mdi-currency-usd widget-icon"></i>
+                            </div>
+                            <h5 class="text-muted fw-normal mt-0" title="Average Revenue">Receita</h5>
+                            <h3 class="mt-1 mb-1">$6,254</h3>
+                            <p class="mb-0 text-muted">
+                                <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i> 7.00%</span>
+                                <span class="text-nowrap">Desde o Ultimo Mes</span>
+                            </p>
+                        </div> <!-- end card-body-->
+                    </div> <!-- end card-->
+                </div> <!-- end col-->
+
+                <div class="col-sm-6">
+                    <div class="card widget-flat">
+                        <div class="card-body">
+                            <div class="float-end">
+                                <i class="mdi mdi-pulse widget-icon"></i>
+                            </div>
+                            <h5 class="text-muted fw-normal mt-0" title="Growth">Crescimento</h5>
+                            <h3 class="mt-1 mb-1">+ 30.56%</h3>
+                            <p class="mb-0 text-muted">
+                                <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 4.87%</span>
+                                <span class="text-nowrap">Desde o Ultimo Mes</span>
+                            </p>
+                        </div> <!-- end card-body-->
+                    </div> <!-- end card-->
+                </div> <!-- end col-->
+            </div> <!-- end row -->
+
+        </div> <!-- end col -->
+        <div class="col-md-4" style=" width: 100%;margin-top: 13px;">
+            <form class="navbar-form navbar-right" role="search">
+                <div id="lista_picking_docs_pendentes_filter" style="float:right;width:25%"  class="form-group">
+                    <input type="text" class="form-control" placeholder="Pesquisar Pedido" id="campo_pesquisa">
+                </div>
+                <div style="float: right; width: 4%"> <button type="submit" class="btn btn-primary" id="botao_pesquisa">OK</button> </div>
+
+            </form>
+        </div>
+        <div class="page-title-box">
+
+        </div>
+
+    </div>
+
+
+    <!-- end page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="row">
+
+                    <div class="row">
+                        <div class="col-12">
+
+                        </div>
+                        <nav class="nav-justified">
+                            <div class="nav nav-tabs nav-justified " id="nav-tab" role="tablist">
+                                <button class="nav-link active jus" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">AGUARDANDO SEPARAÇÃO</button>
+                                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">AGUARDANDO SEPARAÇÃO FUTURA</button>
+                                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">SEPARAÇÃO PENDENTE</button>
+                                <button class="nav-link" id="nav-separacao-tab" data-bs-toggle="tab" data-bs-target="#nav-separacao" type="button" role="tab" aria-controls="nav-separacao" aria-selected="false">TRANSFERÊNCIAS E ORDENS DE PRODUÇÕES</button>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                <div class="container separador_tabelas">
+                                    <h4>AGUARDANDO SEPARAÇÃO</h4>
+                                    <table id="lista_picking_em_aberto" class="table table-centered w-100 dt-responsive nowrap">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Tipo</th>
+                                                <th>Nº  Doc</th>
+                                                <th>Prioridade</th>
+                                                <th>Nome do Cliente</th>
+                                                <th>Cidade Entrega</th>
+                                                <th>Data de Entrega</th>
+                                                <th>Vendedor</th>
+                                                <th>Observações</th>
+                                                <th>Gerar Lista Picking</th>
+                                                @*<th>Gerar Lista</th>*@
+                                                <th>Pendente</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                <div class="container separador_tabelas">
+                                    <h4>AGUARDANDO SEPARAÇÃO FUTURA</h4>
+                                    <table id="lista_picking_separacao_futura" class="table table-centered w-100 dt-responsive nowrap">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Tipo</th>
+                                                <th>Nº  Doc</th>
+                                                <th>Prioridade</th>
+                                                <th>Nome do Cliente</th>
+                                                <th>Cidade Entrega</th>
+                                                <th>Data de Entrega</th>
+                                                <th>Vendedor</th>
+                                                <th>Observações</th>
+                                                <th>Gerar Lista Picking</th>
+                                                @*<th>Gerar Lista</th>*@
+                                                <th>Pendente</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                                <div class="container separador_tabelas">
+                                    <h4>SEPARAÇÃO PENDENTE</h4>
+                                    <table id="lista_picking_docs_pendentes" class="table table-centered w-100 dt-responsive nowrap">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Tipo</th>
+                                                <th>Nº  Doc</th>
+                                                <th>Prioridade</th>
+                                                <th>Nome do Cliente</th>
+                                                <th>Cidade Entrega</th>
+                                                <th>Data de Entrega</th>
+                                                <th>Vendedor</th>
+                                                <th>Observações</th>
+                                                <th>Gerar Lista Picking</th>
+                                                @*<th>Gerar Lista</th>*@
+                                                <th>Desimpedir</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-separacao" role="tabpanel" aria-labelledby="nav-separacao-tab">
+                                <div class="container separador_tabelas">
+                                    <h4>TRANSFERÊNCIAS E ORDENS DE PRODUÇÕES</h4>
+                                    <table id="lista_picking_transferencias" class="table table-centered w-100 dt-responsive nowrap">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Tipo</th>
+                                                <th>Nº  Doc</th>
+                                                <th>Prioridade</th>
+                                                <th>Nome do Cliente</th>
+                                                <th>Cidade Entrega</th>
+                                                <th>Data de Entrega</th>
+                                                <th>Vendedor</th>
+                                                <th>Observações</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+@Html.Partial("DetalheListaPickingParcial")
+@Html.Partial("DetalheListaPicking")
+<input type="hidden" value="@ViewBag.NomeImpressora" id="nome_impressora" />
+@section scripts
+{
+    <script type="text/javascript">
+        var DefaultApiPath = '@(Url.Action("", "api/" + ControllerName))';
+        InitWS("@userid");
+    </script>
+    <script id="script_lista_picking" src="~/Scripts/Site/ListaPicking.js" data-empresa="@empresa"></script>
+}
+

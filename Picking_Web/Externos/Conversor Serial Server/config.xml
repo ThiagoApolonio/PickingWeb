@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<config>
+  <porta>1407</porta>
+  <portacom>COM1</portacom>
+  <baud>4800</baud>
+</config>

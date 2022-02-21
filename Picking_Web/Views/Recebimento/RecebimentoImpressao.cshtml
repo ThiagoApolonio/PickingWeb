@@ -1,0 +1,82 @@
+﻿@using Picking_Web.Models
+@{
+    ViewBag.Title = "Reimpressão Etiquetas de Recebimento";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    string ControllerName = "recebimento";
+    int empresa = ViewBag.empresa;
+    string userid = ViewBag.userid;
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row" style="margin-top:30px;">
+
+
+
+    <div class="col-xs-4">
+        <label for="itemcode">Código Item</label>
+        <select class="form-control chosen" id="itemcode" style="max-width: none">
+            <option value="">Selecione o Item</option>
+            @{
+                var itens = ViewBag.Itens as List<ItemSAP>;
+                foreach (var item in itens)
+                {
+                    <option value="@item.ItemCode">@item.ItemCode - @item.ItemName</option>
+                }
+            }
+        </select>
+    </div>
+
+
+
+    <div class="col-xs-2">
+        <label for="numlote">Lote Interno</label>
+        <select class="form-control" id="numlote" style="max-width: none">
+            <option value="">Selecione o Lote</option>
+        </select>
+    </div>
+
+
+
+</div>
+
+
+<div class="row" style="margin-top: 50px; margin-left: 0px; margin-right: 0px;">
+    <table id="itens_recebimento" class="table table-bordered table-condensed table-hover">
+        <thead>
+            <tr>
+                <th>Marcar</th>
+                <th>Item</th>
+                <th>Descrição</th>
+                <th>Lote</th>
+                <th>Cod. Barras</th>
+                <th>Armazenagem</th>
+                <!--<th>Remover</th>-->
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<div class="row" style="margin-top: 30px;">
+    <div class="col-xs-4">
+        <button class="btn btn-primary btn-block" type="submit" id="imprimir" data-loading-text="Aguarde...">Imprimir</button>
+    </div>
+    <div class="col-xs-4">
+        <button class="btn btn-warning btn-block" type="submit" id="reset" data-loading-text="Aguarde..." data-toggle="tooltip" data-placement="top" title="Reseta apenas os itens">Reset</button>
+    </div>
+    <div class="col-xs-4">
+        <button class="btn btn-danger btn-block" type="submit" id="cancelar" data-loading-text="Aguarde..." data-toggle="tooltip" data-placement="top" title="Reseta toda a tela">Cancelar</button>
+    </div>
+</div>
+
+<input type="hidden" value="@ViewBag.NomeImpressoraAmbiente" id="nome_impressora_ambiente" />
+<input type="hidden" value="@ViewBag.NomeImpressoraGeladeira" id="nome_impressora_geladeira" />
+@section scripts
+{
+    <script type="text/javascript">
+        var DefaultApiPath = '@(Url.Action("", "api/" + ControllerName))';
+        InitWS("@userid");
+    </script>
+    <script id="script_Reimpressaorecebimentos" src="~/Scripts/Site/ReimpressaoRecebimento.js" data-empresa="@empresa"></script>
+}

@@ -1,0 +1,32 @@
+﻿@model Picking_Web.Models.Documentos
+
+@using Picking_Web.Models
+@{
+    /**/
+
+    ViewBag.Title = "Ajuste de Documentos";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+@using Microsoft.AspNet.Identity;
+@{
+    string pode_ver_licenca = User.Identity.GetUserId() == Privilegios.AdminUserID ? "" : "display:none;";
+}
+
+@using (Html.BeginForm("Salvar", "Documentos", FormMethod.Post))
+{
+    <h2>Alteração de Status dos Pedidos</h2>
+    <div class="col-md-2" style="width:300px;margin-top:23px;margin-left:0px;margin-right:0px;align-items:center">
+        @Html.DropDownListFor(x => x.ListaEmpresas[0].Id, new SelectList(Model.ListaEmpresas, "Id", "Nome"), new { @class = "form-control", @id = "select_empresa", @name = "Id" })
+    </div>
+    <div class="col-md-1" style="width:200px;margin-top:20px;margin-left:0px;margin-right:0px">
+        @*<input type="text" class="form-control" placeholder="Nº Documento" id="Campo_Status_Pedido" />*@
+        @Html.EditorFor(x=>x.NDocumento,
+            new { htmlAttributes = new { @class = "form-control input-md", @placeholder = "Nº Documento", @required = "required", @id = "Campo_Status_Pedido" } })
+    </div>
+    <div class="col-md-2" style="width:300px;margin-top:23px;margin-left:0px;margin-right:0px;align-items:center">
+        @Html.DropDownListFor(x => x.Status[0].Id, new SelectList(Model.Status, "Id", "Value"), new { @class = "form-control", @id = "select_documento", @name = "StatusId" })
+    </div>
+    <div class="col-md-3" style="width:200px;margin-top:23px;margin-left:0px;margin-right:0px;align-items:center">
+        <button type="submit" class="btn-primary" style="height:30px; width:70px" id="btn_status_Pedido"> Atualizar </button>
+    </div>
+}

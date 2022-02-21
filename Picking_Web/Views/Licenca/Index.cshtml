@@ -1,0 +1,123 @@
+﻿@using Picking_Web.Models
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Licença";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    string ControllerName = "licenca";
+    string userid = ViewBag.userid;
+}
+
+<div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item active">Dashboards</li>
+                        <li class="breadcrumb-item active">Área Administrativa</li>
+                        <li class="breadcrumb-item active">Gestão de Impressões</li>
+                    </ol>
+                </div>
+                <br />
+                <h2>@ViewBag.Title</h2>
+            </div>
+        </div>
+    </div>
+    <!-- end page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row mb-2">
+                        <div class="col-sm-5">
+
+
+
+                        </div>
+                        @*<div class="col-sm-7">
+                                <div class="text-sm-end">
+                                    <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#ModalRegister">
+                                        Nova Licença
+                                    </button>
+                                </div>
+                            </div>*@
+                        <!-- end col-->
+                    </div>
+                    <!-- Modal -->
+                    @*@Html.Partial("FormLicenca")*@
+                    <div>
+                        <table id="licenca" class="table table-centered w-100 dt-responsive nowrap">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Identificação</th>
+                                    <th>Quantidade Licenças</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+@section scripts
+{
+    <script type="text/javascript">
+        var DefaultApiPath = '@(Url.Action("", "api/" + ControllerName))';
+        var DefaultPath = '@(Url.Action("", "" + ControllerName))';
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            var table = $("#licenca").DataTable({
+                ajax: {
+                    url: DefaultApiPath + "/getlicenca",
+                    dataSrc: ""
+                },
+                pageLength: 1,
+                language: {
+                    paginate: {
+                        previous: "Anterior",
+                        next: "Próximo",
+                        first: "Primeiro",
+                        last: "Ultimo",
+
+
+                    },
+
+
+                    info: " Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    lengthMenu: 'Resultados por paginas <select class=\'form-select form-select-sm ms-1 me-1\'><option value="1">1</option><option value="5">5</option><option value="15">15</option><option value="-1">Todos</option></select>'
+                    , search: "Buscar", searchPlaceholder: "Buscar por nome..."
+                },
+                columns: [
+                    {
+                        data: "id",
+                        render: function (data, type, impressora) {
+                            return "<a href='" + DefaultPath + "/editar/" + impressora.id + "'>" + data + "</a>";
+                        }
+                    },
+                    {
+                        data: "quantidadeLicencas",
+                    },
+                ], order: [[1, "asc"]],
+                drawCallback: function () {
+                    $(".dataTables_paginate > .pagination").addClass("pagination-rounded "),
+                        $("#gestao_etiquetas").addClass("form-label"),
+                        document.querySelector(".dataTables_wrapper .row").querySelectorAll(".col-md-6").forEach(function (e) {
+                            e.classList.add("col-sm-6"),
+                                e.classList.remove("col-sm-12"),
+                                e.classList.remove("col-md-6")
+                        })
+                },
+
+            });
+        });
+        InitWS("@userid");
+    </script>
+}

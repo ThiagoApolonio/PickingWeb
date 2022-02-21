@@ -1,0 +1,58 @@
+﻿@using Picking_Web.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Picking Web";
+}
+
+<div class="row justify-content-center">
+
+    <div class="col-md-6 col-lg-4">
+        <div class="login-wrap p-0" id="loginForm">
+            <br />
+            <h2 class="text-center" style="color:whitesmoke">@ViewBag.Title</h2>
+            <br />
+
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "signin-form" }))
+            {
+                <div>
+
+                    @Html.AntiForgeryToken()
+                    <h4 class="text-center" style="color: whitesmoke">Faça Login para acessar o Sistema de Logística.</h4>
+                    @*<hr />*@
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="text-center form-group">
+                        @*@Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })*@
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Login" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="text-center form-group">
+                        @*@Html.LabelFor(m => m.Password, new { @class = "col-md-2 text-center control-label" })*@
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Senha" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="text-center form-group">
+
+                        <input type="submit" value="Entrar" class="btn btn-default" />
+
+                    </div>
+
+                    <p style="color: whitesmoke" class="text-center">
+                        @Html.ActionLink("Esqueceu a senha?", "ForgotPassword")
+                    </p>
+
+                </div>
+
+
+            }
+        </div>
+    </div>
+</div>
+<div style="margin-top: 280px ; color:whitesmoke">
+
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

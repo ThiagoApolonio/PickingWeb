@@ -1,0 +1,28 @@
+﻿@model Picking_Web.Models.IndexViewModel
+@{
+    ViewBag.Title = "Configurações";
+    Layout = "~/Views/Shared/_Administracao.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+    <h4>Atualize as configurações de sua conta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Senha:</dt>
+        <dd>
+            
+            @if (Model.HasPassword)
+            {
+                @Html.ActionLink("Trocar Senha", "ChangePassword")
+            }
+            else
+            {
+                @Html.ActionLink("Criar Senha", "SetPassword")
+            }
+            
+        </dd>
+    </dl>
+</div>

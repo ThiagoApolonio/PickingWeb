@@ -1,0 +1,26 @@
+﻿<div id="form_lista_picking_detalhe" style="display: none">
+    <form class="bootbox-form">
+        <div class="form-group">
+            <label class="control-label col-md-2">Nº Picking</label>
+            <input class="bootbox-input bootbox-input-text form-control" type="text" id="numpicking" disabled="disabled">
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Data de Picking</label>
+            <input class="bootbox-input bootbox-input-text form-control" type="text" id="datapicking" disabled="disabled">
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Usuário</label>
+            <input class="bootbox-input bootbox-input-text form-control" type="text" id="usuariopicking" disabled="disabled">
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Operador</label>
+            <select class="bootbox-input bootbox-input-select form-control" id="operadorespicking"></select>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Observações</label>
+            <textarea class="bootbox-input bootbox-input-textarea form-control" id="observacoespicking" rows="5"></textarea>
+        </div>
+        <input type="hidden" id="numdoc" />
+        <input type="hidden" id="usuario_logado_nome" value="@User.Identity.Name" />
+    </form>
+</div>

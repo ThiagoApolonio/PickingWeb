@@ -1,0 +1,17 @@
+﻿@using Picking_Web.ViewModels
+@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+       
+        {
+            @Html.AntiForgeryToken()
+            <ul class="nav navbar-nav navbar-right">
+                <li >
+                    @Html.ActionLink("Olá " + User.Identity.Name + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Gerenciar", @class = "navbar-brand" , @style = "color:#000000" })
+                </li>
+                <li><a style="color:#000000" href="javascript:document.getElementById('logoutForm').submit()">Sair do Sistema</a></li>
+            </ul>
+            <span class="glyphicon glyphicon-fullscreen" style="position: absolute;right: 15px;top: 15px;cursor:pointer" onclick="toggleFullScreen();"></span>
+        }
+    }

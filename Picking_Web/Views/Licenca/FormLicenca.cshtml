@@ -1,0 +1,52 @@
+﻿@model Picking_Web.ViewModels.FormLicencaViewModel
+@{
+    string userid = ViewBag.userid;
+}
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="ModalRegister" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modaLLabel">Novo Usuário</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                @using (Html.BeginForm("Salvar", "Licenca"))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">       
+                        @Html.ValidationSummary(true, "Por favor, corrija os erro(s) abaixo:")
+                        @Html.HiddenFor(m => m.Id)
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.QuantidadeLicenca, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.QuantidadeLicenca, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.QuantidadeLicenca, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset col-md modal-footer">
+                                <input type="submit" value="Salvar" class="btn btn-primary" />
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script type="text/javascript">
+        InitWS("@userid");
+    </script>
+}

@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Área Administrativa";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    string userid = ViewBag.userid;
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    Configure usuários, empresas, impressoras e ativação de Add-ons.
+</p>
+@section scripts
+{
+    <script type="text/javascript">
+        InitWS("@userid");
+    </script>
+}
+

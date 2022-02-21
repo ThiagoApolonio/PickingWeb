@@ -1,0 +1,7 @@
+﻿@model Picking_Web.ViewModels.UsuarioEmpresaAssignadoViewModel
+
+<fieldset>
+    @Html.HiddenFor(model => model.Empresa.Id)
+    @Html.CheckBoxFor(model => model.Assignado)
+    @Html.DisplayFor(model => model.Empresa.Nome)
+</fieldset>
