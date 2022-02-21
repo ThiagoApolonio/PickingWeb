@@ -1,2 +1,3 @@
 # PickingWeb
-Sistema Logico Criado Para a Empresa Ramo Sistemas
+Sistema Logico Feito Para Ramo Sistemas Parte de Front toda feita por…
+
