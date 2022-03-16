@@ -10,13 +10,19 @@ namespace Picking_Web
         {
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
                         "~/Scripts/jquery-{version}.js",
-                   
+                        "~/Content/bootstrap/assets/js/vendor.min.js",
+                        "~/Content/bootstrap/assets/js/app.min.js",
+                        "~/Content/bootstrap/assets/js/vendor/apexcharts.min.js",
+                        "~/Content/bootstrap/assets/js/vendor/jquery-jvectormap-1.2.2.min.js",
+                        "~/Content/bootstrap/assets/js/vendor/jquery-jvectormap-world-mill-en.js",
+                        "~/Content/bootstrap/assets/js/pages/dashboard.js",
+                        "~/Content/bootstrap/assets/js/vendor/jquery.dataTables.min.js",
+                        "~/Content/bootstrap/assets/js/vendor/dataTables.bootstrap5.js",
+                        "~/Content/bootstrap/assets/js/vendor/dataTables.responsive.min.js",
                         "~/Scripts/bootbox.js",
                         "~/Scripts/respond.js",
-                        "~/Scripts/datatables/jquery.datatables.js",
-                        "~/Scripts/datatables/datatables.bootstrap.js",
                         "~/Scripts/toastr.js",
-                        "~/Scripts/Site/Globals.js"
+                        "~/Scripts/Site/Globals.js"                     
                         ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -31,10 +37,15 @@ namespace Picking_Web
                       ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap-lumen.css",
-                      "~/Content/datatables/css/datatables.bootstrap.css",
+                      "~/Content/bootstrap/assets/css/vendor/dataTables.bootstrap5.css",
+                      "~/Content/bootstrap/assets/css/vendor/responsive.bootstrap5.css",
+                      "~/Content/bootstrap/assets/css/vendor/jquery-jvectormap-1.2.2.css",             
                       "~/Content/toastr.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css"
+                    ));
+
+
+
         }
     }
 }

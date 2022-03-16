@@ -24,9 +24,15 @@ namespace Picking_Web.Controllers
 
         public ActionResult Index()
         {
+            var viewModel = new FormGestaoEtiquetasViewModel()
+            {
+                Empresas = _context.Empresa.ToList(),
+                Impressoras = ListaDeImpressorasDaMaquina(),
+                Users = _context.Users.Where(x => x.Id == "-1").ToList(),
+            };
             SetUserIdInViewBag();
 
-            return View();
+            return View(viewModel);
         }
 
         public ActionResult Novo()
@@ -64,7 +70,7 @@ namespace Picking_Web.Controllers
             };
 
             SetUserIdInViewBag();
-            return View("FormGestaoEtiquetas", viewModel);
+            return View("editarEtiqueta", viewModel);
         }
 
         [HttpPost]
@@ -92,7 +98,7 @@ namespace Picking_Web.Controllers
                     Porta = gestao_etiquetas.Porta,
                 };
                 SetUserIdInViewBag();
-                return View("FormGestaoEtiquetas", viewModel);
+                return View("Index", viewModel);
             }
 
             if (gestao_etiquetas.Id == 0)

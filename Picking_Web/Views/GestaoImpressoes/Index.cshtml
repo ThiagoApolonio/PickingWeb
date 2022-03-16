@@ -2,23 +2,19 @@
 @using Microsoft.AspNet.Identity
 @{
     ViewBag.Title = "Gestão de Impressões";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    Layout = "~/Views/Shared/_Administracao.cshtml";
     string ControllerName = "gestaoimpressoes";
     string userid = ViewBag.userid;
 }
 <!-- Start Content-->
-<div class="container-fluid">
+<div class="container-fluid" style="align-items:center">
 
     <!-- start page title -->
     <div class="row">
         <div class="col-12">
             <div class="page-title-box">
                 <div class="page-title-right">
-                    <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item active">Dashboards</li>
-                        <li class="breadcrumb-item active">Área Administrativa</li>
-                        <li class="breadcrumb-item active">Gestão de Impressões</li>
-                    </ol>
+
                 </div>
                 <br />
                 <h2>@ViewBag.Title</h2>
@@ -100,12 +96,12 @@
                     , search: "Buscar", searchPlaceholder: "Buscar por nome..."
                 },
 
-                pageLength: 1,
+                pageLength: -1,
                 columns: [
                     {
                         data: "id",
                         render: function (data, type, impressora) {
-                            return "<a href='" + DefaultPath + "/editar/" + impressora.id + "'>" + data + "</a>";
+                            return "<a idImpre='" + impressora.id + "'>" + data + "</a>";
                         }
                     },
                     {
@@ -186,8 +182,12 @@
                     }
                 });
             });
+
+
         });
 
-        InitWS("@userid");
+
+
+              InitWS("@userid");
     </script>
 }

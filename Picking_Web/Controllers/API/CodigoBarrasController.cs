@@ -705,8 +705,8 @@ namespace Picking_Web.Controllers.API {
                 }
                 else if (separacao.Length == 2)    //modelo antigo (CodLote + DV)
                 {
-                    _codLote = separacao[1];
-                    _DV = separacao[0];
+                    _codLote = separacao[0];
+                    _DV = separacao[1];
                 }
                 else if (separacao.Length == 1)
                 {

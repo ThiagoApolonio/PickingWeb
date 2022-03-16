@@ -89,37 +89,29 @@
     var lista_picking_itens = [];
 
     var datatable_lista_picking_aberto = $("#lista_picking_em_aberto").DataTable({
-        order: [],
-   
         ajax: {
             url: GetURLPickingAberto(),
             dataSrc: "",
             method: "GET",
             error: _DEFAULT_ERROR_TREATMENT
         },
+        columns: columns_default, order: [5, "asc"],
         language: {
             paginate: {
                 previous: "Anterior",
                 next: "Próximo",
                 first: "Primeiro",
                 last: "Ultimo",
-
-
             },
-
-
-            info: " Mostrando de _START_ até _END_ de _TOTAL_ registros",
+            info: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
             lengthMenu: 'Resultados por paginas <select class=\'form-select form-select-sm ms-1 me-1\'><option value="1">1</option><option value="5">5</option><option value="15">15</option><option value="-1">Todos</option></select>'
             , search: "Buscar", searchPlaceholder: "Buscar por nome..."
         },
-
         pageLength: 5,
-        columns: columns_default, scrollX: !0,
-
-      
+        scrollX: !0,
         drawCallback: function () {
             $(".dataTables_paginate > .pagination").addClass("pagination-rounded"),
-                $("#empresas").addClass("form-label"),
+                $("#lista_picking_em_aberto").addClass("form-label"),
                 document.querySelector(".dataTables_wrapper .row").querySelectorAll(".col-md-6").forEach(function (e) {
                     e.classList.add("col-sm-6"),
                         e.classList.remove("col-sm-12"),
@@ -128,10 +120,9 @@
         },
 
 
+
     });
     var datatable_lista_separacao_futura = $("#lista_picking_separacao_futura").DataTable({
-        order: [],
-    
         ajax: {
             url: GetURLSeparacaoFutura(),
             dataSrc: "",
@@ -140,26 +131,23 @@
         },
         //columns: columns_default.slice(0, 8),
         columns: columns_default,
+        order: [5, "asc"],
         language: {
             paginate: {
                 previous: "Anterior",
                 next: "Próximo",
                 first: "Primeiro",
                 last: "Ultimo",
-
-
             },
-
-
             info: " Mostrando de _START_ até _END_ de _TOTAL_ registros",
             lengthMenu: 'Resultados por paginas <select class=\'form-select form-select-sm ms-1 me-1\'><option value="1">1</option><option value="5">5</option><option value="15">15</option><option value="-1">Todos</option></select>'
             , search: "Buscar", searchPlaceholder: "Buscar por nome..."
-        }, scrollX: !0,
+        },
         pageLength: 5,
-        order: [[5, "asc"]],
+        scrollX: !0,
         drawCallback: function () {
             $(".dataTables_paginate > .pagination").addClass("pagination-rounded"),
-                $("#empresas").addClass("form-label"),
+                $("#lista_picking_separacao_futura").addClass("form-label"),
                 document.querySelector(".dataTables_wrapper .row").querySelectorAll(".col-md-6").forEach(function (e) {
                     e.classList.add("col-sm-6"),
                         e.classList.remove("col-sm-12"),
@@ -168,31 +156,35 @@
         },
     });
     var datatable_lista_docs_pendentes = $("#lista_picking_docs_pendentes").DataTable({
-        order: [],
-      
         ajax: {
             url: GetURLDocsPendentes(),
             dataSrc: "",
             method: "GET",
             error: _DEFAULT_ERROR_TREATMENT
         },
+        order: [5, "asc"],
         language: {
             paginate: {
                 previous: "Anterior",
                 next: "Próximo",
                 first: "Primeiro",
                 last: "Ultimo",
-
-
             },
-
-
             info: " Mostrando de _START_ até _END_ de _TOTAL_ registros",
             lengthMenu: 'Resultados por paginas <select class=\'form-select form-select-sm ms-1 me-1\'><option value="1">1</option><option value="5">5</option><option value="15">15</option><option value="-1">Todos</option></select>'
             , search: "Buscar", searchPlaceholder: "Buscar por nome..."
         },
-
         pageLength: 5,
+        scrollX: !0,
+        drawCallback: function () {
+            $(".dataTables_paginate > .pagination").addClass("pagination-rounded"),
+                $("#lista_picking_docs_pendentes").addClass("form-label"),
+                document.querySelector(".dataTables_wrapper .row").querySelectorAll(".col-md-6").forEach(function (e) {
+                    e.classList.add("col-sm-6"),
+                        e.classList.remove("col-sm-12"),
+                        e.classList.remove("col-md-6")
+                })
+        },
         columns: [
             {
                 data: "tipo"
@@ -230,7 +222,7 @@
                 render: function (data, type, row) {
                     return "<button data-numdoc-id='" +
                         data +
-                        "' type='button' class='btn btn-primary js-gerar-parcial'><span class='glyphicon glyphicon-ok'></span >&nbsp;</button>";
+                        "' type='button' class='btn btn-primary js-gerar-parcial'><span class='mdi mdi-check'></span >&nbsp;</button>";
                 }
             },
             //{
@@ -251,27 +243,14 @@
 
                     return "<button data-numdoc-id='" +
                         row.numDoc +
-                        "' type='button' " + disabled + " class='btn btn-primary js-desimpedir-lista'><span class='glyphicon glyphicon-upload'></span >&nbsp;</button>";
+                        "' type='button' " + disabled + " class='btn btn-primary js-desimpedir-lista'><span class='mdi mdi-upload'></span >&nbsp;</button>";
                 }
             }
-        ], scrollX: !0,
+        ]
 
-
-        drawCallback: function () {
-            $(".dataTables_paginate > .pagination").addClass("pagination-rounded"),
-                $("#empresas").addClass("form-label"),
-                document.querySelector(".dataTables_wrapper .row").querySelectorAll(".col-md-6").forEach(function (e) {
-                    e.classList.add("col-sm-6"),
-                        e.classList.remove("col-sm-12"),
-                        e.classList.remove("col-md-6")
-                })
-        },
-      
     });
     var datatable_lista_transferencias = $("#lista_picking_transferencias").DataTable({
         order: [],
-      
-      
         ajax: {
             url: GetURLTransferencias(),
             dataSrc: "",
@@ -285,11 +264,7 @@
                 next: "Próximo",
                 first: "Primeiro",
                 last: "Ultimo",
-
-
             },
-
-
             info: " Mostrando de _START_ até _END_ de _TOTAL_ registros",
             lengthMenu: 'Resultados por paginas <select class=\'form-select form-select-sm ms-1 me-1\'><option value="1">1</option><option value="5">5</option><option value="15">15</option><option value="-1">Todos</option></select>'
             , search: "Buscar", searchPlaceholder: "Buscar por nome..."
@@ -298,19 +273,23 @@
         pageLength: 5,
         drawCallback: function () {
             $(".dataTables_paginate > .pagination").addClass("pagination-rounded"),
-                $("#empresas").addClass("form-label"),
+                $("#lista_picking_transferencias").addClass("form-label"),
                 document.querySelector(".dataTables_wrapper .row").querySelectorAll(".col-md-6").forEach(function (e) {
                     e.classList.add("col-sm-6"),
                         e.classList.remove("col-sm-12"),
                         e.classList.remove("col-md-6")
                 })
+
         },
 
     });
 
     var datatable_itens_pedido_parcial = $("#itens_pedido_parcial").DataTable({
         order: [],
-  
+        searching: false,    
+        paging: false,
+        info: false,
+        autoWidth: false,
         ajax: {
             url: GetURLItensPedidoParcial(),
             dataSrc: "",
@@ -347,32 +326,10 @@
             //    className: 'td-center',
             //},
         ],
-        language: {
-            paginate: {
-                previous: "Anterior",
-                next: "Próximo",
-                first: "Primeiro",
-                last: "Ultimo",
-
-
-            },
-
-
-            info: " Mostrando de _START_ até _END_ de _TOTAL_ registros",
-            lengthMenu: 'Resultados por paginas <select class=\'form-select form-select-sm ms-1 me-1\'><option value="1">1</option><option value="5">5</option><option value="15">15</option><option value="-1">Todos</option></select>'
-            , search: "Buscar", searchPlaceholder: "Buscar por nome..."
-        }, scrollX: !0,
-
-        pageLength: 5,
         drawCallback: function () {
-            $(".dataTables_paginate > .pagination").addClass("pagination-rounded"),
-                $("#empresas").addClass("form-label"),
-                document.querySelector(".dataTables_wrapper .row").querySelectorAll(".col-md-6").forEach(function (e) {
-                    e.classList.add("col-sm-6"),
-                        e.classList.remove("col-sm-12"),
-                        e.classList.remove("col-md-6")
-                })
+            
         },
+      
     });
 
     var RefreshDatatables = function () {
@@ -381,7 +338,7 @@
         datatable_lista_docs_pendentes.ajax.url(GetURLDocsPendentes()).load();
     };
 
-    $("#lista_picking_em_aberto, #lista_picking_docs_pendentes, #lista_picking_separacao_futura").on("click", ".js-gerar-lista", function () {
+    $("#lista_picking_em_aberto,#lista_picking_docs_pendentes,#lista_picking_separacao_futura").on("click", ".js-gerar-lista", function () {
 
         var button = $(this),
             div_id_name = "detalhe_lista_picking_em_aberto",
@@ -485,7 +442,7 @@
     });
 
 
-    $("#lista_picking_em_aberto, #lista_picking_docs_pendentes, #lista_picking_separacao_futura").on("click", ".js-gerar-parcial", function () {
+    $("#lista_picking_em_aberto,#lista_picking_docs_pendentes,#lista_picking_separacao_futura").on("click", ".js-gerar-parcial", function () {
 
         var button = $(this),
             div_id_name = "detalhe_lista_picking_em_aberto_parcial",
@@ -560,51 +517,51 @@
                     callback: function () {
 
                         var $btnAdd = $('.' + btn_add_lista_completa_classname);
-                            $btnAdd.attr('data-loading-text', 'Aguarde...');
+                        $btnAdd.attr('data-loading-text', 'Aguarde...');
 
-                            $("#" + div_id_name + " #operadorespicking").removeClass(error_class);
-                            var operador = $("#" + div_id_name + " #operadorespicking").val();
-                            var num_doc = button.attr("data-numdoc-id");
-                            if (operador) {
-                                for (var i = 0; i < lista_picking_itens.length; i++) {
-                                    lista_picking_itens[i].qtdPicking = $("#num" + i).val();
-                                    lista_picking_itens[i].check = $("#chk" + i).is(":checked");
-                                }
-                                $.ajax({
-                                    url: DefaultApiPath + "/gerarlistapickingcompleta",
-                                    method: "POST",
-                                    data: {
-                                        empresa_id: empresa_id,
-                                        numdoc: num_doc,
-                                        //numdoc: $("#" + div_id_name + " #numdoc").val(),
-                                        operador: operador,
-                                        usuario_logado_nome: $("#" + div_id_name + " #usuario_logado_nome").val(),
-                                        observacoes: $("#" + div_id_name + " #observacoespicking").val(),
-                                        nome_impressora: $('#nome_impressora').val(),
-                                        itens: JSON.stringify(lista_picking_itens)
-                                    },
-
-                                    beforeSend: function () {
-                                        $btnAdd.button('loading');
-                                        aguardeMsg();
-                                    },
-                                    success: function (response) {
-
-                                        toastr.clear();
-                                        bootbox.hideAll();
-                                        toastr.success("Lista de Picking gerada com sucesso.");
-
-                                        RefreshDatatables();
-
-                                    },
-                                    error: _DEFAULT_ERROR_TREATMENT
-                                }).always(function () {
-                                    $btnAdd.button('reset');
-                                });
-                            } else {
-                                $("#" + div_id_name + " #operadorespicking").addClass(error_class);
-                                toastr.error("Selecione o Operador.", _DEFAULT_ERROR_TIMEOUT);
+                        $("#" + div_id_name + " #operadorespicking").removeClass(error_class);
+                        var operador = $("#" + div_id_name + " #operadorespicking").val();
+                        var num_doc = button.attr("data-numdoc-id");
+                        if (operador) {
+                            for (var i = 0; i < lista_picking_itens.length; i++) {
+                                lista_picking_itens[i].qtdPicking = $("#num" + i).val();
+                                lista_picking_itens[i].check = $("#chk" + i).is(":checked");
                             }
+                            $.ajax({
+                                url: DefaultApiPath + "/gerarlistapickingcompleta",
+                                method: "POST",
+                                data: {
+                                    empresa_id: empresa_id,
+                                    numdoc: num_doc,
+                                    //numdoc: $("#" + div_id_name + " #numdoc").val(),
+                                    operador: operador,
+                                    usuario_logado_nome: $("#" + div_id_name + " #usuario_logado_nome").val(),
+                                    observacoes: $("#" + div_id_name + " #observacoespicking").val(),
+                                    nome_impressora: $('#nome_impressora').val(),
+                                    itens: JSON.stringify(lista_picking_itens)
+                                },
+
+                                beforeSend: function () {
+                                    $btnAdd.button('loading');
+                                    aguardeMsg();
+                                },
+                                success: function (response) {
+
+                                    toastr.clear();
+                                    bootbox.hideAll();
+                                    toastr.success("Lista de Picking gerada com sucesso.");
+
+                                    RefreshDatatables();
+
+                                },
+                                error: _DEFAULT_ERROR_TREATMENT
+                            }).always(function () {
+                                $btnAdd.button('reset');
+                            });
+                        } else {
+                            $("#" + div_id_name + " #operadorespicking").addClass(error_class);
+                            toastr.error("Selecione o Operador.", _DEFAULT_ERROR_TIMEOUT);
+                        }
                         return false;
                     },
                 },
@@ -735,6 +692,7 @@
             }
         );
     });
+
     $("#botao_pesquisa").click(function (e) {
         e.preventDefault();
         RefreshDatatables();
@@ -744,3 +702,7 @@
         RefreshDatatables();
     }, 10000);
 });
+
+
+
+

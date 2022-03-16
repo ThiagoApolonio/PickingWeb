@@ -11,179 +11,406 @@
     int timer = ViewBag.timer;
     string userid = ViewBag.userid;
 }
-
-<div class="row">
-    <div class="col-md-8">
+<div class="row" style="width: 100%;">
+    <div class="col-md-5" style="float:left;width:60%">
         <h2>Acompanhamento de Picking</h2>
     </div>
-    <div class="col-md-4" style="margin-top: 13px;">
-        <form class="navbar-form navbar-right" role="search">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Pesquisar Pedido" id="campo_pesquisa">
-            </div>
-            <button type="submit" class="btn btn-primary" id="botao_pesquisa">OK</button>
-        </form>
+
+    <div id="lista_picking_docs_pendentes_filter" class=" col-md-5" role="search" style="float: left; width: 40%;">
+
+        <div style="float: left; width: 80%">
+
+            <input style="float: left; width: 100%; max-width: none" type="text" class="form-control" placeholder="Pesquisar Pedido" id="campo_pesquisa">
+
+        </div>
+        <div style="float: left; width: 20%;">
+
+            <button type="submit" style="float: left; width: 100%; max-width: none" class="btn btn-primary" id="botao_pesquisa">OK</button>
+
+        </div>
+
     </div>
-</div>
-<div class="container separador_tabelas" style="@pode_ver_separacao">
-    
-    <h4>EM SEPARAÇÃO</h4>
-    <table id="acompanhamento_em_separacao" class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>Pedido</th>
-                <th>Picking</th>
-                <th>Local Físico</th>
-                <th>Prioridade</th>
-                <th>Nome do Cliente</th>
-                <th>Status</th>
-                <th>Cidade Entrega</th>
-                <th>Data Entrega</th>
-                <th>Vendedor</th>
-                <th>Operador</th>
-                <th>Observações</th>
-                <th>Hora Inicial</th>
-                <th>Data</th>
-                <th>Cancelar</th>
-                <th>Reimprimir</th>
-                <th>Confirmar</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
+
 </div>
 
-<div class="container separador_tabelas" style="@pode_ver_conferencia">
-    <h4>AGUARDANDO CONFERÊNCIA</h4>
-    <table id="acompanhamento_aguardando_conferencia" class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>Pedido</th>
-                <th>Picking</th>
-                <th>Local Físico</th>
-                <th>Prioridade</th>
-                <th>Nome do Cliente</th>
-                <th>Status</th>
-                <th>Cidade Entrega</th>
-                <th>Data Entrega</th>
-                <th>Vendedor</th>
-                <th>Operador</th>
-                <th>Observações</th>
-                <th>Hora Inicial</th>
-                <th>Data</th>
-                <th>Cancelar</th>
-                <th>Reimprimir</th>
-                <th>Confirmar</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
+<hr />
+
+<div onload="sizeOfThings()" class="accordion custom-accordion" id="custom-accordion-one">
+
+    <div class="card mb-0">
+
+        <div class="card-header" id="headingFour" style="width: 100%;">
+
+            <div href="#collapseFour" data-bs-toggle="collapse" aria-controls="collapseFour" style="float:left;width:2%">
+
+                <i style="color:black" class="mdi mdi-24px mdi-chevron-down"></i>
+
+            </div>
+
+            <div style="float:left;width:98%">
+
+                <h5 class="m-0">
+
+                    <a class=" custom-accordion-title d-block py-1" data-bs-toggle="collapse" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+
+                        EM SEPARAÇÃO  <span id="separacaoCount" style="color:#ffffff;font:bold 20px arial" height="20" class="badge">0</span>
+
+                    </a>
+
+                </h5>
+
+            </div>
+
+        </div>
+
+        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-bs-parent="#custom-accordion-one">
+
+            <div class="card-body ">
+
+                <div class="separador_tabelas" style="@pode_ver_separacao">
+
+                    @*<h4>EM SEPARAÇÃO</h4>*@
+
+                    <table id="acompanhamento_em_separacao" style="width:100%;">
+
+                        <thead style="color:black">
+
+                            <tr>
+                                <th>Pedido</th>
+                                <th>Picking</th>
+                                <th>Local Físico</th>
+                                <th>Prioridade</th>
+                                <th>Nome do Cliente</th>
+                                <th>Status</th>
+                                <th>Cidade Entrega</th>
+                                <th>Data Entrega</th>
+                                <th>Vendedor</th>
+                                <th>Operador</th>
+                                <th>Observações</th>
+                                <th>Hora Inicial</th>
+                                <th>Data</th>
+                                <th>Cancelar</th>
+                                <th>Reimprimir</th>
+                                <th>Confirmar</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody align="center" style="color:black;">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <br />
+
+    <div class="card mb-0">
+
+        <div class="card-header" id="headingFive" style="width: 100%;">
+
+            <div href="#collapseFive" data-bs-toggle="collapse" aria-controls="collapseFive" style="float:left;width:2%">
+
+                <i style="color:black" class="mdi mdi-24px mdi-chevron-down"></i>
+
+            </div>
+
+            <div style="float:left;width:98%">
+
+                <h5 class="m-0">
+
+                    <a class=" custom-accordion-title d-block py-1" data-bs-toggle="collapse" href="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+
+                        AGUARDANDO CONFERÊNCIA  <span id="aguardandoConferenciaCount" style="color:#ffffff;font:bold 20px arial" height="20" class="badge">0</span>
+
+                    </a>
+
+                </h5>
+
+            </div>
+
+        </div>
+
+        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-bs-parent="#custom-accordion-one">
+
+            <div class="card-body window-size">
+
+                <div class="separador_tabelas" style="@pode_ver_conferencia">
+
+                    @*<h4>AGUARDANDO CONFERÊNCIA</h4>*@
+
+                    <table id="acompanhamento_aguardando_conferencia" class="" style="width: 100%;">
+
+                        <thead style="color:black">
+
+                            <tr>
+
+                                <th>Pedido</th>
+                                <th>Picking</th>
+                                <th>Local Físico</th>
+                                <th>Prioridade</th>
+                                <th>Nome do Cliente</th>
+                                <th>Status</th>
+                                <th>Cidade Entrega</th>
+                                <th>Data Entrega</th>
+                                <th>Vendedor</th>
+                                <th>Operador</th>
+                                <th>Observações</th>
+                                <th>Hora Inicial</th>
+                                <th>Data</th>
+                                <th>Cancelar</th>
+                                <th>Reimprimir</th>
+                                <th>Confirmar</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody align="center" style="color:black;"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <br />
+
+    <div class="card mb-0">
+
+        <div class="card-header" id="headingSix" style="width: 100%;">
+
+            <div href="#collapseSix" data-bs-toggle="collapse" aria-controls="collapseSix" style="float:left;width:2%">
+
+                <i style="color:black" class="mdi mdi-24px mdi-chevron-down"></i>
+
+            </div>
+
+            <div style="float:left;width:98%">
+
+                <h5 class="m-0">
+
+                    <a class=" custom-accordion-title d-block py-1" data-bs-toggle="collapse" href="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+
+                        AGUARDANDO EMBALAGEM <span id="aguardandoEmbalagemCount" style="color:#ffffff;font:bold 20px arial" height="20" class="badge">0</span>
+
+                    </a>
+
+                </h5>
+
+            </div>
+
+        </div>
+
+        <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-bs-parent="#custom-accordion-one">
+
+            <div class="card-body">
+
+                <div class="separador_tabelas" style="@pode_ver_embalagens">
+
+                    @*<h4>AGUARDANDO EMBALAGEM</h4>*@
+
+                    <table id="acompanhamento_aguardando_embalagens" class="" style="width: 100%;">
+
+                        <thead style="color:black">
+
+                            <tr>
+
+                                <th>Pedido</th>
+                                <th>Picking</th>
+                                <th>Local Físico</th>
+                                <th>Prioridade</th>
+                                <th>Nome do Cliente</th>
+                                <th>Status</th>
+                                <th>Cidade Entrega</th>
+                                <th>Data Entrega</th>
+                                <th>Vendedor</th>
+                                <th>Operador</th>
+                                <th>Observações</th>
+                                <th>Hora Inicial</th>
+                                <th>Data</th>
+                                <th>Cancelar</th>
+                                <th>Reimprimir</th>
+                                <th>Confirmar</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody align="center" style="color:black;">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <br />
+
+    <div class="card mb-0">
+
+        <div class="card-header" id="headingSeven" style="width: 100%;">
+
+            <div href="#collapseSeven" data-bs-toggle="collapse" aria-controls="collapseSeven" style="float:left;width:2%">
+
+                <i style="color:black" class="mdi mdi-24px mdi-chevron-down"></i>
+
+            </div>
+
+            <div style="float:left;width:98%">
+
+                <h5 class="m-0">
+
+                    <a class=" custom-accordion-title d-block py-1" data-bs-toggle="collapse" href="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
+
+                        EM EMBALAGEM <span id="emEmbalagemCount" style="color:#ffffff;font:bold 20px arial" height="20" class="badge">0</span>
+
+                    </a>
+
+                </h5>
+
+            </div>
+
+        </div>
+
+        <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-bs-parent="#custom-accordion-one">
+
+            <div class="card-body">
+
+                <div class="separador_tabelas" style="@pode_ver_embalagens">
+
+                    @*<h4>EM EMBALAGEM</h4>*@
+
+                    <table id="acompanhamento_em_embalagens" class="" style="width: 100%;">
+
+                        <thead style="color:black">
+
+                            <tr>
+                                <th>Pedido</th>
+                                <th>Picking</th>
+                                <th>Local Físico</th>
+                                <th>Prioridade</th>
+                                <th>Nome do Cliente</th>
+                                <th>Status</th>
+                                <th>Cidade Entrega</th>
+                                <th>Data Entrega</th>
+                                <th>Vendedor</th>
+                                <th>Operador</th>
+                                <th>Observações</th>
+                                <th>Hora Inicial</th>
+                                <th>Data</th>
+                                <th>Cancelar</th>
+                                <th>Reimprimir</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody align="center" style="color:black;">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <br />
+
+    <div class="card mb-0">
+
+        <div class="card-header" id="headingHeith" style="width: 100%;">
+
+            <div href="#collapseHeith" data-bs-toggle="collapse" aria-controls="collapseHeith" style="float:left;width:2%">
+
+                <i style="color:black" class="mdi mdi-24px mdi-chevron-down"></i>
+
+            </div>
+
+            <div style="float:left;width:98%">
+
+                <h5 class="m-0">
+
+                    <a class=" custom-accordion-title d-block py-1" data-bs-toggle="collapse" href="#collapseHeith" aria-expanded="true" aria-controls="collapseHeith">
+
+                        AGUARDANDO FATURAMENTO <span id="aguardandoFaturamentoCount" style="color:#ffffff;font:bold 20px arial" height="20" class="badge">0</span>
+
+                    </a>
+
+                </h5>
+
+            </div>
+
+        </div>
+
+        <div id="collapseHeith" class="collapse" aria-labelledby="headingHeith" data-bs-parent="#custom-accordion-one">
+
+            <div class="card-body">
+
+                <div class="separador_tabelas" style="@pode_ver_faturamento">
+
+                    @*<h4>AGUARDANDO FATURAMENTO</h4>*@
+
+                    <table id="acompanhamento_em_faturamento" class="" style="width: 100%;">
+
+                        <thead style="color:black">
+
+                            <tr>
+
+                                <th>Pedido</th>
+                                <th>Picking</th>
+                                <th>Local Físico</th>
+                                <th>Prioridade</th>
+                                <th>Nome do Cliente</th>
+                                <th>Status</th>
+                                <th>Cidade Entrega</th>
+                                <th>Data Entrega</th>
+                                <th>Vendedor</th>
+                                <th>Operador</th>
+                                <th>Observações</th>
+                                <th>Hora Inicial</th>
+                                <th>Data</th>
+                                <th>Cancelar</th>
+                                <th>Reimprimir</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody align="center" style="color:black;">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
 
-<div class="container separador_tabelas" style="@pode_ver_conferencia">
-    <h4>EM CONFERÊNCIA</h4>
-    <table id="acompanhamento_em_conferencia" class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>Pedido</th>
-                <th>Picking</th>
-                <th>Local Físico</th>
-                <th>Prioridade</th>
-                <th>Nome do Cliente</th>
-                <th>Status</th>
-                <th>Cidade Entrega</th>
-                <th>Data Entrega</th>
-                <th>Vendedor</th>
-                <th>Operador</th>
-                <th>Observações</th>
-                <th>Hora Inicial</th>
-                <th>Data</th>
-                <th>Cancelar</th>
-                <th>Reimprimir</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-</div>
-
-<div class="container separador_tabelas" style="@pode_ver_embalagens">
-    <h4>AGUARDANDO EMBALAGEM</h4>
-    <table id="acompanhamento_aguardando_embalagens" class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>Pedido</th>
-                <th>Picking</th>
-                <th>Local Físico</th>
-                <th>Prioridade</th>
-                <th>Nome do Cliente</th>
-                <th>Status</th>
-                <th>Cidade Entrega</th>
-                <th>Data Entrega</th>
-                <th>Vendedor</th>
-                <th>Operador</th>
-                <th>Observações</th>
-                <th>Hora Inicial</th>
-                <th>Data</th>
-                <th>Cancelar</th>
-                <th>Reimprimir</th>
-                <th>Confirmar</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-</div>
-
-<div class="container separador_tabelas" style="@pode_ver_embalagens">
-    <h4>EM EMBALAGEM</h4>
-    <table id="acompanhamento_em_embalagens" class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>Pedido</th>
-                <th>Picking</th>
-                <th>Local Físico</th>
-                <th>Prioridade</th>
-                <th>Nome do Cliente</th>
-                <th>Status</th>
-                <th>Cidade Entrega</th>
-                <th>Data Entrega</th>
-                <th>Vendedor</th>
-                <th>Operador</th>
-                <th>Observações</th>
-                <th>Hora Inicial</th>
-                <th>Data</th>
-                <th>Cancelar</th>
-                <th>Reimprimir</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-</div>
-
-<div class="container separador_tabelas" style="@pode_ver_faturamento">
-    <h4>AGUARDANDO FATURAMENTO</h4>
-    <table id="acompanhamento_em_faturamento" class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>Pedido</th>
-                <th>Picking</th>
-                <th>Local Físico</th>
-                <th>Prioridade</th>
-                <th>Nome do Cliente</th>
-                <th>Status</th>
-                <th>Cidade Entrega</th>
-                <th>Data Entrega</th>
-                <th>Vendedor</th>
-                <th>Operador</th>
-                <th>Observações</th>
-                <th>Hora Inicial</th>
-                <th>Data</th>
-                <th>Cancelar</th>
-                <th>Reimprimir</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-</div>
+<br />
 
 
 @Html.Partial("DetalheEncerramentoSeparacao")

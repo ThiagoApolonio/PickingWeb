@@ -1,0 +1,53 @@
+[About]Version=Version 5.1.07.6290
+Logo=About.bmp
+Text1=0,315,Windows driver for ZDesigner RZ600 200 dpi
+Text2=0,330,Version 5.1.07.6290
+Text3=0,365,Copyright 2016 (C) Zebra Technologies
+Text4=0,380,All Rights Reserved
+URL=http://www.zebra.com
+[FileInfo]
+Base=ZEBRP4T
+Name=ZDesigner RZ600 200 dpi
+
+[Defaults]
+PageWidth=762
+PageHeight=508
+Speed=2
+Darkness=10
+HDPI=203
+VDPI=203
+MediaType=0
+MCSlotType1=0
+MCSlotType2=0
+MCSlotType3=0
+MCSlotType4=0
+MCSlotSize1=8192
+MCSlotSize2=0
+MCSlotSize3=0
+MCSlotSize4=0
+PrintMode=5
+Switch7=0
+[ConstParams]
+PageOffset=0
+SpeedUnit=""/s"
+MaxMediaWidth=1778
+FixedHorzUA=0
+HorzUAMode=1
+RFIDSupport=8
+SpeedLimits="2..10"
+DarknessLimits="0..30"
+MaxWidth=1778
+MaxHeight=26670
+MinWidth=508
+MinHeight=165
+UseRibbonSaver=1
+
+[MemoryCards]
+MCSlot1=""DRAM",8192,2,ZEBRADL,ZEBRADL,"
+MCSlot2=""Flash",2048,2,ZEBRADL,ZEBRADL,"
+MCSlot3=""",0,1"
+MCSlot4=""",0,1"
+
+[ToolInfo]
+Tool0=ToolsZPL.dll
+Param0=STANDARD

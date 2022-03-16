@@ -22,7 +22,7 @@
             , search: "Buscar", searchPlaceholder:"Buscar por nome..."
         },
   
-        pageLength: 1,
+        pageLength: -1,
  
      
         columns: [
@@ -30,26 +30,26 @@
             {
                 data: "userName",
                 render: function (data, type, usuario) {
-                    return "<a  href='" + DefaultPath + "/editar/" + usuario.id + "'>" + data + "</a>"
+                    return "<a class='edit' data-user-edit='" + usuario.id + "'>"+data+"</a>"
                 }
             },
             {
                 data: "email"
             },
             {
-                data: "ativo ",
+                data: "ativo",
                 render: function (data, type, usuario) {
                     return data ? "Sim" : "Não";
                 }
             },
             {
-                data: "licenciado ",
+                data: "licenciado",
                 render: function (data, type, usuario) {
                     return data ? "Sim" : "Não";
                 }
             },
             {
-                data: "operador ",
+                data: "operador",
                 render: function (data, type, usuario) {
                     return data ? "Sim" : "Não";
                 }
@@ -62,7 +62,8 @@
                         "' type='button' class='btn btn-danger js-delete'><span class='mdi mdi-trash-can-outline'></span >&nbsp;</button>";
                 }
             }
-        ],     
+        ],
+        scrollX: !0,
         order: [[1, "asc"]],
         drawCallback: function () {
             $(".dataTables_paginate > .pagination").addClass("pagination-rounded "),
@@ -97,4 +98,54 @@
             }
         });
     });
+    $("#usuarios").on("click", ".edit", function () {
+        var id = $(this).attr("data-user-edit");
+        var dialog = bootbox.dialog({
+            title: 'Editar Usuarios',
+            size: 'large',
+            message: '<div id="editUsuarios"><p><i class="fa fa-spin fa-spinner"></i> Aguarde... Isso pode levar ate 1min</p></div>',
+
+        });
+        if (id) {
+            $.ajax({
+                url: "/Usuarios/Editar?id=" + id,
+                method: "GET",
+                success: function (data) {
+
+                    $('#editUsuarios').html($(data).html());
+                    var opts = "<option>Selecione o Usuário SAP</option>";
+                    var select_empresa = $('#select_empresa');
+                    var select_usuario = $('#select_usuario');
+                    var empresa_id = select_empresa.val();
+
+                    if (empresa_id) {
+                        $.ajax({
+                            url: DefaultApiPath + "/getusuariossap?empresa_id=" + empresa_id,
+                            method: "GET",
+                            beforeSend: function () {
+                                select_usuario.html("<option>Carregando...</option>");
+                            },
+                            success: function (data) {
+                                for (var i = 0; i < data.length; i++) {
+                                    opts += "<option value='" + data[i]["id"] + "'>" + data[i]["nome"] + "</option>";
+                                }
+                                select_usuario.html(opts);
+                            },
+                            error: _DEFAULT_ERROR_TREATMENT
+                        });
+                    }
+                    select_usuario.html(opts);
+
+                },
+                error: _DEFAULT_ERROR_TREATMENT
+            });
+        } else {
+            toastr.error("Erro ao Carregar Empresa", _DEFAULT_ERROR_TIMEOUT);
+        }
+    });
+
+
+
+ 
+   
 });

@@ -77,10 +77,10 @@
             data: "dataInicio"
         },
         {
-            data: "numDoc",
+            data: "numDoc", order:false,
             className: 'td-button',
             render: function(data, type, row) {
-                return "<button data-numdoc-id='" + data + "' type='button' class='btn btn-danger js-cancelar-picking'><span class='glyphicon glyphicon-trash'></span >&nbsp;</button>";
+                return "<button data-numdoc-id='" + data + "' type='button' class='btn btn-danger js-cancelar-picking'><span class='mdi mdi-trash-can'></span >&nbsp;</button>";
             }
         },
         {
@@ -89,14 +89,14 @@
             render: function(data, type, row) {
                 return "<button data-numdoc-id='" +
                     data +
-                    "' data-separador='" + row.operador + "' type='button' class='btn btn-primary js-imprimir-picking'><span class='glyphicon glyphicon-print'></span >&nbsp;</button>";
+                    "' data-separador='" + row.operador + "' type='button' class='btn btn-primary js-imprimir-picking'><span class='mdi mdi-printer-check'></span >&nbsp;</button>";
             }
         },
         {
             data: "numDoc",
             className: 'td-button',
             render: function(data, type, row) {
-                return "<button data-numdoc-id='" + data + "' data-operador-id='" + row.operadorId + "' type='button' class='btn btn-success js-confirmar-picking'><span class='glyphicon glyphicon-ok'></span >&nbsp;</button>";
+                return "<button data-numdoc-id='" + data + "' data-operador-id='" + row.operadorId + "' type='button' class='btn btn-success js-confirmar-picking'><span class='mdi mdi-check-bold'></span >&nbsp;</button>";
             }
         }
     ];
@@ -104,7 +104,7 @@
     var datatable_documento_em_separacao = $("#acompanhamento_em_separacao").DataTable({
         order: [],
         searching: false,
-        ordering: false,
+   
         paging: false,
         info: false,
         ajax: {
@@ -161,7 +161,7 @@
                 data: "numDoc",
                 className: 'td-button',
                 render: function (data, type, row) {
-                    return "<button data-numdoc-id='" + data + "' data-numpk-id='" + row.numPk + "' type='button' class='btn btn-danger js-cancelar-picking'><span class='glyphicon glyphicon-trash'></span >&nbsp;</button>";
+                    return "<button data-numdoc-id='" + data + "' data-numpk-id='" + row.numPk + "' type='button' class='btn btn-danger js-cancelar-picking'><span class='mdi mdi-trash-can'></span >&nbsp;</button>";
                 }
             },
             {
@@ -170,23 +170,23 @@
                 render: function (data, type, row) {
                     return "<button data-numdoc-id='" +
                         data +
-                        "' data-separador='" + row.operador + "' data-numpk-id='" + row.numPk + "' type='button' class='btn btn-primary js-imprimir-picking'><span class='glyphicon glyphicon-print'></span >&nbsp;</button>";
+                        "' data-separador='" + row.operador + "' data-numpk-id='" + row.numPk + "' type='button' class='btn btn-primary js-imprimir-picking'><span class='mdi mdi-printer-check'></span >&nbsp;</button>";
                 }
             },
             {
                 data: "numDoc",
                 className: 'td-button',
                 render: function (data, type, row) {
-                    return "<button data-numdoc-id='" + data + "' data-numpk-id='" + row.numPk + "' data-operador-id='" + row.operadorId + "' type='button' class='btn btn-success js-confirmar-picking'><span class='glyphicon glyphicon-ok'></span >&nbsp;</button>";
+                    return "<button data-numdoc-id='" + data + "' data-numpk-id='" + row.numPk + "' data-operador-id='" + row.operadorId + "' type='button' class='btn btn-success js-confirmar-picking'><span class='mdi mdi-check-bold'></span >&nbsp;</button>";
                 }
             }
         ],
-        "oLanguage": _DEFAULT_SCRIPT_LANG
+      
     });
     var datatable_documento_aguardando_conferencia = $("#acompanhamento_aguardando_conferencia").DataTable({
         order: [],
         searching: false,
-        ordering: false,
+    
         paging: false,
         info: false,
         ajax: {
@@ -243,7 +243,7 @@
                 data: "numDoc",
                 className: 'td-button',
                 render: function (data, type, row) {
-                    return "<button data-numdoc-id='" + data + "' data-numpk-id='" + row.numPk + "' type='button' class='btn btn-danger js-cancelar-picking'><span class='glyphicon glyphicon-trash'></span >&nbsp;</button>";
+                    return "<button data-numdoc-id='" + data + "' data-numpk-id='" + row.numPk + "' type='button' class='btn btn-danger js-cancelar-picking'><span class='mdi mdi-trash-can'></span >&nbsp;</button>";
                 }
             },
             {
@@ -252,23 +252,23 @@
                 render: function (data, type, row) {
                     return "<button data-numdoc-id='" +
                         data +
-                        "' data-separador='" + row.operador + "' data-numpk-id='" + row.numPk + "' type='button' class='btn btn-primary js-imprimir-picking'><span class='glyphicon glyphicon-print'></span >&nbsp;</button>";
+                        "' data-separador='" + row.operador + "' data-numpk-id='" + row.numPk + "' type='button' class='btn btn-primary js-imprimir-picking'><span class='mdi mdi-printer-check'></span >&nbsp;</button>";
                 }
             },
             {
                 data: "numDoc",
                 className: 'td-button',
                 render: function (data, type, row) {
-                    return "<button data-numdoc-id='" + data + "' data-numpk-id='" + row.numPk + "' data-operador-id='" + row.operadorId + "' type='button' class='btn btn-success js-confirmar-picking'><span class='glyphicon glyphicon-ok'></span >&nbsp;</button>";
+                    return "<button data-numdoc-id='" + data + "' data-numpk-id='" + row.numPk + "' data-operador-id='" + row.operadorId + "' type='button' class='btn btn-success js-confirmar-picking'><span class='mdi mdi-check-bold'></span >&nbsp;</button>";
                 }
             }
         ],
-        "oLanguage": _DEFAULT_SCRIPT_LANG
+    
     });
     var datatable_documento_em_conferencia = $("#acompanhamento_em_conferencia").DataTable({
         order: [],
         searching: false,
-        ordering: false,
+ 
         paging: false,
         info:false,
         ajax: {
@@ -325,7 +325,7 @@
                 data: "numDoc",
                 className: 'td-button',
                 render: function (data, type, row) {
-                    return "<button data-numdoc-id='" + data + "' data-numpk-id='" + row.numPk + "' type='button' class='btn btn-danger js-cancelar-picking'><span class='glyphicon glyphicon-trash'></span >&nbsp;</button>";
+                    return "<button data-numdoc-id='" + data + "' data-numpk-id='" + row.numPk + "' type='button' class='btn btn-danger js-cancelar-picking'><span class='mdi mdi-trash-can'></span >&nbsp;</button>";
                 }
             },
             {
@@ -334,16 +334,16 @@
                 render: function (data, type, row) {
                     return "<button data-numdoc-id='" +
                         data +
-                        "' data-separador='" + row.operador + "' data-numpk-id='" + row.numPk + "' type='button' class='btn btn-primary js-imprimir-picking'><span class='glyphicon glyphicon-print'></span >&nbsp;</button>";
+                        "' data-separador='" + row.operador + "' data-numpk-id='" + row.numPk + "' type='button' class='btn btn-primary js-imprimir-picking'><span class='mdi mdi-printer-check'></span >&nbsp;</button>";
                 }
             }
         ],
-        "oLanguage": _DEFAULT_SCRIPT_LANG
+      
     });
     var datatable_documento_aguardando_embalagens = $("#acompanhamento_aguardando_embalagens").DataTable({
         order: [],
         searching: false,
-        ordering: false,
+     
         paging: false,
         info: false,
         ajax: {
@@ -407,7 +407,7 @@
                 data: "numDoc",
                 className: 'td-button',
                 render: function (data, type, row) {
-                    return "<button data-numdoc-id='" + data + "' data-numpk-id='" + row.numPk + "' data-numpk-id='" + row.numPk + "' type='button' class='btn btn-danger js-cancelar-picking'><span class='glyphicon glyphicon-trash'></span >&nbsp;</button>";
+                    return "<button data-numdoc-id='" + data + "' data-numpk-id='" + row.numPk + "' data-numpk-id='" + row.numPk + "' type='button' class='btn btn-danger js-cancelar-picking'><span class='mdi mdi-trash-can'></span >&nbsp;</button>";
                 }
             },
             {
@@ -416,23 +416,23 @@
                 render: function (data, type, row) {
                     return "<button data-numdoc-id='" +
                         data +
-                        "' data-separador='" + row.operador + "' data-numpk-id='" + row.numPk + "' type='button' class='btn btn-primary js-imprimir-picking'><span class='glyphicon glyphicon-print'></span >&nbsp;</button>";
+                        "' data-separador='" + row.operador + "' data-numpk-id='" + row.numPk + "' type='button' class='btn btn-primary js-imprimir-picking'><span class='mdi mdi-printer-check'></span >&nbsp;</button>";
                 }
             },
             {
                 data: "numDoc",
                 className: 'td-button',
                 render: function (data, type, row) {
-                    return "<button data-numdoc-id='" + data + "' data-numpk-id='" + row.numPk + "' data-operador-id='" + row.operadorId + "' type='button' class='btn btn-success js-confirmar-picking'><span class='glyphicon glyphicon-ok'></span >&nbsp;</button>";
+                    return "<button data-numdoc-id='" + data + "' data-numpk-id='" + row.numPk + "' data-operador-id='" + row.operadorId + "' type='button' class='btn btn-success js-confirmar-picking'><span class='mdi mdi-check-bold'></span >&nbsp;</button>";
                 }
             }
         ],
-        "oLanguage": _DEFAULT_SCRIPT_LANG
+    
     });
     var datatable_documento_em_embalagens = $("#acompanhamento_em_embalagens").DataTable({
         order: [],
         searching: false,
-        ordering: false,
+  
         paging: false,
         info: false,
         ajax: {
@@ -489,7 +489,7 @@
                 data: "numDoc",
                 className: 'td-button',
                 render: function (data, type, row) {
-                    return "<button data-numdoc-id='" + data + "' data-numpk-id='" + row.numPk + "' type='button' class='btn btn-danger js-cancelar-picking'><span class='glyphicon glyphicon-trash'></span >&nbsp;</button>";
+                    return "<button data-numdoc-id='" + data + "' data-numpk-id='" + row.numPk + "' type='button' class='btn btn-danger js-cancelar-picking'><span class='mdi mdi-trash-can'></span >&nbsp;</button>";
                 }
             },
             {
@@ -498,16 +498,16 @@
                 render: function (data, type, row) {
                     return "<button data-numdoc-id='" +
                         data +
-                        "' data-separador='" + row.operador + "' data-numpk-id='" + row.numPk + "' type='button' class='btn btn-primary js-imprimir-picking'><span class='glyphicon glyphicon-print'></span >&nbsp;</button>";
+                        "' data-separador='" + row.operador + "' data-numpk-id='" + row.numPk + "' type='button' class='btn btn-primary js-imprimir-picking'><span class='mdi mdi-printer-check'></span >&nbsp;</button>";
                 }
             }
         ],
-        "oLanguage": _DEFAULT_SCRIPT_LANG
+    
     });
     var datatable_documento_em_faturamento = $("#acompanhamento_em_faturamento").DataTable({
         order: [],
         searching: false,
-        ordering: false,
+     
         paging: false,
         info: false,
         ajax: {
@@ -564,7 +564,7 @@
                 data: "numDoc",
                 className: 'td-button',
                 render: function (data, type, row) {
-                    return "<button data-numdoc-id='" + data + "' data-numpk-id='" + row.numPk + "' type='button' class='btn btn-danger js-cancelar-picking'><span class='glyphicon glyphicon-trash'></span >&nbsp;</button>";
+                    return "<button data-numdoc-id='" + data + "' data-numpk-id='" + row.numPk + "' type='button' class='btn btn-danger js-cancelar-picking'><span class='mdi mdi-trash-can'></span >&nbsp;</button>";
                 }
             },
             {
@@ -573,11 +573,11 @@
                 render: function (data, type, row) {
                     return "<button data-numdoc-id='" +
                         data +
-                        "' data-separador='" + row.operador + "' data-numpk-id='" + row.numPk + "' type='button' class='btn btn-primary js-imprimir-picking'><span class='glyphicon glyphicon-print'></span >&nbsp;</button>";
+                        "' data-separador='" + row.operador + "' data-numpk-id='" + row.numPk + "' type='button' class='btn btn-primary js-imprimir-picking'><span class='mdi mdi-printer-check'></span >&nbsp;</button>";
                 }
             }
         ],
-        "oLanguage": _DEFAULT_SCRIPT_LANG
+      
     });
 
     var RefreshDatatables = function () {
@@ -663,7 +663,7 @@
 
         var dialog = bootbox.dialog({
             title: 'Encerramento de Separação',
-            size: 'large',
+            size: 'small',
             message: '<div id="' + div_id_name + '"><p><i class="fa fa-spin fa-spinner"></i> Carregando...</p></div>',
             buttons: {
                 cancel: {
@@ -760,7 +760,7 @@
 
         var dialog = bootbox.dialog({
             title: 'Início de Conferência',
-            size: 'large',
+            size: 'small',
             message: '<div id="' + div_id_name + '"><p><i class="fa fa-spin fa-spinner"></i> Carregando...</p></div>',
             buttons: {
                 cancel: {
@@ -855,7 +855,7 @@
 
         var dialog = bootbox.dialog({
             title: 'Início de Embalagens',
-            size: 'large',
+            size: 'small',
             message: '<div id="' + div_id_name + '"><p><i class="fa fa-spin fa-spinner"></i> Carregando...</p></div>',
             buttons: {
                 cancel: {
@@ -945,7 +945,7 @@
 
         bootbox.dialog({
             title: 'Alterar Local Físico do Pedido ' + pedido,
-            size: 'large',
+            size: 'small',
             message: '<form class="bootbox-form" >' +
             '<div class="form-group">' +
             '<label class="control-label col-md-2">Local Físico</label>' +
@@ -988,7 +988,7 @@
             },
         });
     });
-
+    sizeOfThings();
     $("#botao_pesquisa").click(function (e) {
         e.preventDefault();
         RefreshDatatables();
@@ -999,4 +999,107 @@
             RefreshDatatables();
         }, timer);
     }
+
+
+
+
+
 });
+
+function countPendente() {
+    var empresa_id = document.getElementById("script_acompanhamento_picking").getAttribute("data-empresa");
+ 
+    //AcompanhamentoPicking
+    $.ajax({
+        url: "/API/Picking/ListaDocumentosEmSeparacaoCount?empresa_id=" + empresa_id,
+        method: "GET",
+        data: {
+            empresa_id: empresa_id,
+        },
+        success: function (data) {
+
+            let el = document.getElementById("separacaoCount");
+            el.textContent =  data;
+        },
+        error: _DEFAULT_ERROR_TREATMENT
+    });
+
+    $.ajax({
+        url: "/API/Picking/ListaDocumentosEmEmbalagensCount?empresa_id=" + empresa_id,
+        method: "GET",
+        data: {
+            empresa_id: empresa_id,
+        },
+        success: function (data) {
+
+            let el = document.getElementById("emEmbalagemCount");
+            el.textContent =  data ;
+        },
+        error: _DEFAULT_ERROR_TREATMENT
+    });
+
+    $.ajax({
+        url: "/API/Picking/ListaDocumentosAguardandoEmbalagensCount?empresa_id=" + empresa_id,
+        method: "GET",
+        data: {
+            empresa_id: empresa_id,
+        },
+        success: function (data) {
+
+            let el = document.getElementById("aguardandoEmbalagemCount");
+            el.textContent = data;
+        },
+        error: _DEFAULT_ERROR_TREATMENT
+    });
+
+    $.ajax({
+        url: "/API/Picking/ListaDocumentosEmConferenciaCount?empresa_id=" + empresa_id,
+        method: "GET",
+        data: {
+            empresa_id: empresa_id,
+        },
+        success: function (data) {
+
+            let el = document.getElementById("emConferenciaCount");
+            el.textContent = data;
+        },
+        error: _DEFAULT_ERROR_TREATMENT
+    });
+
+    $.ajax({
+        url: "/API/Picking/ListaDocumentosAguardandoConferenciaCount?empresa_id=" + empresa_id,
+        method: "GET",
+        data: {
+            empresa_id: empresa_id,
+        },
+        success: function (data) {
+
+            let el = document.getElementById("aguardandoConferenciaCount");
+            el.textContent =  data;
+        },
+        error: _DEFAULT_ERROR_TREATMENT
+    });
+
+    $.ajax({
+        url: "/API/Picking/ListaDocumentosEmFaturamentoCount?empresa_id=" + empresa_id,
+        method: "GET",
+        data: {
+            empresa_id: empresa_id,
+        },
+        success: function (data) {
+            var icon = "<i class='mdi mdi-chevron-down accordion-arrow'></i>";
+            let el = document.getElementById("aguardandoFaturamentoCount");
+            el.textContent = data;
+        },
+        error: _DEFAULT_ERROR_TREATMENT
+    });
+
+};
+
+function sizeOfThings() {
+
+    document.body.style.zoom = "75%"  
+
+};
+
+

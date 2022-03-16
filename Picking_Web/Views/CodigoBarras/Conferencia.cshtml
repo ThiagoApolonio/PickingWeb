@@ -9,40 +9,72 @@
 
 <h2>@ViewBag.Title</h2>
 
-<div class="row" style="width: 100%; margin-top: 30px;">
-    <div style="float:left;width:15%" class="col-xs-2">
+<div class="row col-12" style="width: 100%; margin-top: 30px;">
+
+    <div style="float:left;width:25%" class="col-md-3">
+
         <label for="data">Data</label>
-        <input type="text" class="form-control" id="data" disabled="disabled">
+
+        <input type="text" style="float: right; width: 100%; max-width: none"   class="form-control" id="data" disabled="disabled">
+
     </div>
-    <div style="float:left;width:25%" class="col-xs-3">
+
+    <div style="float:left;width:25%" class="col-md-3">
+
         <label for="operador">Operador</label>
-        <select class="form-control" id="operador">
+
+        <select style="float: right; width: 100%; max-width: none"   class="form-control" id="operador">
+
             <option value="">Selecione o Operador</option>
+
             @{
                 var operadores = ViewBag.Operadores as IOrderedEnumerable<ApplicationUser>;
+
                 foreach (var operador in operadores)
                 {
                     <option value="@operador.Id">@operador.UserName</option>
                 }
             }
+
         </select>
+
     </div>
-    <div style="float:left;width:20%" class="col-xs-2">
+
+    <div style="float:left;width:25%" class="col-md-3">
+
         <label for="numdoc">Nº Documento</label>
-        <input type="text" class="form-control" id="numdoc" disabled="disabled">
+
+        <input type="text" style="float: right; width: 100%; max-width: none"   class="form-control" id="numdoc" disabled="disabled">
+
     </div>
-    <div style="float:left;width:15%" class="col-xs-1">
+
+    <div style="float:left;width:25%" class="col-md-3">
+
         <label for="quantidade">Quantidade</label>
-        <input type="number" class="form-control" id="quantidade" value="1" disabled="disabled">
+
+        <input type="number" style="float: right; width: 100%; max-width: none"   class="form-control" id="quantidade" value="1" disabled="disabled">
+
     </div>
-    <div style="float:left;width:25%" class="col-xs-4">
-        <label for="codigo_barras">Código de Barras</label>
-        <input type="text" class="form-control" id="codigo_barras" style="max-width: none" disabled="disabled">
-    </div>
+    
 </div>
-<div class="row" style="margin-top: 20px; margin-left: 0px; margin-right: 0px;">
+<div class="row col-12" style="width: 100%;">
+
+    <div style="float:left;width:100%" class="col-md-12">
+
+        <label for="codigo_barras">Código de Barras</label>
+
+        <input type="text"  style="float: right; width: 100%; max-width: none"   class="form-control" id="codigo_barras" disabled="disabled">
+
+    </div>
+
+</div>
+
+<div class="row" >
+
     <table id="itens_pedido" class="table table-centered w-100 dt-responsive nowrap">
+
         <thead class="table-light">
+
             <tr>
                 <th>Item</th>
                 <th>Descrição</th>
@@ -54,22 +86,39 @@
                 <th>Conferido</th>
                 <th>Solicitado</th>
             </tr>
+
         </thead>
-        <tbody></tbody>
+
+        <tbody>
+
+        </tbody>
+
     </table>
 
 </div>
-<div class="row  "style="width: 100%;margin-top: 30px;">
-    <div  style="float:left;width:10%" class="col-xs-3  ">
-        <button class="btn btn-success btn-block" type="submit" id="encerrar" data-loading-text="Aguarde...">Encerrar</button>
+
+<div class="row col-12 " style="width: 100%;margin-top: 30px;">
+
+    <div style="float:left;width:33%" class="col-md-4">
+
+        <button class="btn btn-success btn-block" type="submit"  style="float: right; width: 100%; max-width: none"  id="encerrar" data-loading-text="Aguarde...">Encerrar</button>
+
     </div>
-    <div  style="float:left;width:8%" class="col-xs-3 ">
-        <button class="btn btn-danger btn-block" type="submit" id="reset" data-loading-text="Aguarde..." data-toggle="tooltip" data-placement="top" title="Removerá conferência parcial se houver">Reset</button>
+
+    <div style="float:left;width:34%" class="col-md-4">
+
+        <button class="btn btn-danger btn-block" type="submit"  style="float: right; width: 100%; max-width: none"  id="reset" data-loading-text="Aguarde..." data-toggle="tooltip" data-placement="top" title="Removerá conferência parcial se houver">Reset</button>
+
     </div>
-    <div  style="float:left;width:30%" class="col-xs-3 ">
-        <button class="btn btn-danger btn-block" type="submit" id="cancelar" data-loading-text="Aguarde...">Cancelar</button>
+
+    <div style="float:left;width:33%" class="col-md-4">
+
+        <button class="btn btn-danger btn-block" type="submit"  style="float: right; width: 100%; max-width: none"  id="cancelar" data-loading-text="Aguarde...">Cancelar</button>
+
     </div>
+
 </div>
+
 @Html.Partial("EncerramentoConferencia")
 @section scripts
 {

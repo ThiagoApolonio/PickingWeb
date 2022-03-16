@@ -19,53 +19,58 @@
     <strong>Não será possível buscar dados da Balança!</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dados de conexão com a balança não foram configurados corretamente.
 </div>
 
-<div class="row" style="margin-top:30px;">
-    <div class="col-xs-3">
+<div class="row col-12" style="width:100%; margin-top:30px;">
+    <div class="col-md-3" style="float:left;width:25%">
         <label for="operador">Operador</label>
-        <select class="form-control" id="operador" style="max-width: none">
+        <select style="float: left; width: 100%; max-width: none" class="form-control" id="operador">
             <option value="">Selecione o Operador</option>
             @{
                 var operadores = ViewBag.Operadores as IOrderedEnumerable<ApplicationUser>;
-                foreach (var operador in operadores) {
+                foreach (var operador in operadores)
+                {
                     <option value="@operador.Id">@operador.UserName</option>
                 }
             }
         </select>
     </div>
-    <div class="col-xs-3">
+    <div class="col-md-3" style="float:left;width:25%">
         <label for="numdoc">Lista Picking</label>
-        <input type="text" class="form-control" id="numdoc" disabled="disabled">
+        <input style="float: left; width: 100%; max-width: none" type="text" class="form-control" id="numdoc" disabled="disabled">
     </div>
-    <div class="col-xs-3">
+    <div class="col-md-3" style="float:left;width:25%">
         <label for="docped">Pedido de Venda</label>
-        <input type="text" class="form-control" id="docped" disabled="disabled">
+        <input style="float: left; width: 100%; max-width: none" type="text" class="form-control" id="docped" disabled="disabled">
     </div>
-    <div class="col-xs-6">
+    <div class="col-md-3" style="float:left;width:25%">
         <label for="parceiro">Parceiro de Negócios</label>
-        <input type="text" class="form-control" id="parceiro" disabled="disabled" style="max-width: none">
+        <input style="float: left; width: 100%; max-width: none" type="text" class="form-control" id="parceiro" disabled="disabled">
     </div>
 </div>
 
-<div class="row" style="margin-top:15px;">
-    <div class="col-xs-6">
+<div class="row col-9" style="width:100%; margin-top:15px;">
+    <div class="col-md-3" style="float:left;width:33%">
         <label for="endereco">Endereço</label>
-        <input type="text" class="form-control" id="endereco" disabled="disabled" style="max-width: none">
+        <input style="float: left; width: 100%; max-width: none" type="text" class="form-control" id="endereco" disabled="disabled">
     </div>
-    <div class="col-xs-4">
+    <div class="col-md-3" style="float:left;width:34%">
         <label for="transportadora">Transportadora</label>
-        <select class="form-control" id="transportadora" style="max-width: none" disabled="disabled">
+        <select style="float: left; width: 100%; max-width: none" class="form-control" id="transportadora" disabled="disabled">
             <option value="">Selecione o Transportador</option>
         </select>
     </div>
-    <div class="col-xs-2">
-        <label for="peso">Peso</label>
-        <input type="number" min="0" class="form-control" id="peso" disabled="disabled" style="max-width: none">
+
+    <div class="col-md-3" style="float:left;width:33%">
+        <label for="peso">Peso</label> <input style="float: left; width: 100%; max-width: none" type="number" min="0" class="form-control" id="peso" disabled="disabled">
     </div>
 </div>
-
+<div class="row col-3" style="width:100%; margin-top:15px;">
+    <div class="row col-md-1" style="margin-left: 0px; margin-right: 0px;">
+        <textarea id="observacoes" class="form-control" rows="2" placeholder="Observações" style="width:400px;max-width:none;" disabled="disabled"></textarea>
+    </div>
+</div>
 <div class="row" style="margin-top: 20px; margin-left: 0px; margin-right: 0px;">
     <table id="volumes" class="table table-bordered table-condensed table-hover">
-        <thead>
+        <thead class="table-light">
             <tr>
                 <th>Volume</th>
                 <th>Peso</th>
@@ -74,25 +79,22 @@
             </tr>
         </thead>
         <tbody>
-            
         </tbody>
     </table>
 </div>
-<div class="row" style="margin-left: 0px; margin-right: 0px;">
-    <textarea id="observacoes" class="form-control" rows="2" placeholder="Observações" style="max-width:none;" disabled="disabled"></textarea>
-</div>
-<div class="row" style="margin-top: 30px;">
-    <div class="col-xs-3">
-        <button class="btn btn-success btn-block" type="submit" id="encerrar" data-loading-text="Aguarde...">Encerrar</button>
+
+<div class="row col-12" style="margin-top: 30px;">
+    <div class="col-md-3" style="float:left;width:25%">
+        <button class="btn btn-success btn-block" style="float: left; width: 100%; max-width: none" type="submit" id="encerrar" data-loading-text="Aguarde...">Encerrar</button>
     </div>
-    <div class="col-xs-3">
-        <button class="btn btn-primary btn-block" type="submit" id="imprimir" data-loading-text="Aguarde...">Reimprimir</button>
+    <div class="col-md-3" style="float:left;width:25%">
+        <button class="btn btn-primary btn-block" style="float: left; width: 100%; max-width: none" type="submit" id="imprimir" data-loading-text="Aguarde...">Reimprimir</button>
     </div>
-    <div class="col-xs-3">
-        <button class="btn btn-warning btn-block" type="submit" id="reset" data-loading-text="Aguarde..." data-toggle="tooltip" data-placement="top" title="Reseta o Pedido possibilitando encerrar novamente">Reset</button>
+    <div class="col-md-3" style="float:left;width:25%">
+        <button class="btn btn-warning btn-block" style="float: left; width: 100%; max-width: none" type="submit" id="reset" data-loading-text="Aguarde..." data-toggle="tooltip" data-placement="top" title="Reseta o Pedido possibilitando encerrar novamente">Reset</button>
     </div>
-    <div class="col-xs-3">
-        <button class="btn btn-danger btn-block" type="submit" id="cancelar" data-loading-text="Aguarde..." data-toggle="tooltip" data-placement="top" title="Reseta toda a tela">Cancelar</button>
+    <div class="col-md-3" style="float:left;width:25%">
+        <button class="btn btn-danger btn-block" style="float: left; width: 100%; max-width: none" type="submit" id="cancelar" data-loading-text="Aguarde..." data-toggle="tooltip" data-placement="top" title="Reseta toda a tela">Cancelar</button>
     </div>
 </div>
 <input type="hidden" value="@ViewBag.NomeImpressora" id="nome_impressora" />

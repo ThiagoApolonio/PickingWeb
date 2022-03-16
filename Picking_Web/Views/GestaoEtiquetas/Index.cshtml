@@ -2,7 +2,7 @@
 @using Microsoft.AspNet.Identity
 @{
     ViewBag.Title = "Gestão de Etiquetas";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    Layout = "~/Views/Shared/_Etiquetas.cshtml";
     string ControllerName = "gestaoetiquetas";
     string userid = ViewBag.userid;
 }
@@ -39,7 +39,7 @@
                         </div>
                         <div class="col-sm-7">
                             <div class="text-sm-end">
-                                <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#ModalRegister">
+                                <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#ModalEtiqueta">
                                     Nova Etiqueta
                                 </button>
                             </div>
@@ -101,12 +101,12 @@
                     , search: "Buscar", searchPlaceholder: "Buscar por nome..."
                 },
 
-                pageLength: 1,
+                pageLength: -1,
                 columns: [
                     {
                         data: "id",
                         render: function (data, type, impressora) {
-                            return "<a href='" + DefaultPath + "/editar/" + impressora.id + "'>" + data + "</a>";
+                            return "<a class='edit' idEtiqueta='" + impressora.id + "'>" + data + "</a>";
                         }
                     },
                     {
@@ -135,7 +135,7 @@
                         }
                     }
                 ],
-
+                scrollX: !0,
                 order: [[1, "asc"]],
                 drawCallback: function () {
                     $(".dataTables_paginate > .pagination").addClass("pagination-rounded "),
@@ -186,6 +186,33 @@
                     }
                 });
             });
+        });
+
+        $("#gestao_etiquetas").on("click", ".edit", function () {
+            var id = $(this).attr("idEtiqueta");
+            var dialog = bootbox.dialog({
+                title: 'Editar Etiqueta',
+                size: 'small',
+                message: '<div id="editEtiqueta"><p><i class="fa fa-spin fa-spinner"></i> Aguarde... Isso pode levar ate 1min</p></div>',
+
+            });
+            if (id) {
+                $.ajax({
+                    url: "/GestaoEtiquetas/Editar?id=" + id,
+                    method: "GET",
+                    success: function (data) {
+
+
+                        $('#editEtiqueta').html($(data).html());
+
+                    },
+                    error: _DEFAULT_ERROR_TREATMENT
+                });
+            } else {
+                toastr.error("Erro ao Carregar Empresa", _DEFAULT_ERROR_TIMEOUT);
+            }
+
+
         });
 
 

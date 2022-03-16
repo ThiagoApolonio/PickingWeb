@@ -594,7 +594,7 @@
     }
 
     if (options.size === "large") {
-      innerDialog.addClass("modal-lg");
+        innerDialog.addClass("modal-full-width");
     }
 
     if (options.size === "small") {

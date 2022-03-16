@@ -1,46 +1,46 @@
 ﻿@model Picking_Web.ViewModels.FormGestaoImpressoesViewModel
-@{ 
+@{
     string userid = ViewBag.userid;
+    Layout = null;
 }
 
 <!-- Modal -->
-<div class="modal fade" id="ModalRegister" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
+<div class="modal fade pequeno" id="ModalRegister" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="align-items:center">
             <div class="modal-header">
-                <h5 class="modal-title" id="modaLLabel">Novo Usuário</h5>
+                <h5 class="modal-title" id="modaLLabel">Nova Impressora</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-
                 @using (Html.BeginForm("Salvar", "GestaoImpressoes"))
                 {
                     @Html.AntiForgeryToken()
 
-                <div class="form-horizontal">
+                    <div style="align-content:center;width:100%">
 
-                    @Html.ValidationSummary(true, "Por favor, corrija os erro(s) abaixo:")
-                    @Html.HiddenFor(m => m.Id)
-                    @if (Model != null)
-                    {
+                        @Html.ValidationSummary(true, "Por favor, corrija os erro(s) abaixo:")
+                        @Html.HiddenFor(m => m.Id)
+
                         <div class="form-group">
-                            @Html.LabelFor(model => model.EmpresaId, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.DropDownListFor(m => m.EmpresaId, new SelectList(Model.Empresas, "Id", "Nome"), "Selecione a Empresa", new { @class = "form-control", id = "select_empresa" })
+                            @Html.LabelFor(model => model.EmpresaId, htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.DropDownListFor(m => m.EmpresaId, new SelectList(Model.Empresas, "Id", "Nome"), "Selecione a Empresa", new { @class = "form-control", @style = "width:100%", id = "select_empresa" })
                                 @Html.ValidationMessageFor(model => model.EmpresaId, "", new { @class = "text-danger" })
+
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.LugarImpressaoId, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.DropDownListFor(m => m.LugarImpressaoId, new SelectList(Model.LugarImpressao, "Id", "Nome"), "Selecione o Local", new { @class = "form-control", id = "select_lugar" })
+                            @Html.LabelFor(model => model.LugarImpressaoId, htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.DropDownListFor(m => m.LugarImpressaoId, new SelectList(Model.LugarImpressao, "Id", "Nome"), "Selecione o Local", new { @class = "form-control",@style="width:100%", id = "select_lugar" })
                                 @Html.ValidationMessageFor(model => model.LugarImpressaoId, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.NomeImpressora, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.DropDownListFor(m => m.NomeImpressora, new SelectList(Model.Impressoras, "Id", "Nome"), "Selecione a Impressora", new { @class = "form-control", id = "select_impressora" })
+                            @Html.LabelFor(model => model.NomeImpressora, htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.DropDownListFor(m => m.NomeImpressora, new SelectList(Model.Impressoras, "Id", "Nome"), "Selecione a Impressora", new { @class = "form-control", @style = "width:100%", id = "select_impressora" })
                                 @Html.ValidationMessageFor(model => model.NomeImpressora, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -50,11 +50,11 @@
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                             </div>
                         </div>
-                    }
-                </div>
+
+                    </div>
 
                 }
-              
+
 
             </div>
 

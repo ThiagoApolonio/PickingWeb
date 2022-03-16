@@ -7,6 +7,7 @@ namespace Picking_Web.Models
 {
     public class Picking
     {
-        public string connectionString = "Server=DELL\\SAP;Database=DB_ESFERA_MRP;User Id=sa;Password=update@sap;";
+        public string connectionString = "Data Source=DESKTOP-LNPATM0;Initial Catalog=Sbo_Teste;persist security info=True;user id=sa;password=@up@sap13";
+        
     }
 }

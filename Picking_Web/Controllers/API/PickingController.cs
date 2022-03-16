@@ -67,6 +67,33 @@ namespace Picking_Web.Controllers.API
 
             return Ok(res);
         }
+        [HttpGet]
+        public IHttpActionResult countAbertas(int empresa_id, string numdoc = "")
+        {
+            List<DocMarketing> res = new List<DocMarketing>() { };
+            try
+            {
+                string campo_data = DateHelper.DateFieldToCompare("tb0.DocDueDate");
+                string valor_data = DateHelper.DateFieldToCompare("GETDATE()");
+                string condicao_numdoc = !String.IsNullOrEmpty(numdoc) ? "AND tb0.DocEntry = " + numdoc : "";
+                string sql = SQLListaPicking(
+                    $@"     AND {campo_data} = {valor_data}
+                            AND(
+                               tb0.U_UPD_PCK_STATUS = 'N'
+                                OR tb0.U_UPD_PCK_STATUS = 'AS'
+                                OR tb0.U_UPD_PCK_STATUS IS NULL 
+                            )
+                            {condicao_numdoc} "
+                ,empresa_id);
+                res = ListParaListaPicking(sql, empresa_id, numdoc);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+            return Ok(res.Count);
+        }
 
         [HttpGet]
         public IHttpActionResult ListaPedidosEmSeparacaoFutura(int empresa_id, string numdoc = "")
@@ -94,6 +121,33 @@ namespace Picking_Web.Controllers.API
             }
 
             return Ok(res);
+        }
+        [HttpGet]
+        public IHttpActionResult countFutura(int empresa_id, string numdoc = "")
+        {
+            List<DocMarketing> res = new List<DocMarketing>() { };
+            try
+            {
+                string campo_data = DateHelper.DateFieldToCompare("tb0.DocDueDate");
+                string valor_data = DateHelper.DateFieldToCompare("GETDATE()");
+                string condicao_numdoc = !String.IsNullOrEmpty(numdoc) ? "AND tb0.DocEntry = " + numdoc : "";
+                string sql = SQLListaPicking(
+                    $@"     AND {campo_data} > {valor_data}
+                            AND(
+                               tb0.U_UPD_PCK_STATUS = 'N'
+                                OR tb0.U_UPD_PCK_STATUS = 'AS'
+                                OR tb0.U_UPD_PCK_STATUS IS NULL 
+                            )
+                            {condicao_numdoc} "
+                ,empresa_id);
+                res = ListParaListaPicking(sql, empresa_id, numdoc);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+            return Ok(res.Count);
         }
 
         [HttpGet]
@@ -128,8 +182,43 @@ namespace Picking_Web.Controllers.API
             {
                 return BadRequest(e.Message);
             }
-
+        
             return Ok(res);
+        }
+        [HttpGet]
+        public IHttpActionResult countpendente(int empresa_id, string numdoc = "")
+        {
+            List<DocMarketing> res = new List<DocMarketing>() { };
+            try
+            {
+                string campo_data = DateHelper.DateFieldToCompare("tb0.DocDueDate");
+                string valor_data = DateHelper.DateFieldToCompare("GETDATE()");
+                string condicao_numdoc = !String.IsNullOrEmpty(numdoc) ? "AND tb0.DocEntry = " + numdoc : "";
+
+                string sql = SQLListaPicking(
+                    $@"AND ( 
+                            ( 
+                                {campo_data} < {valor_data}
+                                AND
+                                (
+                                    tb0.U_UPD_PCK_STATUS = 'N' 
+                                    OR tb0.U_UPD_PCK_STATUS = 'AS' 
+                                    OR tb0.U_UPD_PCK_STATUS IS NULL
+                                ) 
+                            ) 
+                           OR tb0.U_UPD_PCK_STATUS = 'SP'
+                        ) 
+                    {condicao_numdoc} "
+                ,
+                    empresa_id,$@"ORDER BY ISNULL(tb0.U_UPD_PCK_STATUS, 'N') DESC, tb0.DocDueDate ASC, tb0.DocTime ASC");
+                res = ListParaListaPicking(sql, empresa_id, numdoc);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+       
+            return Ok(res.Count);
         }
 
         [HttpGet]
@@ -187,6 +276,63 @@ namespace Picking_Web.Controllers.API
             }
 
             return Ok(res);
+        }
+
+        [HttpGet]
+        public IHttpActionResult countOrdens(int empresa_id, string numdoc = "")
+        {
+            List<DocMarketing> res = new List<DocMarketing>() { };
+            try
+            {
+
+                string sql = $@"SELECT 
+							ObjType as Tipo
+							, tb0.{ConfigurationManager.AppSettings["CAMPO_PRIORIDADE"]} as Prioridade 
+                            , '' as StatusPicking
+							, tb0.DocEntry as NumDoc
+							, CASE WHEN tb0.CardName IS NOT NULL THEN tb0.CardName ELSE '--' END as NomeCliente
+							, {DateHelper.ConvertToSelectAsDate("tb0.DocDueDate")} as DataEntrega 
+							, CASE WHEN tb0.Comments IS NULL THEN '--' ELSE tb0.Comments END as Observacoes
+							, '--' as Cidade
+							, '--' as Vendedor
+                            , '--' as DocTime
+							, tb1.AbsEntry
+						FROM OWTQ tb0
+						LEFT JOIN PKL1 tb1 ON(tb1.OrderEntry = tb0.DocEntry AND tb1.BaseObject = tb0.ObjType AND tb1.PickStatus = 'R')
+						WHERE 1 = 1
+							AND tb0.DocStatus = 'O'
+							AND tb1.AbsEntry IS NULL" +
+                            (!String.IsNullOrEmpty(numdoc) ? "AND tb0.DocEntry = " + numdoc : "") +
+                        $@" 
+                        UNION ALL                        
+
+                        SELECT 
+							202 as Tipo
+							, NULL as Prioridade 
+                            , '' as StatusPicking
+							, tb0.DocEntry as NumDoc
+							, '--' as NomeCliente
+							, {DateHelper.ConvertToSelectAsDate("tb0.DueDate")} as DataEntrega 
+							, CASE WHEN tb0.Comments IS NULL THEN '--' ELSE tb0.Comments END as Observacoes
+							, '--' as Cidade
+							, '--' as Vendedor
+                            , '--' as DocTime
+							, tb1.AbsEntry
+						FROM OWOR tb0
+						LEFT JOIN PKL1 tb1 ON(tb1.OrderEntry = tb0.DocEntry AND tb1.BaseObject = 202 AND tb1.PickStatus = 'R')
+						WHERE 1 = 1
+							AND tb0.Status IN ('P','R')
+							AND tb1.AbsEntry IS NULL" +
+                            (!String.IsNullOrEmpty(numdoc) ? "AND tb0.DocEntry = " + numdoc : "") +
+                        $@" ORDER BY Prioridade DESC, DataEntrega DESC, tb0.DocEntry DESC ";
+                res = ListParaListaPicking(sql, empresa_id, numdoc);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+            return Ok(res.Count);
         }
 
         [HttpGet]
@@ -1387,6 +1533,26 @@ namespace Picking_Web.Controllers.API
 
             return Ok(res);
         }
+        [HttpGet]
+        public IHttpActionResult ListaDocumentosEmSeparacaoCount(int empresa_id, string numdoc = "")
+        {
+            List<DocMarketing> res = new List<DocMarketing>() { };
+            if (!User.IsInRole(Privilegios.PodeGerenciarListaPicking))
+            {
+                return Ok(res);
+            }
+
+            try
+            {
+                res = ListaDocumentosPk(empresa_id, "ES", numdoc);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+            return Ok(res.Count()); ;
+        }
 
         [HttpGet]
         public IHttpActionResult ListaDocumentosAguardandoConferencia(int empresa_id, string numdoc = "")
@@ -1410,6 +1576,27 @@ namespace Picking_Web.Controllers.API
         }
 
         [HttpGet]
+        public IHttpActionResult ListaDocumentosAguardandoConferenciaCount(int empresa_id, string numdoc = "")
+        {
+            List<DocMarketing> res = new List<DocMarketing>() { };
+            if (!User.IsInRole(Privilegios.PodeConferirCodigoBarras))
+            {
+                return Ok(res);
+            }
+
+            try
+            {
+                res = ListaDocumentosPk(empresa_id, "AC", numdoc);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+            return Ok(res.Count()); ;
+        }
+
+        [HttpGet]
         public IHttpActionResult ListaDocumentosEmConferencia(int empresa_id, string numdoc = "")
         {
             List<DocMarketing> res = new List<DocMarketing>() { };
@@ -1428,6 +1615,26 @@ namespace Picking_Web.Controllers.API
             }
 
             return Ok(res);
+        }
+        [HttpGet]
+        public IHttpActionResult ListaDocumentosEmConferenciaCount(int empresa_id, string numdoc = "")
+        {
+            List<DocMarketing> res = new List<DocMarketing>() { };
+            if (!User.IsInRole(Privilegios.PodeConferirCodigoBarras))
+            {
+                return Ok(res);
+            }
+
+            try
+            {
+                res = ListaDocumentosPk(empresa_id, "EC", numdoc);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+            return Ok(res.Count()); ;
         }
 
         [HttpGet]
@@ -1450,6 +1657,26 @@ namespace Picking_Web.Controllers.API
 
             return Ok(res);
         }
+        [HttpGet]
+        public IHttpActionResult ListaDocumentosAguardandoEmbalagensCount(int empresa_id, string numdoc = "")
+        {
+            List<DocMarketing> res = new List<DocMarketing>() { };
+            if (!User.IsInRole(Privilegios.PodeGerenciarEtiqueta))
+            {
+                return Ok(res);
+            }
+
+            try
+            {
+                res = ListaDocumentosPk(empresa_id, "AP", numdoc);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+            return Ok(res.Count()); ;
+        }
 
         [HttpGet]
         public IHttpActionResult ListaDocumentosEmEmbalagens(int empresa_id, string numdoc = "")
@@ -1471,6 +1698,26 @@ namespace Picking_Web.Controllers.API
 
             return Ok(res);
         }
+        [HttpGet]
+        public IHttpActionResult ListaDocumentosEmEmbalagensCount(int empresa_id, string numdoc = "")
+        {
+            List<DocMarketing> res = new List<DocMarketing>() { };
+            if (!User.IsInRole(Privilegios.PodeGerenciarEtiqueta))
+            {
+                return Ok(res);
+            }
+
+            try
+            {
+                res = ListaDocumentosPk(empresa_id, "EP", numdoc);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+            return Ok(res.Count()); ;
+        }
 
         [HttpGet]
         public IHttpActionResult ListaDocumentosEmFaturamento(int empresa_id, string numdoc = "")
@@ -1491,6 +1738,26 @@ namespace Picking_Web.Controllers.API
             }
 
             return Ok(res);
+        }
+        [HttpGet]
+        public IHttpActionResult ListaDocumentosEmFaturamentoCount(int empresa_id, string numdoc = "")
+        {
+            List<DocMarketing> res = new List<DocMarketing>() { };
+            if (!User.IsInRole(Privilegios.PodeConferirCodigoBarras))
+            {
+                return Ok(res);
+            }
+
+            try
+            {
+                res = ListaDocumentosPk(empresa_id, "PE", numdoc);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+            return Ok(res.Count()); ;
         }
 
         [HttpGet]

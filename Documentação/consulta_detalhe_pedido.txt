@@ -1,0 +1,13 @@
+SELECT 
+	tb2.UserName as Operador
+	, tb3.Descr as Status
+	, CONVERT(VARCHAR, tb0.U_date, 113) as DataHora
+FROM [@UPD_PCK_ETAPA] tb0
+INNER JOIN [@UPD_PCK_OPERADOR] tb1 ON (tb1.U_status = tb0.U_status )
+INNER JOIN CenterlabWEB.dbo.AspNetUsers tb2 ON (tb2.Id = tb1.U_operador collate SQL_Latin1_General_CP850_CI_AS )
+INNER JOIN UFD1 tb3 ON (tb3.FldValue = tb0.U_status AND tb3.FieldID = 132 AND tb3.TableID = 'ORDR')
+WHERE 
+	1 = 1
+	AND tb0.U_docentry = 60713
+	AND tb1.U_docentry = 60713
+ORDER BY tb0.U_date

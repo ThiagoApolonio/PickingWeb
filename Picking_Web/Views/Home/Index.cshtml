@@ -3,220 +3,223 @@
 @using Microsoft.AspNet.Identity
 @model LoginViewModel
 @{
-    ViewBag.Title = "Menu";
+    ViewBag.Title = "Dashboard";
     Layout = "~/Views/Shared/_Index.cshtml";
     string ControllerName = "Home";
     string userid = ViewBag.userid;
+    int empresa = ViewBag.empresa;
 }
 
 
 
-        <div class="container-fluid">
+<div class="container-fluid">
 
-            <!-- start page title -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="page-title-box">
-                        <div class="page-title-right">
-                            <form class="d-flex">
-                                <a href="javascript:_Reload();" class="btn btn-primary ms-2">
-                                    <i class="mdi mdi-autorenew"></i><!--ORDERNAÇÃO-->
-                                </a>
-                            </form>
-                        </div>
-                        <h4 class="page-title">Bem Vindo Ao Picking Web Seu Sistema de Logistica</h4>
-                    </div>
-                </div>
+
+    <div class="row col-12" style="width: 100%;margin-top: 13px;">
+
+        <div class="page-title-box col-md-6" style=" width: 50%;">
+
+            <h4 style="float: left; width: 100%; max-width: none" class="page-title">Bem Vindo Ao Picking Web Seu Sistema de Logistica</h4>
+
+        </div>
+
+
+
+        <div class="page-title-right  col-md-1" style="float: right; width: 10%;">
+
+
+
+            <a href="javascript:_Reload();" class="btn btn-primary">
+
+                <i class="mdi mdi-autorenew"></i>
+
+            </a>
+
+
+
+        </div>
+
+        <div id="lista_picking_docs_pendentes_filter" class=" col-md-5" role="search" style="float: left; width: 40%;">
+
+            <div style="float: left; width: 80%">
+
+                <input style="float: left; width: 100%; max-width: none" type="text" class="form-control" placeholder="Pesquisar Pedido" id="campo_pesquisa">
+
             </div>
-            <!-- end page title -->
+            <div style="float: left; width: 20%;">
 
-            <div class="row">
-                <div class="col-xl-5 col-lg-6">
+                <button type="submit" style="float: left; width: 100%; max-width: none" class="btn btn-primary" id="botao_pesquisa">OK</button>
 
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="card widget-flat">
-                                <div class="card-body">
-                                    <div class="float-end">
-                                        <i class="mdi mdi-account-multiple widget-icon"></i>
-                                    </div>
-                                    <h5 class="text-muted fw-normal mt-0" title="Numero de Sepração">Separação</h5>
-                                    <h3 class="mt-3 mb-3">36,254</h3>
-                                    <p class="mb-0 text-muted">
-                                        <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 5.27%</span>
-                                        <span class="text-nowrap">Desde o Ultimo Mes</span>
-                                    </p>
-                                </div> <!-- end card-body-->
-                            </div> <!-- end card-->
-                        </div> <!-- end col-->
-
-                        <div class="col-sm-6">
-                            <div class="card widget-flat">
-                                <div class="card-body">
-                                    <div class="float-end">
-                                        <i class="mdi mdi-cart-plus widget-icon"></i>
-                                    </div>
-                                    <h5 class="text-muted fw-normal mt-0" title="Numero de Pedidos">Pedidos</h5>
-                                    <h3 class="mt-3 mb-3">5,543</h3>
-                                    <p class="mb-0 text-muted">
-                                        <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i> 1.08%</span>
-                                        <span class="text-nowrap">Desde o Ultimo Mes</span>
-                                    </p>
-                                </div> <!-- end card-body-->
-                            </div> <!-- end card-->
-                        </div> <!-- end col-->
-                    </div> <!-- end row -->
-
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="card widget-flat">
-                                <div class="card-body">
-                                    <div class="float-end">
-                                        <i class="mdi mdi-currency-usd widget-icon"></i>
-                                    </div>
-                                    <h5 class="text-muted fw-normal mt-0" title="Average Revenue">Receita</h5>
-                                    <h3 class="mt-3 mb-3">$6,254</h3>
-                                    <p class="mb-0 text-muted">
-                                        <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i> 7.00%</span>
-                                        <span class="text-nowrap">Desde o Ultimo Mes</span>
-                                    </p>
-                                </div> <!-- end card-body-->
-                            </div> <!-- end card-->
-                        </div> <!-- end col-->
-
-                        <div class="col-sm-6">
-                            <div class="card widget-flat">
-                                <div class="card-body">
-                                    <div class="float-end">
-                                        <i class="mdi mdi-pulse widget-icon"></i>
-                                    </div>
-                                    <h5 class="text-muted fw-normal mt-0" title="Growth">Crescimento</h5>
-                                    <h3 class="mt-3 mb-3">+ 30.56%</h3>
-                                    <p class="mb-0 text-muted">
-                                        <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 4.87%</span>
-                                        <span class="text-nowrap">Desde o Ultimo Mes</span>
-                                    </p>
-                                </div> <!-- end card-body-->
-                            </div> <!-- end card-->
-                        </div> <!-- end col-->
-                    </div> <!-- end row -->
-
-                </div> <!-- end col -->
-
-                <div class="col-xl-7 col-lg-6">
-                    <div class="card card-h-100">
-                        <div class="card-body">
-                            <div class="dropdown float-end">
-                                <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="mdi mdi-dots-vertical"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Sales Report</a>
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Export Report</a>
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Profit</a>
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                </div>
-                            </div>
-                            <h4 class="header-title mb-3">Projeção Vs Atualidade</h4>
-
-                            <div dir="ltr">
-                                <div id="high-performing-product" class="apex-charts" data-colors="#727cf5,#e3eaef"></div>
-                            </div>
-
-                        </div> <!-- end card-body-->
-                    </div> <!-- end card-->
-
-                </div> <!-- end col -->
             </div>
-            <!-- end row -->
 
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="dropdown float-end">
-                                <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="mdi mdi-dots-vertical"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Sales Report</a>
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Export Report</a>
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Profit</a>
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                </div>
-                            </div>
-                            <h4 class="header-title mb-3">Revenue</h4>
+        </div>
+    </div>
 
-                            <div class="chart-content-bg">
-                                <div class="row text-center">
-                                    <div class="col-sm-6">
-                                        <p class="text-muted mb-0 mt-3">Current Week</p>
-                                        <h2 class="fw-normal mb-3">
-                                            <small class="mdi mdi-checkbox-blank-circle text-primary align-middle me-1"></small>
-                                            <span>$58,254</span>
-                                        </h2>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <p class="text-muted mb-0 mt-3">Previous Week</p>
-                                        <h2 class="fw-normal mb-3">
-                                            <small class="mdi mdi-checkbox-blank-circle text-success align-middle me-1"></small>
-                                            <span>$69,524</span>
-                                        </h2>
-                                    </div>
-                                </div>
-                            </div>
+    <div class="row">
 
-                            <div class="dash-item-overlay d-none d-md-block" dir="ltr">
-                                <h5>Today's Earning: $2,562.30</h5>
-                                <p class="text-muted font-13 mb-3 mt-2">
-                                    Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui.
-                                    Etiam rhoncus...
+        <div class="row">
+
+            <h2 style="margin-top:13px">@ViewBag.Title</h2>
+            <div class="col-xl-6 col-lg-6">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card widget-flat">
+                            <div class="card-body" onclick="_SimularClickSeparacao()">
+
+                                <h5 class="text-muted fw-normal mt-0" title="Numero de Sepração">Aguardando Separação</h5>
+                                <h3 id="qtdseparacao" class="qtdseparacao">0</h3>
+                                <p class="mb-0 text-muted">
+                                    <i class="mdi mdi-account-multiple "></i>
+                                    <span class="text-nowrap">Registros</span>
                                 </p>
-                                <a href="javascript: void(0);" class="btn btn-outline-primary">
-                                    View Statements
-                                    <i class="mdi mdi-arrow-right ms-2"></i>
-                                </a>
-                            </div>
-                            <div dir="ltr">
-                                <div id="revenue-chart" class="apex-charts mt-3" data-colors="#727cf5,#0acf97"></div>
-                            </div>
-                        </div> <!-- end card-body-->
-                    </div> <!-- end card-->
-                </div> <!-- end col-->
-            </div>
-            <!-- end row -->
+                            </div> <!-- end card-body-->
+                        </div> <!-- end card-->
+                    </div> <!-- end col-->
+
+                    <div class="col-sm-6">
+                        <div class="card widget-flat">
+                            <div class="card-body" onclick="_SimularClickSeparacao()">
+
+                                <h5 class="text-muted fw-normal mt-0" title="Numero de Separação Futura">Separação Futura</h5>
+                                <h3 id="qtdseparacaofutura" class="qtdseparacaofutura">0</h3>
+                                <p class="mb-0 text-muted">
+                                    <i class="mdi mdi-cart-plus"></i>
+                                    @*<span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i> 1.08%</span>*@
+                                    <span class="text-nowrap">Registros</span>
+                                </p>
+                            </div> <!-- end card-body-->
+                        </div> <!-- end card-->
+                    </div> <!-- end col-->
+                </div> <!-- end row -->
+            </div> <!-- end col -->
+
+            <div class="col-xl-6 col-lg-6">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card widget-flat">
+                            <div class="card-body" onclick="_SimularClickSeparacao()">
+                                <h5 class="text-muted fw-normal mt-0" title="Numero de Separação Pendente">Separação Pendente</h5>
+                                <h3 id="qtdseparacaopendente" class="qtdseparacaopendente">0</h3>
+                                <p class="mb-0 text-muted">
+                                    <i class="mdi mdi-currency-usd "></i>
+                                    @*<span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i> 7.00%</span>*@
+                                    <span class="text-nowrap">Registros</span>
+                                </p>
+                            </div> <!-- end card-body-->
+                        </div> <!-- end card-->
+                    </div> <!-- end col-->
+
+                    <div class="col-sm-6">
+                        <div class="card widget-flat">
+                            <div class="card-body" onclick="_SimularClickSeparacao()">
+                                <h5 class="text-muted fw-normal mt-0" title="Growth">Ordens e Produções</h5>
+                                <h3 id="qtdordenproducao" class="qtdordenproducao">0</h3>
+                                <p class="mb-0 text-muted">
+                                    <i class="mdi mdi-pulse"></i>
+                                    @*<span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 4.87%</span>*@
+                                    <span class="text-nowrap">Registros</span>
+                                </p>
+                            </div> <!-- end card-body-->
+                        </div> <!-- end card-->
+                    </div> <!-- end col-->
+                </div> <!-- end row -->
+            </div> <!-- end col -->
         </div>
-        <!-- container -->
 
 
-    <!-- content -->
-    <!-- Footer Start -->
-    <footer class="footer">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-6">
-                    <script>document.write(new Date().getFullYear())</script> © Update Solution - www.ramosistemas.com/belohorizonte
-                </div>
-                <div class="col-md-6">
-                    <div class="text-md-end footer-links d-none d-md-block">
-                        <a href="https://ramo.com.br/sobre-a-ramo/">Sobre</a>
-                        <a href="https://ramobh.movidesk.com/Account/Login?ReturnUrl=%2f">Suporte</a>
-                        <a href="https://www.ramosistemas.com/sapbusinessone-2020">Contacte nos</a>
+        <!-- end row -->
+    </div>
+    <!-- end row -->
+
+    <div class="row" style="width: 100%;">
+        <div class="col-xl-7 col-lg-6" style="float:left;width:50%">
+            <div class="card card-h-100">
+                <div class="card-body">
+                    <div class="dropdown float-end">
+                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="mdi mdi-dots-vertical"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Sales Report</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Export Report</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Profit</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Action</a>
+                        </div>
                     </div>
+                    <h4 class="header-title mb-3">Quantidade de Registros</h4>
+
+                    <div dir="ltr">
+                        <div id="high-performing-product" class="apex-charts" data-colors="#727cf5,#e3eaef"></div>
+                    </div>
+
+                </div> <!-- end card-body-->
+            </div> <!-- end card-->
+
+        </div> <!-- end col -->
+        <div class="col-lg-8" style="float:left;width:50%">
+            <div class="card">
+                <div class="card-body">
+                    <div class="dropdown float-end">
+                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="mdi mdi-dots-vertical"></i>
+                        </a>
+
+                    </div>
+                    <h4 class="header-title mb-3">Crecimento Total</h4>
+
+                    <div class="chart-content-bg">
+                        <div class="row text-center">
+                            <div class="col-sm-6">
+                                <p class="text-muted mb-0 mt-3">Mes Anterior</p>
+                                <h2 class="fw-normal mb-3">
+                                    <small class="mdi mdi-checkbox-blank-circle text-primary align-middle me-1"></small>
+                                    <span></span>
+                                </h2>
+                            </div>
+                            <div class="col-sm-6">
+                                <p class="text-muted mb-0 mt-3">Mes Atual</p>
+                                <h2 class="fw-normal mb-3">
+                                    <small class="mdi mdi-checkbox-blank-circle text-success align-middle me-1"></small>
+                                    <span></span>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div dir="ltr">
+                        <div id="revenue-chart" class="apex-charts mt-3" data-colors="#727cf5,#0acf97"></div>
+                    </div>
+                </div> <!-- end card-body-->
+            </div> <!-- end card-->
+        </div> <!-- end col-->
+    </div>
+</div>
+<!-- container -->
+<!-- content -->
+<!-- Footer Start -->
+<footer class="footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <script>document.write(new Date().getFullYear())</script> © Update Solution - www.ramosistemas.com/belohorizonte
+            </div>
+            <div class="col-md-6">
+                <div class="text-md-end footer-links d-none d-md-block">
+                    <a href="https://www.ramobelohorizonte.com/">Sobre</a>
+                    <a href="https://ramobh.movidesk.com/Account/Login?ReturnUrl=%2f">Suporte</a>
+                    <a href="https://www.ramobelohorizonte.com/">Contacte nos</a>
                 </div>
             </div>
         </div>
-    </footer>
-    <!-- end Footer -->
-</div>
+    </div>
+</footer>
+<!-- end Footer -->
+
 @section scripts
         {
 
@@ -226,5 +229,6 @@
         var audio = new Audio('@Url.Action("", "error.wav")');
         InitWS("@userid");
     </script>
+    <script id="script_lista_picking" src="~/Scripts/Site/ListaPicking.js" data-empresa="@empresa"></script>
 
 }

@@ -9,25 +9,32 @@
 
 <h2>@ViewBag.Title</h2>
 
-<div class="row" style=" width: 100%; margin-top:30px;">
-    <div style="float:left;width:50%" class="col-xs-2">
+<div class="row col-12" style=" width: 100%; margin-top:30px;">
+
+    <div style="float:left;width:50%" class="col-md-6">
+
         <label for="CodPn">Código Parceiro de Negócio</label>
-        <input type="text" class="form-control" id="CodPn">
-    </div>
 
-   
+        <input  style="float: left; width: 100%; max-width: none"   type="text" class="form-control" id="CodPn">
 
-    <div  style="float:left;width:50%"class="col-xs-4">
+    </div>   
+
+    <div  style="float:left;width:50%"class="col-md-6">
+
         <label for="itemcode">Código Item</label>
-        <input type="text" class="form-control" id="itemcodeLote" disabled="disabled" style="max-width: none">
+
+        <input  style="float: left; width: 100%; max-width: none"   type="text" class="form-control" id="itemcodeLote" disabled="disabled" >
+
     </div>
 
 </div>
 
-
 <div class="row" style="margin-top: 50px; margin-left: 0px; margin-right: 0px;">
+
     <table id="itens_Baixa" class="table table-centered w-100 dt-responsive nowrap">
+
         <thead class=" table-light">
+
             <tr>
                 <th>Marcar</th>
                 <th>Item</th>
@@ -35,23 +42,36 @@
                 <th>Depósito</th>
                 <th>Lote</th>
             </tr>
+
         </thead>
+
         <tbody>
             
         </tbody>
     </table>
+
 </div>
 
-<div class="row" style=" width: 100%; margin-top: 30px;">
-    <div style="float:left;width:15%" class="col-xs-4">
-        <button class="btn btn-primary btn-block" type="submit" id="GoBaixa" data-loading-text="Aguarde...">Efetuar Baixa</button>
+<div class="row col-12" style=" width: 100%; margin-top: 30px;">
+
+    <div style="float:left;width:33%" class="col-md-4">
+
+        <button class="btn btn-primary btn-block"  style="float: left; width: 100%; max-width: none"   type="submit" id="GoBaixa" data-loading-text="Aguarde...">Efetuar Baixa</button>
+   
     </div>
-    <div style="float:left;width:8%" class="col-xs-3">
-        <button class="btn btn-warning btn-block" type="submit" id="reset" data-loading-text="Aguarde..." data-toggle="tooltip" data-placement="top" title="Reseta apenas os itens">Reset</button>
+
+    <div style="float:left;width:34%" class="col-md-4">
+
+        <button class="btn btn-warning btn-block"  style="float: left; width: 100%; max-width: none"   type="submit" id="reset" data-loading-text="Aguarde..." data-toggle="tooltip" data-placement="top" title="Reseta apenas os itens">Reset</button>
+  
     </div>
-    <div  style="float:left;width:30%"class="col-xs-4">
-        <button class="btn btn-danger btn-block" type="submit" id="cancelar" data-loading-text="Aguarde..." data-toggle="tooltip" data-placement="top" title="Reseta toda a tela">Cancelar</button>
+
+    <div style="float:left;width:33%" class="col-md-4">
+
+        <button class="btn btn-danger btn-block"  style="float: left; width: 100%; max-width: none"   type="submit" id="cancelar" data-loading-text="Aguarde..." data-toggle="tooltip" data-placement="top" title="Reseta toda a tela">Cancelar</button>
+   
     </div>
+
 </div>
 
 @section scripts

@@ -1,0 +1,1517 @@
+[Version]
+Signature="$Windows NT$"
+Provider="Zebra Technologies"
+LayoutFile=Layout.inf
+ClassGUID={4D36E979-E325-11CE-BFC1-08002BE10318}
+CatalogFile=zsd.cat
+DriverVer=09/04/2003, 5.0.0.7
+Class=Printer
+
+[ClassInstall]
+AddReg=ClassAddReg
+DelReg=ClassDelReg
+
+[ClassDelReg]
+HKLM,"System\CurrentControlSet\Services\Class\Printer","NoUseClass"
+
+[ClassAddReg]
+HKR,,,,%CLASSNAME%
+HKR,,Installer,,MSPRINT.DLL
+HKR,,Icon,,-4
+HKR,,NoDisplayClass,,1
+
+[Environment]
+UpdateInis=Environment_Ini
+AddReg=Environment_Reg
+
+[Environment_Ini]
+win.ini,windows,"Spooler=",
+win.ini,windows,"DosPrint=",
+win.ini,windows,"DeviceNotSelectedTimeout=",
+win.ini,windows,"TransmissionRetryTimeout=",
+
+[Environment_Reg]
+HKLM,"System\CurrentControlSet\Control\Print\Environments\Windows 4.0","Directory",,"CHICAGO"
+HKLM,"System\CurrentControlSet\Control\Print\Environments\Windows 4.0\Drivers",,,
+HKLM,"System\CurrentControlSet\Control\Print\Environments\Windows 4.0\Print Processors",,,
+HKLM,"System\CurrentControlSet\Control\Print\Monitors",,,
+HKLM,"System\CurrentControlSet\Control\Print\Printers",,,
+HKLM,"System\CurrentControlSet\Control\Print\Printers","StartOnBoot",1,01,00,00,00
+HKLM,"System\CurrentControlSet\Control\Print\Providers",,,
+
+
+[Manufacturer]
+"ZEBRA ZPL"=ZPL
+"ZEBRA CPCL"=CPL
+"ZEBRA EPL"=EPL
+
+[ZPL]
+"Zebra  90XiIII"=ZPL_90X_INST,LPTENUM\Zebra_TechnologiesZT9FAC
+"Zebra  96XiIII"=ZPL_96X_INST,LPTENUM\Zebra_TechnologiesZTCAAC
+"Zebra  140XiIII"=ZPL_140X_INST,LPTENUM\Zebra_TechnologiesZT75F8
+"Zebra  R-140"=ZPL_140R_INST,LPTENUM\Zebra_TechnologiesZT26D1
+"Zebra  170XiIII"=ZPL_170X_INST,LPTENUM\Zebra_TechnologiesZT675B
+"Zebra  220XiIII"=ZPL_220X_INST,LPTENUM\Zebra_TechnologiesZT78BD
+"Zebra  Z4M (200dpi)"=ZPL_Z4M2_INST,LPTENUM\Zebra_TechnologiesZTB241
+"Zebra  Z4M (300dpi)"=ZPL_Z4M3_INST,LPTENUM\Zebra_TechnologiesZT6340
+"Zebra  Z6M (200dpi)"=ZPL_Z6M2_INST,LPTENUM\Zebra_TechnologiesZTD25A
+"Zebra  Z6M (300dpi)"=ZPL_Z6M6_INST,LPTENUM\Zebra_TechnologiesZT035B
+"Zebra  Z4M Plus (200dpi)"=ZPL_ZM42_INST,LPTENUM\Zebra_TechnologiesZT6789,USBPRINT\Zebra_TechnologiesZT6789
+"Zebra  Z4M Plus (300dpi)"=ZPL_ZM43_INST,LPTENUM\Zebra_TechnologiesZTA799,USBPRINT\Zebra_TechnologiesZTA799
+"Zebra  Z6M Plus (200dpi)"=ZPL_ZM62_INST,LPTENUM\Zebra_TechnologiesZT2792,USBPRINT\Zebra_TechnologiesZT2792
+"Zebra  Z6M Plus (300dpi)"=ZPL_ZM63_INST,LPTENUM\Zebra_TechnologiesZT5F81,USBPRINT\Zebra_TechnologiesZT5F81
+"Zebra  DA402"=ZPL_DA402_INST,LPTENUM\Zebra_TechnologiesZTEEF9
+"Zebra  T402"=ZPL_T402_INST,LPTENUM\Zebra_TechnologiesZTAECF
+"Zebra  R402"=ZPL_R402_INST,LPTENUM\Zebra_TechnologiesZT26D1
+"Zebra  LP2844-Z"=ZPL_LP2844Z_INST,LPTENUM\Zebra_TechnologiesZT9FD5,USBPRINT\Zebra_TechnologiesZT9FD5
+"Zebra  TLP2844-Z"=ZPL_TLP2844Z_INST,LPTENUM\Zebra_TechnologiesZT0783,USBPRINT\Zebra_TechnologiesZT0783
+"Zebra  TLP3844-Z"=ZPL_TLP3844Z_INST,LPTENUM\Zebra_TechnologiesZT5780,USBPRINT\Zebra_TechnologiesZT5780
+"Zebra  S400"=ZPL_S400_INST,LPTENUM\Zebra_TechnologiesZTAF0B
+"Zebra  S600"=ZPL_S600_INST,LPTENUM\Zebra_TechnologiesZT1700
+"Zebra  PA403"=ZPL_PA403_INST
+"Zebra  PT403"=ZPL_PT403_INST
+"Zebra  105SL (200dpi)"=ZPL_105SL2_INST,LPTENUM\Zebra_TechnologiesZT2771
+"Zebra  105SL (300dpi)"=ZPL_105SL3_INST,LPTENUM\Zebra_TechnologiesZTF670
+"Zebra  170PAX LH/RH (200dpi)"=ZPL_PAX1702_INST,LPTENUM\Zebra_TechnologiesZT9909,LPTENUM\Zebra_TechnologiesZT9189
+"Zebra  170PAX LH/RH (300dpi)"=ZPL_PAX1703_INST,LPTENUM\Zebra_TechnologiesZT4808,LPTENUM\Zebra_TechnologiesZT4288
+"Zebra  110PAX LH/RH (200dpi)"=ZPL_PAX1102_INST,LPTENUM\Zebra_TechnologiesZT996F,LPTENUM\Zebra_TechnologiesZT91EF
+"Zebra  110PAX LH/RH (300dpi)"=ZPL_PAX1103_INST,LPTENUM\Zebra_TechnologiesZT486E,LPTENUM\Zebra_TechnologiesZT42EE
+"Zebra  110PAX LH/RH (600dpi)"=ZPL_PAX1106_INST,LPTENUM\Zebra_TechnologiesZT1D6E,LPTENUM\Zebra_TechnologiesZT15EE
+"Zebra  90XiIII Plus"=ZPL_90XP_INST,LPTENUM\Zebra_TechnologiesZTDF98,USBPRINT\Zebra_TechnologiesZTDF98
+"Zebra  96XiIII Plus"=ZPL_96XP_INST,LPTENUM\Zebra_TechnologiesZT5173,USBPRINT\Zebra_TechnologiesZT5173
+"Zebra  110XiIII Plus (200dpi)"=ZPL_110XP2_INST,LPTENUM\Zebra_TechnologiesZTBACB,USBPRINT\Zebra_TechnologiesZTBACB
+"Zebra  110XiIII Plus (300dpi)"=ZPL_110XP3_INST,LPTENUM\Zebra_TechnologiesZT6BCA,USBPRINT\Zebra_TechnologiesZT6BCA
+"Zebra  110XiIII Plus (600dpi)"=ZPL_110XP6_INST,LPTENUM\Zebra_TechnologiesZT3ECA,USBPRINT\Zebra_TechnologiesZT3ECA
+"Zebra  140XiIII Plus"=ZPL_140XP_INST,LPTENUM\Zebra_TechnologiesZT77DB,USBPRINT\Zebra_TechnologiesZT77DB
+"Zebra  170XiIII Plus"=ZPL_170XP_INST,LPTENUM\Zebra_TechnologiesZTE22A,USBPRINT\Zebra_TechnologiesZTE22A
+"Zebra  220XiIII Plus"=ZPL_220XP_INST,LPTENUM\Zebra_TechnologiesZT227C,USBPRINT\Zebra_TechnologiesZT227C
+"Zebra  Firmware Loader"=ZPL_FIRMWARE_INST,LPTENUM\Zebra_TechnologiesFI44FA,USBPRINT\Zebra_TechnologiesFI44FA
+
+
+[CPL]
+"Zebra  Encore 2"=CPL_ENCORE2_INST                
+"Zebra  Encore 3"=CPL_ENCORE3_INST                
+"Zebra  Encore 3N"=CPL_ENCORE3N_INST               
+"Zebra  Encore 4"=CPL_ENCORE4_INST                
+"Zebra  Encore 4SE"=CPL_ENCORE4SE_INST              
+"Zebra  Cameo 2"=CPL_CAMEO2_INST                 
+"Zebra  Cameo 2 Plus"=CPL_CAMEO2P_INST                
+"Zebra  Cameo 3"=CPL_CAMEO3_INST                 
+"Zebra  Cameo 3N"=CPL_CAMEO3N_INST                
+"Zebra  QL320"=CPL_QL320_INST          
+"Zebra  QL420"=CPL_QL420_INST
+"Zebra  Bravo 2"=CPL_BRAVO2_INST                 
+"Zebra  Bravo 4"=CPL_BRAVO4_INST                 
+
+
+[EPL]
+"Zebra  LP2443"=EPL_LP2443_INST
+"Zebra  LP2722"=EPL_LP2722_INST
+"Zebra  LP2742"=EPL_LP2742_INST
+"Zebra  LP2824"=EPL_LP2824_INST,USBPRINT\Zebra_LP2824_5A26
+"Zebra  LP2684"=EPL_LP2684_INST
+"Zebra  LP2844"=EPL_LP2844_INST,USBPRINT\Zebra_LP2844_5BC4
+"Zebra  TLP2722"=EPL_TLP2722_INST
+"Zebra  TLP2824"=EPL_TLP2824_INST,USBPRINT\Zebra_TLP2824_F37B
+"Zebra  TLP2742"=EPL_TLP2742_INST
+"Zebra  TLP3742"=EPL_TLP3742_INST
+"Zebra  2746"=EPL_2746_INST
+"Zebra  2746e"=EPL_2746e_INST,USBPRINT\Zebra_2746e_4719
+"Zebra  TLP2684"=EPL_TLP2684_INST
+"Zebra  Ht-146"=EPL_HT146_INST,USBPRINT\Zebra_Ht-146_2113
+"Zebra  TLP2844"=EPL_TLP2844_INST,USBPRINT\Zebra_TLP2844_F29B
+"Zebra  TLP3842"=EPL_TLP3842_INST,USBPRINT\Zebra_TLP3842_92A5
+
+
+; 90xIII3
+; -------
+[ZPL_90X_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@90xi3.cfg,@90XiIII.BMP
+DataFile=90xi3.cfg
+DataSection=ZPL_DATA
+
+[ZPL_90X_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@90xi3.cfg,@90XiIII.BMP
+DataFile=90xi3.cfg
+DataSection=ZPL_DATA.NT
+
+
+; 96xIII3
+; -------
+[ZPL_96X_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@96xi3.cfg,@90XiIII.BMP
+DataFile=96xi3.cfg
+DataSection=ZPL_DATA
+
+[ZPL_96X_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@96xi3.cfg,@90XiIII.BMP
+DataFile=96xi3.cfg
+DataSection=ZPL_DATA.NT
+
+
+; 140XiIII
+; -------
+[ZPL_140X_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@140xi3.cfg,@140XiIII.bmp
+DataFile=140xi3.cfg
+DataSection=ZPL_DATA
+
+[ZPL_140X_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@140xi3.cfg,@140XiIII.bmp
+DataFile=140xi3.cfg
+DataSection=ZPL_DATA.NT
+
+
+; 140RFID
+; -------
+[ZPL_140R_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@r140.cfg,@140XiIII.bmp
+DataFile=r140.cfg
+DataSection=ZPL_DATA
+
+[ZPL_140R_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@r140.cfg,@140XiIII.bmp
+DataFile=r140.cfg
+DataSection=ZPL_DATA.NT
+
+
+; 170XiIII
+; -------
+[ZPL_170X_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@170xi3.cfg,@170XiIII.bmp
+DataFile=170xi3.cfg
+DataSection=ZPL_DATA
+
+[ZPL_170X_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@170xi3.cfg,@170XiIII.bmp
+DataFile=170xi3.cfg
+DataSection=ZPL_DATA.NT
+
+
+; 220XiIII
+; -------
+[ZPL_220X_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@220xi3.cfg,@220XiIII.bmp
+DataFile=220xi3.cfg
+DataSection=ZPL_DATA
+
+[ZPL_220X_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@220xi3.cfg,@220XiIII.bmp
+DataFile=220xi3.cfg
+DataSection=ZPL_DATA.NT
+
+
+; Z4M (200dpi)
+; -------
+[ZPL_Z4M2_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@z4m1.cfg,@z4m.bmp
+DataFile=z4m1.cfg
+DataSection=ZPL_DATA
+
+[ZPL_Z4M2_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@z4m1.cfg,@z4m.bmp
+DataFile=z4m1.cfg
+DataSection=ZPL_DATA.NT
+
+
+; Z4M (300dpi)
+; -------
+[ZPL_Z4M3_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@z4m2.cfg,@z4m.bmp
+DataFile=z4m2.cfg
+DataSection=ZPL_DATA
+
+[ZPL_Z4M3_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@z4m2.cfg,@z4m.bmp
+DataFile=z4m2.cfg
+DataSection=ZPL_DATA.NT
+
+
+; Z6M (200dpi)
+; -------
+[ZPL_Z6M2_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@z6m1.cfg,@z6m.bmp
+DataFile=z6m1.cfg
+DataSection=ZPL_DATA
+
+[ZPL_Z6M2_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@z6m1.cfg,@z6m.bmp
+DataFile=z6m1.cfg
+DataSection=ZPL_DATA.NT
+
+
+; Z6M (300dpi)
+; -------
+[ZPL_Z6M6_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@z6m2.cfg,@z6m.bmp
+DataFile=z6m2.cfg
+DataSection=ZPL_DATA
+
+[ZPL_Z6M6_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@z6m2.cfg,@z6m.bmp
+DataFile=z6m2.cfg
+DataSection=ZPL_DATA.NT
+
+
+; Z4M Plus (200dpi)
+; -------
+[ZPL_ZM42_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@zm4a.cfg,@z4m.bmp
+DataFile=zm4a.cfg
+DataSection=ZPL_DATA
+
+[ZPL_ZM42_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@zm4a.cfg,@z4m.bmp
+DataFile=zm4a.cfg
+DataSection=ZPL_DATA.NT
+
+
+; Z4M Plus (300dpi)
+; -------
+[ZPL_ZM43_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@zm4b.cfg,@z4m.bmp
+DataFile=zm4b.cfg
+DataSection=ZPL_DATA
+
+[ZPL_ZM43_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@zm4b.cfg,@z4m.bmp
+DataFile=zm4b.cfg
+DataSection=ZPL_DATA.NT
+
+
+; Z6M Plus (200dpi)
+; -------
+[ZPL_ZM62_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@zm6a.cfg,@z6m.bmp
+DataFile=zm6a.cfg
+DataSection=ZPL_DATA
+
+[ZPL_ZM62_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@zm6a.cfg,@z6m.bmp
+DataFile=zm6a.cfg
+DataSection=ZPL_DATA.NT
+
+
+; Z6M Plus (300dpi)
+; -------
+[ZPL_ZM63_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@zm6b.cfg,@z6m.bmp
+DataFile=zm6b.cfg
+DataSection=ZPL_DATA
+
+[ZPL_ZM63_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@zm6b.cfg,@z6m.bmp
+DataFile=zm6b.cfg
+DataSection=ZPL_DATA.NT
+
+
+; DA402
+; -------
+[ZPL_DA402_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@da402.cfg,@LP2844.BMP
+DataFile=da402.cfg
+DataSection=ZPL_DATA
+
+[ZPL_DA402_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@da402.cfg,@LP2844.BMP
+DataFile=da402.cfg
+DataSection=ZPL_DATA.NT
+
+
+; T402
+; -------
+[ZPL_T402_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@t402.cfg,@tlp3742.bmp
+DataFile=t402.cfg
+DataSection=ZPL_DATA
+
+[ZPL_T402_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@t402.cfg,@tlp3742.bmp
+DataFile=t402.cfg
+DataSection=ZPL_DATA.NT
+
+
+; R402
+; -------
+[ZPL_R402_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@R402.cfg
+DataFile=R402.cfg
+DataSection=ZPL_DATA
+
+[ZPL_R402_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@R402.cfg
+DataFile=R402.cfg
+DataSection=ZPL_DATA.NT
+
+
+; LP2844-Z
+; -------
+[ZPL_LP2844Z_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,USBMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@LP2844Z.cfg,@LP2844.BMP
+DataFile=LP2844Z.cfg
+DataSection=ZPL_DATA
+PortMonitor=usbmon.dll,usbmon.dll
+
+[ZPL_LP2844Z_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@LP2844Z.cfg,@LP2844.BMP
+DataFile=LP2844Z.cfg
+DataSection=ZPL_DATA.NT
+
+
+; TLP2844-Z
+; -------
+[ZPL_TLP2844Z_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,USBMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@TLP2844Z.cfg,@tlp2844.bmp
+DataFile=TLP2844Z.cfg
+DataSection=ZPL_DATA
+PortMonitor=usbmon.dll,usbmon.dll
+
+[ZPL_TLP2844Z_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@TLP2844Z.cfg,@tlp2844.bmp
+DataFile=TLP2844Z.cfg
+DataSection=ZPL_DATA.NT
+
+
+; TLP3844-Z
+; -------
+[ZPL_TLP3844Z_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,USBMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@TLP3844Z.cfg,@tlp2844.bmp
+DataFile=TLP3844Z.cfg
+DataSection=ZPL_DATA
+PortMonitor=usbmon.dll,usbmon.dll
+
+[ZPL_TLP3844Z_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@TLP3844Z.cfg,@tlp2844.bmp
+DataFile=TLP3844Z.cfg
+DataSection=ZPL_DATA.NT
+
+
+; S400
+; -------
+[ZPL_S400_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@s400.cfg,@S400.bmp
+DataFile=s400.cfg
+DataSection=ZPL_DATA
+
+[ZPL_S400_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@s400.cfg,@S400.bmp
+DataFile=s400.cfg
+DataSection=ZPL_DATA.NT
+
+
+; S600
+; -------
+[ZPL_S600_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@S600.cfg,@S400.bmp
+DataFile=s600.cfg
+DataSection=ZPL_DATA
+
+[ZPL_S600_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@S600.cfg,@S400.bmp
+DataFile=s600.cfg
+DataSection=ZPL_DATA.NT
+
+
+; PA403
+; -------
+[ZPL_PA403_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@pa403.cfg,@pa400.bmp
+DataFile=pa403.cfg
+DataSection=ZPL_DATA
+
+[ZPL_PA403_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@pa403.cfg,@pa400.bmp
+DataFile=pa403.cfg
+DataSection=ZPL_DATA.NT
+
+
+; PT403
+; -------
+[ZPL_PT403_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@pt403.cfg,@pa400.bmp
+DataFile=pt403.cfg
+DataSection=ZPL_DATA
+
+[ZPL_PT403_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@pt403.cfg,@pa400.bmp
+DataFile=pt403.cfg
+DataSection=ZPL_DATA.NT
+
+
+; 105SL  (200dpi)
+; -------
+[ZPL_105SL2_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@105sl2.cfg,@105SL.bmp
+DataFile=105sl2.cfg
+DataSection=ZPL_DATA
+
+[ZPL_105SL2_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@105sl2.cfg,@105SL.bmp
+DataFile=105sl2.cfg
+DataSection=ZPL_DATA.NT
+
+
+; 105SL  (300dpi)
+; -------
+[ZPL_105SL3_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@105sl3.cfg,@105SL.bmp
+DataFile=105sl3.cfg
+DataSection=ZPL_DATA
+
+[ZPL_105SL3_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@105sl3.cfg,@105SL.bmp
+DataFile=105sl3.cfg
+DataSection=ZPL_DATA.NT
+
+
+; PAX170 (200dpi)
+; -------
+[ZPL_PAX1702_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@170pax3a.cfg,@170PAX3.bmp
+DataFile=170pax3a.cfg
+DataSection=ZPL_DATA
+
+[ZPL_PAX1702_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@170pax3a.cfg,@170PAX3.bmp
+DataFile=170pax3a.cfg
+DataSection=ZPL_DATA.NT
+
+
+; PAX170 (300dpi)
+; -------
+[ZPL_PAX1703_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@170pax3b.cfg,@170PAX3.bmp
+DataFile=170pax3b.cfg
+DataSection=ZPL_DATA
+
+[ZPL_PAX1703_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@170pax3b.cfg,@170PAX3.bmp
+DataFile=170pax3b.cfg
+DataSection=ZPL_DATA.NT
+
+
+; PAX110 (200dpi)
+; -------
+[ZPL_PAX1102_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@110pax3a.cfg,@110PAX3.bmp
+DataFile=110pax3a.cfg
+DataSection=ZPL_DATA
+
+[ZPL_PAX1102_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@110pax3a.cfg,@110PAX3.bmp
+DataFile=110pax3a.cfg
+DataSection=ZPL_DATA.NT
+
+
+; PAX110 (300dpi)
+; -------
+[ZPL_PAX1103_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@110pax3b.cfg,@110PAX3.bmp
+DataFile=110pax3b.cfg
+DataSection=ZPL_DATA
+
+[ZPL_PAX1103_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@110pax3b.cfg,@110PAX3.bmp
+DataFile=110pax3b.cfg
+DataSection=ZPL_DATA.NT
+
+
+; PAX110 (600dpi)
+; -------
+[ZPL_PAX1106_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@110pax6.cfg,@110PAX3.bmp
+DataFile=110pax6.cfg
+DataSection=ZPL_DATA
+
+[ZPL_PAX1106_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@110pax6.cfg,@110PAX3.bmp
+DataFile=110pax6.cfg
+DataSection=ZPL_DATA.NT
+
+
+; 90xIII3 PLUS
+; ------------
+[ZPL_90XP_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,USBMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@90xi3p.cfg,@90XiIII.BMP
+DataFile=90xi3p.cfg
+DataSection=ZPL_DATA
+PortMonitor=usbmon.dll,usbmon.dll
+
+[ZPL_90XP_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@90xi3p.cfg,@90XiIII.BMP
+DataFile=90xi3p.cfg
+DataSection=ZPL_DATA.NT
+
+
+; 96xIII3 PLUS
+; ------------
+[ZPL_96XP_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,USBMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@96xi3p.cfg,@90XiIII.BMP
+DataFile=96xi3p.cfg
+DataSection=ZPL_DATA
+PortMonitor=usbmon.dll,usbmon.dll
+
+[ZPL_96XP_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@96xi3p.cfg,@90XiIII.BMP
+DataFile=96xi3p.cfg
+DataSection=ZPL_DATA.NT
+
+
+; 110XiIII PLUS (200)
+; ------------
+[ZPL_110XP2_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,USBMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@110XI3P2.cfg,@140XiIII.bmp
+DataFile=110XI3P2.cfg
+DataSection=ZPL_DATA
+PortMonitor=usbmon.dll,usbmon.dll
+
+[ZPL_110XP2_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@110XI3P2.cfg,@140XiIII.bmp
+DataFile=110XI3P2.cfg
+DataSection=ZPL_DATA.NT
+
+
+; 110XiIII PLUS (300)
+; ------------
+[ZPL_110XP3_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,USBMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@110XI3P3.cfg,@140XiIII.bmp
+DataFile=110XI3P3.cfg
+DataSection=ZPL_DATA
+PortMonitor=usbmon.dll,usbmon.dll
+
+[ZPL_110XP3_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@110XI3P3.cfg,@140XiIII.bmp
+DataFile=110XI3P3.cfg
+DataSection=ZPL_DATA.NT
+
+
+; 110XiIII PLUS (600)
+; ------------
+[ZPL_110XP6_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,USBMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@110XI3P6.cfg,@140XiIII.bmp
+DataFile=110XI3P6.cfg
+DataSection=ZPL_DATA
+PortMonitor=usbmon.dll,usbmon.dll
+
+[ZPL_110XP6_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@110XI3P6.cfg,@140XiIII.bmp
+DataFile=110XI3P6.cfg
+DataSection=ZPL_DATA.NT
+
+
+; 140XiIII PLUS
+; -------------
+[ZPL_140XP_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,USBMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@140xi3p.cfg,@140XiIII.bmp
+DataFile=140xi3p.cfg
+DataSection=ZPL_DATA
+PortMonitor=usbmon.dll,usbmon.dll
+
+[ZPL_140XP_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@140xi3p.cfg,@140XiIII.bmp
+DataFile=140xi3p.cfg
+DataSection=ZPL_DATA.NT
+
+
+; 170XiIII PLUS
+; -------------
+[ZPL_170XP_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,USBMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@170xi3p.cfg,@170XiIII.bmp
+DataFile=170xi3p.cfg
+DataSection=ZPL_DATA
+PortMonitor=usbmon.dll,usbmon.dll
+
+[ZPL_170XP_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@170xi3p.cfg,@170XiIII.bmp
+DataFile=170xi3p.cfg
+DataSection=ZPL_DATA.NT
+
+
+; 220XiIII PLUS
+; -------------
+[ZPL_220XP_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,USBMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@220xi3p.cfg,@220XiIII.bmp
+DataFile=220xi3p.cfg
+DataSection=ZPL_DATA
+PortMonitor=usbmon.dll,usbmon.dll
+
+[ZPL_220XP_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@220xi3p.cfg,@220XiIII.bmp
+DataFile=220xi3p.cfg
+DataSection=ZPL_DATA.NT
+
+
+; FIRMWARE LOADER
+; -------
+[ZPL_FIRMWARE_INST]
+CopyFiles=ZPLFILES,ZPLMONITOR,USBMONITOR,INTFILES,ZPLDRVFILES,FNTFILES,@FIRMWARE.cfg
+DataFile=FIRMWARE.cfg
+DataSection=ZPL_DATA
+
+[ZPL_FIRMWARE_INST.NT]
+CopyFiles=ZPLFILES,ZPLMONITOR,INTFILES,ZPLDRVFILES.NT,FNTFILES.NT,@FIRMWARE.cfg
+DataFile=FIRMWARE.cfg
+DataSection=ZPL_DATA.NT
+
+
+
+; Encore 2
+; -------
+[CPL_ENCORE2_INST]
+CopyFiles=CPLFILES,CPLMONITOR,INTFILES,CPLDRVFILES,FNTFILES,@encore2.cfg,@encore2.bmp
+DataFile=encore2.cfg
+DataSection=CPL_DATA
+
+[CPL_ENCORE2_INST.NT]
+CopyFiles=CPLFILES,CPLMONITOR,INTFILES,CPLDRVFILES.NT,FNTFILES.NT,@encore2.cfg,@encore2.bmp
+DataFile=encore2.cfg
+DataSection=CPL_DATA.NT
+
+
+; Encore 3
+; -------
+[CPL_ENCORE3_INST]
+CopyFiles=CPLFILES,CPLMONITOR,INTFILES,CPLDRVFILES,FNTFILES,@encore3.cfg,@encore3n.bmp
+DataFile=encore3.cfg
+DataSection=CPL_DATA
+
+[CPL_ENCORE3_INST.NT]
+CopyFiles=CPLFILES,CPLMONITOR,INTFILES,CPLDRVFILES.NT,FNTFILES.NT,@encore3.cfg,@encore3n.bmp
+DataFile=encore3.cfg
+DataSection=CPL_DATA.NT
+
+
+; Encore 3N
+; -------
+[CPL_ENCORE3N_INST]
+CopyFiles=CPLFILES,CPLMONITOR,INTFILES,CPLDRVFILES,FNTFILES,@encore3n.cfg,@encore3n.bmp
+DataFile=encore3n.cfg
+DataSection=CPL_DATA
+
+[CPL_ENCORE3N_INST.NT]
+CopyFiles=CPLFILES,CPLMONITOR,INTFILES,CPLDRVFILES.NT,FNTFILES.NT,@encore3n.cfg,@encore3n.bmp
+DataFile=encore3n.cfg
+DataSection=CPL_DATA.NT
+
+
+; Encore 4
+; -------
+[CPL_ENCORE4_INST]
+CopyFiles=CPLFILES,CPLMONITOR,INTFILES,CPLDRVFILES,FNTFILES,@encore4.cfg,@encore4.bmp
+DataFile=encore4.cfg
+DataSection=CPL_DATA
+
+[CPL_ENCORE4_INST.NT]
+CopyFiles=CPLFILES,CPLMONITOR,INTFILES,CPLDRVFILES.NT,FNTFILES.NT,@encore4.cfg,@encore4.bmp
+DataFile=encore4.cfg
+DataSection=CPL_DATA.NT
+
+
+; Encore 4SE
+; -------
+[CPL_ENCORE4SE_INST]
+CopyFiles=CPLFILES,CPLMONITOR,INTFILES,CPLDRVFILES,FNTFILES,@encore4s.cfg,@encore4.bmp
+DataFile=encore4s.cfg
+DataSection=CPL_DATA
+
+[CPL_ENCORE4SE_INST.NT]
+CopyFiles=CPLFILES,CPLMONITOR,INTFILES,CPLDRVFILES.NT,FNTFILES.NT,@encore4s.cfg,@encore4.bmp
+DataFile=encore4s.cfg
+DataSection=CPL_DATA.NT
+
+
+; Cameo 2
+; -------
+[CPL_CAMEO2_INST]
+CopyFiles=CPLFILES,CPLMONITOR,INTFILES,CPLDRVFILES,FNTFILES,@cameo2.cfg,@cameo2p.bmp
+DataFile=cameo2.cfg
+DataSection=CPL_DATA
+
+[CPL_CAMEO2_INST.NT]
+CopyFiles=CPLFILES,CPLMONITOR,INTFILES,CPLDRVFILES.NT,FNTFILES.NT,@cameo2.cfg,@cameo2p.bmp
+DataFile=cameo2.cfg
+DataSection=CPL_DATA.NT
+
+
+; Cameo 2 Plus
+; -------
+[CPL_CAMEO2P_INST]
+CopyFiles=CPLFILES,CPLMONITOR,INTFILES,CPLDRVFILES,FNTFILES,@cameo2p.cfg,@cameo2p.bmp
+DataFile=cameo2p.cfg
+DataSection=CPL_DATA
+
+[CPL_CAMEO2P_INST.NT]
+CopyFiles=CPLFILES,CPLMONITOR,INTFILES,CPLDRVFILES.NT,FNTFILES.NT,@cameo2p.cfg,@cameo2p.bmp
+DataFile=cameo2p.cfg
+DataSection=CPL_DATA.NT
+
+
+; Cameo 3
+; -------
+[CPL_CAMEO3_INST]
+CopyFiles=CPLFILES,CPLMONITOR,INTFILES,CPLDRVFILES,FNTFILES,@cameo3.cfg,@cameo3.bmp
+DataFile=cameo3.cfg
+DataSection=CPL_DATA
+
+[CPL_CAMEO3_INST.NT]
+CopyFiles=CPLFILES,CPLMONITOR,INTFILES,CPLDRVFILES.NT,FNTFILES.NT,@cameo3.cfg,@cameo3.bmp
+DataFile=cameo3.cfg
+DataSection=CPL_DATA.NT
+
+
+; Cameo 3N
+; -------
+[CPL_CAMEO3N_INST]
+CopyFiles=CPLFILES,CPLMONITOR,INTFILES,CPLDRVFILES,FNTFILES,@cameo3n.cfg,@cameo3n.bmp
+DataFile=cameo3n.cfg
+DataSection=CPL_DATA
+
+[CPL_CAMEO3N_INST.NT]
+CopyFiles=CPLFILES,CPLMONITOR,INTFILES,CPLDRVFILES.NT,FNTFILES.NT,@cameo3n.cfg,@cameo3n.bmp
+DataFile=cameo3n.cfg
+DataSection=CPL_DATA.NT
+
+
+; QL320
+; -------
+[CPL_QL320_INST]
+CopyFiles=CPLFILES,CPLMONITOR,INTFILES,CPLDRVFILES,FNTFILES,@ql320.cfg,@ql320.bmp
+DataFile=ql320.cfg
+DataSection=CPL_DATA
+
+[CPL_QL320_INST.NT]
+CopyFiles=CPLFILES,CPLMONITOR,INTFILES,CPLDRVFILES.NT,FNTFILES.NT,@ql320.cfg,@ql320.bmp
+DataFile=ql320.cfg
+DataSection=CPL_DATA.NT
+
+
+; QL420
+; -------
+[CPL_QL420_INST]
+CopyFiles=CPLFILES,CPLMONITOR,INTFILES,CPLDRVFILES,FNTFILES,@ql420.cfg,@ql420.bmp
+DataFile=ql420.cfg
+DataSection=CPL_DATA
+
+[CPL_QL420_INST.NT]
+CopyFiles=CPLFILES,CPLMONITOR,INTFILES,CPLDRVFILES.NT,FNTFILES.NT,@ql420.cfg,@ql420.bmp
+DataFile=ql420.cfg
+DataSection=CPL_DATA.NT
+
+
+; Bravo 2
+; -------
+[CPL_BRAVO2_INST]
+CopyFiles=CPLFILES,CPLMONITOR,INTFILES,CPLDRVFILES,FNTFILES,@bravo2.cfg
+DataFile=bravo2.cfg
+DataSection=CPL_DATA
+
+[CPL_BRAVO2_INST.NT]
+CopyFiles=CPLFILES,CPLMONITOR,INTFILES,CPLDRVFILES.NT,FNTFILES.NT,@bravo2.cfg
+DataFile=bravo2.cfg
+DataSection=CPL_DATA.NT
+
+
+; Bravo 4
+; -------
+[CPL_BRAVO4_INST]
+CopyFiles=CPLFILES,CPLMONITOR,INTFILES,CPLDRVFILES,FNTFILES,@bravo4.cfg
+DataFile=bravo4.cfg
+DataSection=CPL_DATA
+
+[CPL_BRAVO4_INST.NT]
+CopyFiles=CPLFILES,CPLMONITOR,INTFILES,CPLDRVFILES.NT,FNTFILES.NT,@bravo4.cfg
+DataFile=bravo4.cfg
+DataSection=CPL_DATA.NT
+
+
+; LP2443
+; -------
+[EPL_LP2443_INST]
+CopyFiles=EPLFILES,EPLMONITOR,INTFILES,EPLDRVFILES,FNTFILES,@lp2443.cfg,@lp2844.bmp
+DataFile=lp2443.cfg
+DataSection=EPL_DATA
+
+[EPL_LP2443_INST.NT]
+CopyFiles=EPLFILES,EPLMONITOR,INTFILES,EPLDRVFILES.NT,FNTFILES.NT,@lp2443.cfg,@lp2844.bmp
+DataFile=lp2443.cfg
+DataSection=EPL_DATA.NT
+
+
+; LP2722
+; -------
+[EPL_LP2722_INST]
+CopyFiles=EPLFILES,EPLMONITOR,INTFILES,EPLDRVFILES,FNTFILES,@lp2722.cfg,@lp2722.bmp
+DataFile=lp2722.cfg
+DataSection=EPL_DATA
+
+[EPL_LP2722_INST.NT]
+CopyFiles=EPLFILES,EPLMONITOR,INTFILES,EPLDRVFILES.NT,FNTFILES.NT,@lp2722.cfg,@lp2722.bmp
+DataFile=lp2722.cfg
+DataSection=EPL_DATA.NT
+
+
+; LP2742
+; -------
+[EPL_LP2742_INST]
+CopyFiles=EPLFILES,EPLMONITOR,INTFILES,EPLDRVFILES,FNTFILES,@lp2742.cfg,@tlp3742.bmp
+DataFile=lp2742.cfg
+DataSection=EPL_DATA
+
+[EPL_LP2742_INST.NT]
+CopyFiles=EPLFILES,EPLMONITOR,INTFILES,EPLDRVFILES.NT,FNTFILES.NT,@lp2742.cfg,@tlp3742.bmp
+DataFile=lp2742.cfg
+DataSection=EPL_DATA.NT
+
+
+; LP2824
+; -------
+[EPL_LP2824_INST]
+CopyFiles=EPLFILES,EPLMONITOR,USBMONITOR,INTFILES,EPLDRVFILES,FNTFILES,@lp2824.cfg,@lp2824.bmp
+DataFile=lp2824.cfg
+DataSection=EPL_DATA
+PortMonitor=usbmon.dll,usbmon.dll
+
+[EPL_LP2824_INST.NT]
+CopyFiles=EPLFILES,EPLMONITOR,INTFILES,EPLDRVFILES.NT,FNTFILES.NT,@lp2824.cfg,@lp2824.bmp
+DataFile=lp2824.cfg
+DataSection=EPL_DATA.NT
+
+
+; LP2684
+; -------
+[EPL_LP2684_INST]
+CopyFiles=EPLFILES,EPLMONITOR,INTFILES,EPLDRVFILES,FNTFILES,@lp2684.cfg,@tlp2684.bmp
+DataFile=lp2684.cfg
+DataSection=EPL_DATA
+
+[EPL_LP2684_INST.NT]
+CopyFiles=EPLFILES,EPLMONITOR,INTFILES,EPLDRVFILES.NT,FNTFILES.NT,@lp2684.cfg,@tlp2684.bmp
+DataFile=lp2684.cfg
+DataSection=EPL_DATA.NT
+
+
+; LP2844
+; -------
+[EPL_LP2844_INST]
+CopyFiles=EPLFILES,EPLMONITOR,USBMONITOR,INTFILES,EPLDRVFILES,FNTFILES,@lp2844.cfg,@lp2844.bmp
+DataFile=lp2844.cfg
+DataSection=EPL_DATA
+PortMonitor=usbmon.dll,usbmon.dll
+
+[EPL_LP2844_INST.NT]
+CopyFiles=EPLFILES,EPLMONITOR,INTFILES,EPLDRVFILES.NT,FNTFILES.NT,@lp2844.cfg,@lp2844.bmp
+DataFile=lp2844.cfg
+DataSection=EPL_DATA.NT
+
+
+; TLP2722
+; -------
+[EPL_TLP2722_INST]
+CopyFiles=EPLFILES,EPLMONITOR,INTFILES,EPLDRVFILES,FNTFILES,@tlp2722.cfg,@lp2722.bmp
+DataFile=tlp2722.cfg
+DataSection=EPL_DATA
+
+[EPL_TLP2722_INST.NT]
+CopyFiles=EPLFILES,EPLMONITOR,INTFILES,EPLDRVFILES.NT,FNTFILES.NT,@tlp2722.cfg,@lp2722.bmp
+DataFile=tlp2722.cfg
+DataSection=EPL_DATA.NT
+
+
+; TLP2824
+; -------
+[EPL_TLP2824_INST]
+CopyFiles=EPLFILES,EPLMONITOR,USBMONITOR,INTFILES,EPLDRVFILES,FNTFILES,@tlp2824.cfg,@tlp2824.bmp
+DataFile=tlp2824.cfg
+DataSection=EPL_DATA
+PortMonitor=usbmon.dll,usbmon.dll
+
+[EPL_TLP2824_INST.NT]
+CopyFiles=EPLFILES,EPLMONITOR,INTFILES,EPLDRVFILES.NT,FNTFILES.NT,@tlp2824.cfg,@tlp2824.bmp
+DataFile=tlp2824.cfg
+DataSection=EPL_DATA.NT
+
+
+; TLP2742
+; -------
+[EPL_TLP2742_INST]
+CopyFiles=EPLFILES,EPLMONITOR,INTFILES,EPLDRVFILES,FNTFILES,@tlp2742.cfg,@tlp3742.bmp
+DataFile=tlp2742.cfg
+DataSection=EPL_DATA
+
+[EPL_TLP2742_INST.NT]
+CopyFiles=EPLFILES,EPLMONITOR,INTFILES,EPLDRVFILES.NT,FNTFILES.NT,@tlp2742.cfg,@tlp3742.bmp
+DataFile=tlp2742.cfg
+DataSection=EPL_DATA.NT
+
+
+; TLP3742
+; -------
+[EPL_TLP3742_INST]
+CopyFiles=EPLFILES,EPLMONITOR,INTFILES,EPLDRVFILES,FNTFILES,@tlp3742.cfg,@tlp3742.bmp
+DataFile=tlp3742.cfg
+DataSection=EPL_DATA
+
+[EPL_TLP3742_INST.NT]
+CopyFiles=EPLFILES,EPLMONITOR,INTFILES,EPLDRVFILES.NT,FNTFILES.NT,@tlp3742.cfg,@tlp3742.bmp
+DataFile=tlp3742.cfg
+DataSection=EPL_DATA.NT
+
+
+; 2746
+; -------
+[EPL_2746_INST]
+CopyFiles=EPLFILES,EPLMONITOR,INTFILES,EPLDRVFILES,FNTFILES,@2746.cfg,@2746.bmp
+DataFile=2746.cfg
+DataSection=EPL_DATA
+
+[EPL_2746_INST.NT]
+CopyFiles=EPLFILES,EPLMONITOR,INTFILES,EPLDRVFILES.NT,FNTFILES.NT,@2746.cfg,@2746.bmp
+DataFile=2746.cfg
+DataSection=EPL_DATA.NT
+
+
+; 2746e
+; -------
+[EPL_2746e_INST]
+CopyFiles=EPLFILES,EPLMONITOR,USBMONITOR,INTFILES,EPLDRVFILES,FNTFILES,@2746e.cfg,@2746e.bmp
+DataFile=2746e.cfg
+DataSection=EPL_DATA
+PortMonitor=usbmon.dll,usbmon.dll
+
+
+[EPL_2746e_INST.NT]
+CopyFiles=EPLFILES,EPLMONITOR,INTFILES,EPLDRVFILES.NT,FNTFILES.NT,@2746e.cfg,@2746e.bmp
+DataFile=2746e.cfg
+DataSection=EPL_DATA.NT
+
+
+; TLP2684
+; -------
+[EPL_TLP2684_INST]
+CopyFiles=EPLFILES,EPLMONITOR,INTFILES,EPLDRVFILES,FNTFILES,@tlp2684.cfg,@tlp2684.bmp
+DataFile=tlp2684.cfg
+DataSection=EPL_DATA
+
+[EPL_TLP2684_INST.NT]
+CopyFiles=EPLFILES,EPLMONITOR,INTFILES,EPLDRVFILES.NT,FNTFILES.NT,@tlp2684.cfg,@tlp2684.bmp
+DataFile=tlp2684.cfg
+DataSection=EPL_DATA.NT
+
+
+; Ht-146
+; -------
+[EPL_HT146_INST]
+CopyFiles=EPLFILES,EPLMONITOR,USBMONITOR,INTFILES,EPLDRVFILES,FNTFILES,@ht-146.cfg,@ht146.bmp
+DataFile=ht-146.cfg
+DataSection=EPL_DATA
+PortMonitor=usbmon.dll,usbmon.dll
+
+[EPL_HT146_INST.NT]
+CopyFiles=EPLFILES,EPLMONITOR,INTFILES,EPLDRVFILES.NT,FNTFILES.NT,@ht-146.cfg,@ht146.bmp
+DataFile=ht-146.cfg
+DataSection=EPL_DATA.NT
+
+
+; TLP2844
+; -------
+[EPL_TLP2844_INST]
+CopyFiles=EPLFILES,EPLMONITOR,USBMONITOR,INTFILES,EPLDRVFILES,FNTFILES,@tlp2844.cfg,@tlp2844.bmp
+DataFile=tlp2844.cfg
+DataSection=EPL_DATA
+PortMonitor=usbmon.dll,usbmon.dll
+
+[EPL_TLP2844_INST.NT]
+CopyFiles=EPLFILES,EPLMONITOR,INTFILES,EPLDRVFILES.NT,FNTFILES.NT,@tlp2844.cfg,@tlp2844.bmp
+DataFile=tlp2844.cfg
+DataSection=EPL_DATA.NT
+
+
+; TLP3842
+; -------
+[EPL_TLP3842_INST]
+CopyFiles=EPLFILES,EPLMONITOR,USBMONITOR,INTFILES,EPLDRVFILES,FNTFILES,@tlp3842.cfg,@tlp2844.bmp
+DataFile=tlp3842.cfg
+DataSection=EPL_DATA
+PortMonitor=usbmon.dll,usbmon.dll
+
+[EPL_TLP3842_INST.NT]
+CopyFiles=EPLFILES,EPLMONITOR,INTFILES,EPLDRVFILES.NT,FNTFILES.NT,@tlp3842.cfg,@tlp2844.bmp
+DataFile=tlp3842.cfg
+DataSection=EPL_DATA.NT
+
+
+
+; DATA SECTIONS - ZPL
+; ===================
+
+[ZPL_DATA]
+DriverFile=zsdzpl.drv
+LanguageMonitor="ZPL Language Monitor,zsdzpl.dcl"
+
+[ZPL_DATA.NT]
+DriverFile=zsdzpl.dll
+ConfigFile=zsdzplui.dll
+LanguageMonitor="ZPL Language Monitor,zsdzpl.dcl"
+
+
+; DATA SECTIONS - CPL
+; ===================
+; 
+
+[CPL_DATA]
+DriverFile=zsdcpl.drv
+LanguageMonitor="CPL Language Monitor,zsdcpl.dcl"
+
+[CPL_DATA.NT]
+DriverFile=zsdcpl.dll
+ConfigFile=zsdcplui.dll
+LanguageMonitor="CPL Language Monitor,zsdcpl.dcl"
+
+
+; DATA SECTIONS - EPL
+; ===================
+; 
+
+[EPL_DATA]
+DriverFile=zsdepl.drv
+LanguageMonitor="EPL Language Monitor,zsdepl.dcl"
+
+[EPL_DATA.NT]
+DriverFile=zsdepl.dll
+ConfigFile=zsdeplui.dll
+LanguageMonitor="EPL Language Monitor,zsdepl.dcl"
+
+
+; COMMOM FILES - INTERNATIONAL
+; ----------------------------
+
+[INTFILES]
+language.dll
+lang.csv
+zsd_uk.lng
+
+
+; COMMOM FILES - FONTS
+; --------------------
+
+[FNTFILES]
+zsdbar.ttf
+
+[FNTFILES.NT]
+zsdbarnt.ttf
+
+
+; DRIVER - ZPL
+; ------------
+
+[ZPLDRVFILES]
+zsdzpl.drv
+zsdui.dll
+clrgrey.bmp
+zlogo.bmp
+zsdbar.ttf
+
+[ZPLDRVFILES.NT]
+zsdzpl.dll
+zsdzplui.dll
+zsdui.dll
+clrgrey.bmp
+zlogo.bmp
+zsdbarnt.ttf
+
+
+; DRIVER - CPL
+; ------------
+
+[CPLDRVFILES]
+zsdcpl.drv
+zsdui.dll
+clrgrey.bmp
+zlogo.bmp
+zsdbar.ttf
+
+[CPLDRVFILES.NT]
+zsdcpl.dll
+zsdcplui.dll
+zsdui.dll
+clrgrey.bmp
+zlogo.bmp
+zsdbarnt.ttf
+
+
+; DRIVER - EPL
+; ------------
+
+[EPLDRVFILES]
+zsdepl.drv
+zsdui.dll
+clrgrey.bmp
+zlogo.bmp
+zsdbar.ttf
+
+[EPLDRVFILES.NT]
+zsdepl.dll
+zsdeplui.dll
+zsdui.dll
+clrgrey.bmp
+zlogo.bmp
+zsdbarnt.ttf
+
+
+; ZPL FILES
+; ---------
+
+[ZPLFILES]
+zsdzpl.dcl
+zsdzpl.hlp
+zsdzpl.def
+zsdprd.cfg
+
+;ZPL FONTS
+zsdbar.ufm
+ZPLFNTA.UFM
+ZPLFNTB.UFM
+ZPLFNTC.UFM
+ZPLFNTD.UFM
+ZPLFNTE1.UFM
+ZPLFNTE2.UFM
+ZPLFNTE3.UFM
+ZPLFNTE6.UFM
+ZPLFNTF.UFM
+ZPLFNTG.UFM
+ZPLFNTH1.UFM
+ZPLFNTH2.UFM
+ZPLFNTH3.UFM
+ZPLFNTH6.UFM
+ZPLFNTGS.UFM
+ZBU94023.UFM
+
+; ZPL MONITOR
+; -----------
+
+[ZPLMONITOR]
+zsdzpl.dcl
+
+
+; CPL FILES
+; ---------
+
+[CPLFILES]
+zsdcpl.dcl
+zsdcpl.hlp
+zsdcpl.def
+zsdprd.cfg
+
+;CPL FONTS
+zsdbar.ufm
+CPLFNT00.UFM
+CPLFNT01.UFM
+CPLFNT02.UFM
+CPLFNT03.UFM
+CPLFNT04.UFM
+CPLFNT05.UFM
+CPLFNT06.UFM
+CPLFNT10.UFM
+CPLFNT20.UFM
+CPLFNT21.UFM
+CPLFNT40.UFM
+CPLFNT41.UFM
+CPLFNT42.UFM
+CPLFNT43.UFM
+CPLFNT44.UFM
+CPLFNT45.UFM
+CPLFNT46.UFM
+CPLFNT47.UFM
+CPLFNT50.UFM
+CPLFNT51.UFM
+CPLFNT52.UFM
+CPLFNT53.UFM
+CPLFNT60.UFM
+CPLFNT70.UFM
+CPLFNT71.UFM
+
+; CPL MONITOR
+; -----------
+
+[CPLMONITOR]
+zsdcpl.dcl
+
+
+; EPL - FILES
+; -----------
+
+[EPLFILES]
+zsdepl.dcl
+zsdepl.hlp
+zsdepl.def
+zsdprd.cfg
+
+;EPL FONTS
+zsdbar.ufm
+EPLFNT12.UFM
+EPLFNT13.UFM
+EPLFNT22.UFM
+EPLFNT23.UFM
+EPLFNT32.UFM
+EPLFNT33.UFM
+EPLFNT42.UFM
+EPLFNT43.UFM
+EPLFNT52.UFM
+EPLFNT53.UFM
+
+; EPL - FILES
+; -----------
+
+[EPLMONITOR]
+zsdepl.dcl
+
+[USBMONITOR]
+usbmon.dll
+
+[DestinationDirs]
+DefaultDestDir=66000
+FNTFILES=20
+FNTFILES.NT=20
+ZPLMONITOR=11
+CPLMONITOR=11
+EPLMONITOR=11
+USBMONITOR=11
+
+[SourceDisksNames]
+1="Zebra Installation Disk","","",""
+
+[SourceDisksFiles]
+; driver
+; ------
+zsdzpl.drv=1,""
+zsdepl.drv=1,""
+zsdcpl.drv=1,""
+zsdzpl.dll=1,""
+zsdcpl.dll=1,""
+zsdepl.dll=1,""
+zsdzplui.dll=1,""
+zsdcplui.dll=1,""
+zsdeplui.dll=1,""
+zsdui.dll=1,""
+clrgrey.bmp=1,""
+zlogo.bmp=1,""
+
+; usb monitor
+; -----------
+usbmon.dll=1,""
+
+; international
+; -------------
+language.dll=1,""
+lang.csv=1,""
+zsd_uk.lng=1,""
+
+; fonts
+; -----
+zsdbar.ttf=1,""
+zsdbarnt.ttf=1,""
+zsdbar.ufm=1,""
+
+; ZPL FONT FILES--------------------
+ZPLFNTA.UFM=1,""
+ZPLFNTB.UFM=1,""
+ZPLFNTC.UFM=1,""
+ZPLFNTD.UFM=1,""
+ZPLFNTE1.UFM=1,""
+ZPLFNTE2.UFM=1,""
+ZPLFNTE3.UFM=1,""
+ZPLFNTE6.UFM=1,""
+ZPLFNTF.UFM=1,""
+ZPLFNTG.UFM=1,""
+ZPLFNTH1.UFM=1,""
+ZPLFNTH2.UFM=1,""
+ZPLFNTH3.UFM=1,""
+ZPLFNTH6.UFM=1,""
+ZPLFNTGS.UFM=1,""
+ZBU94023.UFM=1,""
+
+
+; CPL FONT FILES--------------------
+CPLFNT00.UFM=1,""
+CPLFNT01.UFM=1,""
+CPLFNT02.UFM=1,""
+CPLFNT03.UFM=1,""
+CPLFNT04.UFM=1,""
+CPLFNT05.UFM=1,""
+CPLFNT06.UFM=1,""
+CPLFNT10.UFM=1,""
+CPLFNT20.UFM=1,""
+CPLFNT21.UFM=1,""
+CPLFNT40.UFM=1,""
+CPLFNT41.UFM=1,""
+CPLFNT42.UFM=1,""
+CPLFNT43.UFM=1,""
+CPLFNT44.UFM=1,""
+CPLFNT45.UFM=1,""
+CPLFNT46.UFM=1,""
+CPLFNT47.UFM=1,""
+CPLFNT50.UFM=1,""
+CPLFNT51.UFM=1,""
+CPLFNT52.UFM=1,""
+CPLFNT53.UFM=1,""
+CPLFNT60.UFM=1,""
+CPLFNT70.UFM=1,""
+CPLFNT71.UFM=1,""
+
+; EPL FONT FILES--------------------
+EPLFNT12.UFM=1,""
+EPLFNT13.UFM=1,""
+EPLFNT22.UFM=1,""
+EPLFNT23.UFM=1,""
+EPLFNT32.UFM=1,""
+EPLFNT33.UFM=1,""
+EPLFNT42.UFM=1,""
+EPLFNT43.UFM=1,""
+EPLFNT52.UFM=1,""
+EPLFNT53.UFM=1,""
+
+; ZPL - COMMON
+; ------------
+zsdzpl.dcl=1
+zsdzpl.def=1
+zsdzpl.hlp=1
+zsdprd.cfg=1
+
+; CPL - COMMON
+; ------------
+zsdcpl.dcl=1
+zsdcpl.def=1
+zsdcpl.hlp=1
+zsdprd.cfg=1
+
+; EPL - COMMON
+; ------------
+zsdepl.dcl=1
+zsdepl.def=1
+zsdepl.hlp=1
+zsdprd.cfg=1
+
+; ZPL - CONFIG FILES
+; ------------------
+90xi3.cfg=1,""
+96xi3.cfg=1,""
+140xi3.cfg=1,""
+r140.cfg=1,""
+170xi3.cfg=1,""
+220xi3.cfg=1,""
+z4m1.cfg=1,""
+z4m2.cfg=1,""
+z6m1.cfg=1,""
+z6m2.cfg=1,""
+zm4a.cfg=1,""
+zm4b.cfg=1,""
+zm6a.cfg=1,""
+zm6b.cfg=1,""
+lp2844z.cfg=1,""
+tlp2844z.cfg=1,""
+tlp3844z.cfg=1,""
+da402.cfg=1,""
+t402.cfg=1,""
+r402.cfg=1,""
+s400.cfg=1,""
+s600.cfg=1,""
+pa400.cfg=1,""
+pt400.cfg=1,""
+pa403.cfg=1,""
+pt403.cfg=1,""
+105sl2.cfg=1,""
+105sl3.cfg=1,""
+170pax3a.cfg=1,""
+170pax3b.cfg=1,""
+110pax3a.cfg=1,""
+110pax3b.cfg=1,""
+110pax6.cfg=1,""
+90xi3p.cfg=1,""
+96xi3p.cfg=1,""
+110xi3P2.cfg=1,""
+110xi3P3.cfg=1,""
+110xi3P6.cfg=1,""
+140xi3p.cfg=1,""
+170xi3p.cfg=1,""
+220xi3p.cfg=1,""
+firmware.cfg=1,""
+
+; ZPL - BITMAPS
+; -------------
+90XiIII.BMP=1,""
+140XiIII.bmp=1,""
+170XiIII.bmp=1,""
+220XiIII.bmp=1,""
+z4m.bmp=1,""
+z6m.bmp=1,""
+S400.bmp=1,""
+pa400.bmp=1,""
+105SL.bmp=1,""
+170PAX3.bmp=1,""
+110PAX3.bmp=1,""
+lp2844.bmp=1,""
+tlp2844.bmp=1,""
+tlp3742.bmp=1,""
+
+; CPL - CONFIG FILES
+; ------------------
+encore2.cfg=1,""
+encore3.cfg=1,""
+encore3n.cfg=1,""
+encore4.cfg=1,""
+encore4s.cfg=1,""
+cameo2.cfg=1,""
+cameo2p.cfg=1,""
+cameo3.cfg=1,""
+cameo3n.cfg=1,""
+ql320.cfg=1,""
+ql420.cfg=1,""
+bravo2.cfg=1,""
+bravo4.cfg=1,""
+
+; CPL - BITMAP FILES
+; ------------------
+encore2.bmp=1,""
+encore3n.bmp=1,""
+encore4.bmp=1,""
+cameo2p.bmp=1,""
+cameo3.bmp=1,""
+cameo3n.bmp=1,""
+ql320.bmp=1,""
+ql420.bmp=1,""
+
+; EPL - CONFIG FILES
+; ------------------
+lp2443.cfg=1,""
+lp2722.cfg=1,""
+lp2742.cfg=1,""
+lp2824.cfg=1,""
+lp2684.cfg=1,""
+lp2844.cfg=1,""
+tlp2722.cfg=1,""
+tlp2824.cfg=1,""
+tlp2742.cfg=1,""
+tlp3742.cfg=1,""
+2746.cfg=1,""
+2746e.cfg=1,""
+tlp2684.cfg=1,""
+ht-146.cfg=1,""
+tlp2844.cfg=1,""
+tlp3842.cfg=1,""
+
+; EPL - BITMAP FILES
+; ------------------
+lp2844.bmp=1,""
+lp2722.bmp=1,""
+tlp3742.bmp=1,""
+lp2824.bmp=1,""
+tlp2684.bmp=1,""
+lp2844.bmp=1,""
+lp2722.bmp=1,""
+tlp2824.bmp=1,""
+tlp3742.bmp=1,""
+lp2742.bmp=1,""
+tlp2684.bmp=1,""
+ht146.bmp=1,""
+tlp2844.bmp=1,""
+2746.bmp=1,""

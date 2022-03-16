@@ -1,175 +1,192 @@
-﻿@using Picking_Web.Models
-@model Picking_Web.Models.RegisterViewModel
+﻿@model Picking_Web.Models.RegisterViewModel
 @{
-    ViewBag.Title = Model.Titulo;
-    Layout = "~/Views/Shared/_Index.cshtml";
     string userid = ViewBag.userid;
+    Layout = null;
+    ViewBag.Title = "Edit";
+
 }
+<div class="modal fade" id="ModalRegister" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-full-width">
+        <div class="modal-content">   
+            <div class="modal-body">
+       
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.HiddenFor(model => model.Id)
+                    @Html.AntiForgeryToken()
 
-<h2>@ViewBag.Title</h2>
+                    <div class="form row-cols-3" style="width:100%">
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" })) {
-    @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.Id)
+                        <div class="col-1" style="float: left; width: 20%">
 
-    <div class="form-horizontal">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
-
-        <div class="row">
-            <div class="col-md-8">
-                <h4>
-                    Dados Gerais
-                </h4>
-                <hr />
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.QuantidadeLicencas, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.QuantidadeLicencas, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-                        @Html.ValidationMessageFor(model => model.QuantidadeLicencas, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Ativo, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        <div class="checkbox">
-                            @Html.EditorFor(model => model.Ativo)
-                            @Html.ValidationMessageFor(model => model.Ativo, "", new { @class = "text-danger" })
+                            <div class="row col-12" style="width: 100%;">
+                                <h4>
+                                    Permissões
+                                </h4>
+                                <div class="col-md-12" style="float: left; width: 100%">
+                                    <div class="checkbox">
+                                        <label>
+                                            @Html.CheckBoxFor(m => m.Licenciado) Licenciado
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="float: left; width: 100%">
+                                    <div class="checkbox">
+                                        <label>
+                                            @Html.CheckBoxFor(m => m.Ativo) Ativo
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="float: left; width: 100%">
+                                    <div class="checkbox">
+                                        <label>
+                                            @Html.CheckBoxFor(m => m.Operador) Operador
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="float: left; width: 100%">
+                                    <div class="checkbox">
+                                        <label>
+                                            @Html.CheckBoxFor(m => m.PodeGerenciarAdmin) Pode acessar Área Administrativa
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="float: left; width: 100%">
+                                    <div class="checkbox">
+                                        <label>
+                                            @Html.CheckBoxFor(m => m.PodeGerenciarListaPicking) Pode realizar Separação
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="float: left; width: 100%">
+                                    <div class="checkbox">
+                                        <label>
+                                            @Html.CheckBoxFor(m => m.PodeConferirCodigoBarras) Pode realizar Conferência
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="float: left; width: 100%">
+                                    <div class="checkbox">
+                                        <label>
+                                            @Html.CheckBoxFor(m => m.PodeGerenciarEtiqueta) Pode gerenciar Embalagens
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="float: left; width: 100%">
+                                    <div class="checkbox">
+                                        <label>
+                                            @Html.CheckBoxFor(m => m.PodeGerenciarRecebimento) Pode realizar Recebimento
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="float: left; width: 100%">
+                                    <div class="checkbox">
+                                        <label>
+                                            @Html.CheckBoxFor(m => m.PodeGerenciarBaixa) Pode Gerenciar Baixa
+                                        </label>
+                                    </div>
+                                </div>
+                                @*<div class="checkbox">
+                            <label>
+                                @Html.CheckBoxFor(m => m.PodeGerenciarDocumentos) Pode Gerenciar Documentos
+                            </label>
+                        </div>*@
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Licenciado, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        <div class="checkbox">
-                            @Html.EditorFor(model => model.Licenciado)
-                            @Html.ValidationMessageFor(model => model.Licenciado, "", new { @class = "text-danger" })
+
+                        <h4>
+                            Dados Gerais
+                        </h4>
+
+                        <div class="col-2" style="float: left; width: 80%">
+                            <div class="row col-12" style="width: 100%;">
+
+
+                            </div>
+                            <div class="row col-12" style="width: 100%;">
+                                <div class="col-md-3" style="float: left; width: 25%">
+                                    @Html.LabelFor(model => model.QuantidadeLicencas, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.QuantidadeLicencas, new { htmlAttributes = new { @class = "form-control ", @style = "width:100%;max-width:none;", disabled = "disabled" } })
+                                    @Html.ValidationMessageFor(model => model.QuantidadeLicencas, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-3" style="float: left; width: 25%">
+                                    @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;max-width:none;" } })
+                                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-3" style="float:left;width:25%">
+                                    @Html.LabelFor(model => model.EmpresaId, htmlAttributes: new { @class = "control-label" })
+                                    @Html.DropDownListFor(m => m.EmpresaId, new SelectList(Model.Empresas, "Id", "Nome"), "Selecione a Empresa", new { @class = "form-control", @style = "width:100%;max-width:none;", id = "select_empresa", onchange = "CarregarUsuarios();" })
+                                    @Html.ValidationMessageFor(model => model.EmpresaId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-3" style="float:left;width:25%">
+                                    @Html.LabelFor(model => model.UsuariosSAPId, htmlAttributes: new { @class = "control-label" })
+                                    @Html.DropDownListFor(m => m.UsuariosSAPId, new SelectList(Model.UsuariosSAP, "Id", "Nome"), "Selecione o Usuário SAP", new { @class = "form-control", @style = "width:100%;max-width:none;", id = "select_usuario" })
+                                    @Html.ValidationMessageFor(model => model.UsuariosSAPId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row col-12" style="width: 100%;">
+
+                                <div class="col-md-4" style="float: left; width: 25%">
+                                    @Html.LabelFor(m => m.Password, htmlAttributes: new { @class = "control-label " })
+                                    @if (String.IsNullOrEmpty(Model.Id))
+                                    {
+                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @style = "width:100%;max-width:none;" })
+                                    }
+                                    else
+                                    {
+                                        <input type="password" class="form-control" data-toggle="tooltip" data-trigger="click" data-placement="right" title="Opicional em caso de edição." />
+                                    }
+                                </div>
+                                <div class="col-md-4" style="float: left; width: 25%">
+                                    @Html.LabelFor(m => m.ConfirmPassword, htmlAttributes: new { @class = "control-label" })
+                                    @if (String.IsNullOrEmpty(Model.Id))
+                                    {
+                                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @style = "width:100%;max-width:none;" })
+                                    }
+                                    else
+                                    {
+                                        <input type="password" class="form-control" data-toggle="tooltip" data-trigger="click" data-placement="right" title="Opicional em caso de edição." />
+                                    }
+                                </div>
+                                <div class="col-md-4" style="float: left; width: 50%">
+                                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;max-width:none;" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+                                </div>
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <hr />
+                            </div>
                         </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Operador, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        <div class="checkbox">
-                            @Html.EditorFor(model => model.Operador)
-                            @Html.ValidationMessageFor(model => model.Operador, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.EmpresaId, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownListFor(m => m.EmpresaId, new SelectList(Model.Empresas, "Id", "Nome"), "Selecione a Empresa", new { @class = "form-control", id = "select_empresa", onchange = "CarregarUsuarios();" })
-                        @Html.ValidationMessageFor(model => model.EmpresaId, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.UsuariosSAPId, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownListFor(m => m.UsuariosSAPId, new SelectList(Model.UsuariosSAP, "Id", "Nome"), "Selecione o Usuário SAP", new { @class = "form-control", id = "select_usuario" })
-                        @Html.ValidationMessageFor(model => model.UsuariosSAPId, "", new { @class = "text-danger" })
-                    </div>
-                </div>
 
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                     </div>
-                </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @if (String.IsNullOrEmpty(Model.Id)) {
-                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        } else {
-                            <input type="password" class="form-control" data-toggle="tooltip" data-trigger="click" data-placement="right" title="Opicional em caso de edição." />
-                        }
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @if (String.IsNullOrEmpty(Model.Id)) {
-                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-                        } else {
-                            <input type="password" class="form-control" data-toggle="tooltip" data-trigger="click" data-placement="right" title="Opicional em caso de edição." />
-                        }
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div>
-                    <h4>
-                        Permissões
-                    </h4>
                     <hr />
-                    <div class="checkbox">
-                        <label>
-                            @Html.CheckBoxFor(m => m.PodeGerenciarAdmin) Pode acessar Área Administrativa
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            @Html.CheckBoxFor(m => m.PodeGerenciarListaPicking) Pode realizar Separação
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            @Html.CheckBoxFor(m => m.PodeConferirCodigoBarras) Pode realizar Conferência
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            @Html.CheckBoxFor(m => m.PodeGerenciarEtiqueta) Pode gerenciar Embalagens
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            @Html.CheckBoxFor(m => m.PodeGerenciarRecebimento) Pode realizar Recebimento
-                        </label>
-                    </div>
-                    @*<div class="checkbox">
-                        <label>
-                            @Html.CheckBoxFor(m => m.PodeGerenciarDocumentos) Pode Gerenciar Documentos
-                        </label>
-                    </div>*@
-                    <div class="checkbox">
-                        <label>
-                            @Html.CheckBoxFor(m => m.PodeGerenciarBaixa) Pode Gerenciar Baixa 
-                        </label>
-                    </div>
-                </div>
+                    <div class="row col-12" style="width:100%">
+                        <div class="col-md-6" style="width:50%">
+                            <input type="submit" style="float:left;width:100%;max-width:none" value="Salvar" class="btn btn-primary" />
+                        </div>
+                        <div class="col-md-6" style="width:50%">
+                            <button type="button" style="float: left; width: 100%; max-width: none" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                        </div>
 
+                    </div>
+                }
             </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Salvar" class="btn btn-primary" />
-                </div>
-            </div>
-
         </div>
-
     </div>
-}
-
+</div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script type="text/javascript">
@@ -208,6 +225,3 @@
         });
     </script>
 }
-<div>
-    @Html.ActionLink("Voltar à Lista", "Index", "Usuarios")
-</div>

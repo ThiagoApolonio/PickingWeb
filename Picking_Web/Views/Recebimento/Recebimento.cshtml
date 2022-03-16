@@ -1,7 +1,7 @@
 ﻿@using Picking_Web.Models
 @{
     ViewBag.Title = "RECEBIMENTO";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    Layout = "~/Views/Shared/_Recebimento.cshtml";
     string ControllerName = "recebimento";
     int empresa = ViewBag.empresa;
     string userid = ViewBag.userid;
@@ -9,48 +9,44 @@
 
 <h2>@ViewBag.Title</h2>
 
-<div class="row" style=" width: 100%; margin-top: 30px;">
-    <div style="float:left;width:25%" class="col-xs-2">
+<div class="row col-12" style=" width: 100%; margin-top: 30px;">
+    <div style="float:left;width:25%" class="col-md-3">
         <label for="numnota">Número do Recebimento</label>
-        <input type="text" class="form-control" id="numnota">
+        <input style="float: left; width: 100%; max-width: none" type="text" class="form-control" id="numnota">
     </div>
 
-
-
-    <div style="float:left;width:25%" class="col-xs-4">
+    <div style="float:left;width:25%" class="col-md-3">
         <label for="itemcode">Código Item</label>
-        <select class="form-control chosen" id="itemcode" style="max-width: none">
+        <select style="float: left; width: 100%; max-width: none" class="form-control" id="itemcode">
             <option value="">Selecione o Item</option>
             @{
                 var itens = ViewBag.Itens as List<ItemSAP>;
                 foreach (var item in itens)
                 {
-                    <option value="@item.ItemCode">@item.ItemCode - @item.ItemName</option>
+                    <option class="" value="@item.ItemCode">@item.ItemCode - @item.ItemName</option>
                 }
             }
         </select>
     </div>
 
-    <div style="float:left;width:25%" class="col-xs-2">
+    <div style="float:left;width:25%" class="col-md-3">
         <label for="numlote">Lote Interno</label>
-        <select class="form-control" id="numlote" style="max-width: none">
+        <select style="float: left; width: 100%; max-width: none" class="form-control" id="numlote" style="max-width: none">
             <option value="">Selecione o Lote</option>
         </select>
     </div>
 
-
-
-
-    <div style="float:left;width:25%" class="col-xs-2">
+    <div style="float:left;width:25%" class="col-md-3">
         <label for="codbarras">Cod. Barras Fabricante</label>
-        <input type="text" class="form-control" id="codbarras">
+        <input style="float: left; width: 100%; max-width: none" type="text" class="form-control" id="codbarras">
     </div>
 
 </div>
+
 <hr />
 
-<div class="row" style="margin-top: 50px; margin-left: 0px; margin-right: 0px;">
-    <table id="itens_recebimento" class="table table-centered w-100 dt-responsive nowrap">
+<div class="row">
+    <table id="itens_recebimento" style="width:100%" class="table table-bordered table-condensed table-hover">
         <thead>
             <tr class="table-light">
                 <th>Marcar</th>
@@ -70,15 +66,15 @@
     </table>
 </div>
 
-<div style=" width: 100%; margin-top: 30px; " class="row ">
-    <div style="float:left;width:10%" class="col-xs-4">
-        <button class="btn btn-primary btn-block" type="submit" id="imprimir" data-loading-text="Aguarde...">Imprimir</button>
+<div style=" width: 100%; margin-top: 30px; " class="row col-12">
+    <div style="float:left;width:33%" class="col-md-4">
+        <button class="btn btn-primary btn-block" style="float: left; width: 100%; max-width: none" type="submit" id="imprimir" data-loading-text="Aguarde...">Imprimir</button>
     </div>
-    <div style="float:left;width:8%" class="col-xs-4">
-        <button class="btn btn-warning btn-block" type="submit" id="reset" data-loading-text="Aguarde..." data-toggle="tooltip" data-placement="top" title="Reseta apenas os itens">Reset</button>
+    <div style="float:left;width:34%" class="col-md-4">
+        <button class="btn btn-warning btn-block" style="float: left; width: 100%; max-width: none" type="submit" id="reset" data-loading-text="Aguarde..." data-toggle="tooltip" data-placement="top" title="Reseta apenas os itens">Reset</button>
     </div>
-    <div style="float:left;width:15%" class="col-xs-4">
-        <button class="btn btn-danger btn-block" type="submit" id="cancelar" data-loading-text="Aguarde..." data-toggle="tooltip" data-placement="top" title="Reseta toda a tela">Cancelar</button>
+    <div style="float:left;width:33%" class="col-md-4">
+        <button class="btn btn-danger btn-block" style="float: left; width: 100%; max-width: none" type="submit" id="cancelar" data-loading-text="Aguarde..." data-toggle="tooltip" data-placement="top" title="Reseta toda a tela">Cancelar</button>
     </div>
 </div>
 
@@ -89,60 +85,6 @@
     <script type="text/javascript">
         var DefaultApiPath = '@(Url.Action("", "api/" + ControllerName))';
         InitWS("@userid");
-        $(document).ready(function () {
-
-      
-            $("#itemcode").chosen();
-
-
-
-          
-
-          
-           
-
-           
-            
-           
-
-            var DesenhaTabelaItens = function () {
-
-                var html = "";
-
-                for (var i = 1; i <= dataset_itens.length; i++) {
-                    var curr_dataset = dataset_itens[i - 1];
-                    var ambiente_upper = curr_dataset["ambiente"].toUpperCase();
-                    var nome_ambiente = ambiente_upper === "A" ? "AMBIENTE" : (ambiente_upper === "G" ? "GELADEIRA" : "--");
-
-                    // sempre que desenha, adiciona o index dinamicamente
-                    dataset_itens[i - 1]["_index_"] = i;
-
-                    html +=
-                        "<tr id='tr" + curr_dataset["_index_"] + "'> " +
-                        "   <td><input type='checkbox' checked='checked' id='check'></td> " +
-                        "   <td>" + curr_dataset["itemCode"] + "</td> " +
-                        "   <td>" + curr_dataset["itemName"] + "</td> " +
-                        "   <td> <input id='qtd' type='number' value='" + curr_dataset["quantidade"] + "' style='max-width:55px;' min='1' /></td> " +
-                        "   <td>" + curr_dataset["unidadeMedida"] + "</td> " +
-                        "   <td>" + curr_dataset["numLote"] + "</td> " +
-                        "   <td>" + curr_dataset["codBarras"] + "</td> " +
-                        "   <td>" + curr_dataset["dataVenc"] + "</td> " +
-                        "   <td>" + nome_ambiente + "</td> " +
-                        "   <td>" + curr_dataset["deposito"] + "</td> " +
-                        /* "   <td align='center'> " +
-                        "       <button data-index='" + i + "' type='button' class='btn btn-danger js-remover-item'> " +
-                        "           <span class='glyphicon glyphicon-trash'></span>&nbsp; " +
-                        "       </button> " +
-                        "   </td> " + */
-                        "</tr>";
-                }
-
-                $('#itens_recebimento tbody').html(html);
-            }
-          
-
-           
-        });
     </script>
     <script id="script_recebimentos" src="~/Scripts/Site/Recebimento.js" data-empresa="@empresa"></script>
 }

@@ -1,0 +1,76 @@
+﻿@model Picking_Web.ViewModels.FormGestaoImpressoesViewModel
+@{
+    string userid = ViewBag.userid;
+    ViewBag.Title = "Edit";
+    Layout = null;
+}
+
+
+<div class="modal fade" id="ModalEditRegister" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" >
+            <div class="modal-body">
+                @using (Html.BeginForm("Salvar", "GestaoImpressoes"))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div style="align-content:center;width:100%">
+
+                        @Html.ValidationSummary(true, "Por favor, corrija os erro(s) abaixo:")
+                        @Html.HiddenFor(m => m.Id)
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.EmpresaId, htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.DropDownListFor(m => m.EmpresaId, new SelectList(Model.Empresas, "Id", "Nome"), "Selecione a Empresa", new { @class = "form-control", @style = "width:100%", id = "select_empresa" })
+                                @Html.ValidationMessageFor(model => model.EmpresaId, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.LugarImpressaoId, htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.DropDownListFor(m => m.LugarImpressaoId, new SelectList(Model.LugarImpressao, "Id", "Nome"), "Selecione o Local", new { @class = "form-control", @style = "width:100%", id = "select_lugar" })
+                                @Html.ValidationMessageFor(model => model.LugarImpressaoId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NomeImpressora, htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.DropDownListFor(m => m.NomeImpressora, new SelectList(Model.Impressoras, "Id", "Nome"), "Selecione a Impressora", new { @class = "form-control", @style = "width:100%", id = "select_impressora" })
+                                @Html.ValidationMessageFor(model => model.NomeImpressora, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset col-md modal-footer">
+                                <input type="submit" value="Salvar" class="btn btn-primary" />
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                }
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+<script src="~/Scripts/Site/Globals.js"></script>
+
+
+
+
+@section scripts
+{
+    <script type="text/javascript">
+        InitWS("@userid");
+    </script>
+}

@@ -23,8 +23,13 @@ namespace Picking_Web.Controllers
 
         public ActionResult Index()
         {
+            var viewModel = new FormGestaoImpressoesViewModel()
+            {
+                Empresas = _context.Empresa.ToList(),
+                Impressoras = ListaDeImpressorasDaMaquina()
+            };
             SetUserIdInViewBag();
-            return View();
+            return View( viewModel);
         }
 
         public ActionResult Novo()
@@ -50,14 +55,16 @@ namespace Picking_Web.Controllers
             var viewModel = new FormGestaoImpressoesViewModel()
             {
                 Id = gestao_impressoes.Id,
+      
                 Empresas = _context.Empresa.ToList(),
                 EmpresaId = gestao_impressoes.EmpresaId,
                 LugarImpressaoId = gestao_impressoes.LugarImpressaoId,
                 NomeImpressora = gestao_impressoes.NomeImpressora,
                 Impressoras = ListaDeImpressorasDaMaquina()
             };
+         
             SetUserIdInViewBag();
-            return View("FormGestaoImpressoes", viewModel);
+            return View("editImpressoes",viewModel);
         }
 
         [HttpPost]

@@ -3,7 +3,7 @@
 
 @{
     ViewBag.Title = "Usuários";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    Layout = "~/Views/Shared/_Administracao.cshtml";
     string ControllerName = "usuarios";
     string userid = ViewBag.userid;
 }
@@ -17,11 +17,7 @@
         <div class="col-12">
             <div class="page-title-box">
                 <div class="page-title-right">
-                    <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item active">Dashboards</li>
-                        <li class="breadcrumb-item active">Área Administrativa</li>
-                        <li class="breadcrumb-item active">Usuários</li>
-                    </ol>
+
                 </div>
                 <br />
                 <h2>@ViewBag.Title</h2>
@@ -36,9 +32,6 @@
                 <div class="card-body">
                     <div class="row mb-2">
                         <div class="col-sm-5">
-
-
-
                         </div>
                         <div class="col-sm-7">
                             <div class="text-sm-end">
@@ -49,7 +42,7 @@
                         </div><!-- end col-->
                     </div>
                     <!-- Modal -->
-                    @Html.Partial("modal")
+                    @Html.Partial("NovoUsuario")
                     <div>
                         <table class="table table-centered w-100 dt-responsive nowrap" id="usuarios">
                             <thead class="table-light">
@@ -76,7 +69,39 @@
     <script type="text/javascript">
         var DefaultApiPath = '@(Url.Action("", "api/" + ControllerName))';
         var DefaultPath = '@(Url.Action("", "" + ControllerName))';
+        var CarregarUsuarios = function () {
+            var opts = "<option>Selecione o Usuário SAP</option>";
+            var select_empresa = $('#select_empresa');
+            var select_usuario = $('#select_usuario');
+            var empresa_id = select_empresa.val();
+
+            if (empresa_id) {
+                $.ajax({
+                    url: DefaultApiPath + "/getusuariossap?empresa_id=" + empresa_id,
+                    method: "GET",
+                    beforeSend: function() {
+                        select_usuario.html("<option>Carregando...</option>");
+                    },
+                    success: function(data) {
+                        for (var i = 0; i < data.length; i++) {
+                            opts += "<option value='" + data[i]["id"] + "'>" + data[i]["nome"] + "</option>";
+                        }
+                        select_usuario.html(opts);
+                    },
+                    error: _DEFAULT_ERROR_TREATMENT
+                });
+            }
+            select_usuario.html(opts);
+        };
         InitWS("@userid");
+
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+
+        });
+
     </script>
+
+
     <script src="~/Scripts/Site/Usuarios.js"></script>
 }

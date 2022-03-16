@@ -26,8 +26,13 @@ namespace Picking_Web.Controllers
 
         public ActionResult Index()
         {
+            var viewModel = new FormEmpresaViewModel()
+            {
+                Ativo = true,
+                DepositoSAP = new List<DepositosSap>() { }
+            };
             SetUserIdInViewBag();
-            return View();
+            return View("Index",viewModel);
         }
 
         public ActionResult Nova()
@@ -35,7 +40,9 @@ namespace Picking_Web.Controllers
             var viewModel = new FormEmpresaViewModel()
             {
                 Ativo = true,
-                DepositoSAP = new List<DepositosSap>() { }
+                DepositoSAP = new List<DepositosSap>() { },
+                UsuarioSap = new List<string>().ToString(),
+
             };
 
             ViewBag.Title = "Cadastrar Empresa";
@@ -43,9 +50,9 @@ namespace Picking_Web.Controllers
             return View("FormEmpresa", viewModel);
         }
 
-        public ActionResult Editar(int id)
+        public ActionResult Editar(int Id)
         {
-            var empresa = _context.Empresa.SingleOrDefault(i => i.Id == id);
+            var empresa =_context.Empresa.SingleOrDefault(i => i.Id == Id);
 
             if (empresa == null)
             {
@@ -76,7 +83,7 @@ namespace Picking_Web.Controllers
 
             ViewBag.Title = "Editar Empresa";
             SetUserIdInViewBag();
-            return View("FormEmpresa", viewModel);
+            return View("editEmpresa",viewModel);
         }
 
         [HttpPost]

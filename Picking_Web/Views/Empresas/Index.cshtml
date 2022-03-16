@@ -1,24 +1,19 @@
 ﻿@using Picking_Web.Models
 @using Microsoft.AspNet.Identity
-@model IEnumerable<Picking_Web.Models.Empresa>
+@model Picking_Web.ViewModels.FormEmpresaViewModel
 @{
     ViewBag.Title = "Empresas";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    Layout = "~/Views/Shared/_Administracao.cshtml";
     string ControllerName = "empresas";
     string userid = ViewBag.userid;
 }
 <div class="container-fluid">
-
     <!-- start page title -->
     <div class="row">
         <div class="col-12">
             <div class="page-title-box">
                 <div class="page-title-right">
-                    <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item active">Dashboards</li>
-                        <li class="breadcrumb-item active">Área Administrativa</li>
-                        <li class="breadcrumb-item active">Empresas</li>
-                    </ol>
+
                 </div>
                 <br />
                 <h2>@ViewBag.Title</h2>
@@ -33,8 +28,6 @@
                     <div class="row mb-2">
                         <div class="col-sm-5">
 
-
-
                         </div>
                         <div class="col-sm-7">
                             <div class="text-sm-end">
@@ -43,7 +36,9 @@
                                 </button>
                             </div>
                         </div>
+
                         @Html.Partial("FormEmpresa")
+
                         <!-- end col-->
                     </div>
 
@@ -60,7 +55,7 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.Licenciado)
                                 </th>
-                                <th style="width:auto">
+                                <th>
                                     @Html.DisplayNameFor(model => model.InstanciaBanco)
                                 </th>
                                 <th>
@@ -74,15 +69,13 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody>
-                        </tbody>
+                        <tbody></tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 @section scripts
 {
     <script type="text/javascript">
@@ -92,3 +85,4 @@
     </script>
     <script src="~/Scripts/Site/Empresas.js"></script>
 }
+

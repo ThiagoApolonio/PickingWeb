@@ -1,49 +1,39 @@
 ﻿@using Picking_Web.Models
 @{
     ViewBag.Title = "Reimpressão Etiquetas de Recebimento";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    Layout = "~/Views/Shared/_Recebimento.cshtml";
     string ControllerName = "recebimento";
     int empresa = ViewBag.empresa;
     string userid = ViewBag.userid;
 }
-
 <h2>@ViewBag.Title</h2>
 
-<div class="row" style="margin-top:30px;">
+<div class="row col-12" style="width: 100%; margin-top: 30px;">
 
-
-
-    <div class="col-xs-4">
+    <div style="float:left;width:75%" class="col-md-6">
         <label for="itemcode">Código Item</label>
-        <select class="form-control chosen" id="itemcode" style="max-width: none">
+        <select style="float: left; width: 100%; max-width: none" class="form-control" id="itemcode">
             <option value="">Selecione o Item</option>
             @{
                 var itens = ViewBag.Itens as List<ItemSAP>;
                 foreach (var item in itens)
                 {
-                    <option value="@item.ItemCode">@item.ItemCode - @item.ItemName</option>
+                    <option class="" value="@item.ItemCode">@item.ItemCode - @item.ItemName</option>
                 }
             }
         </select>
     </div>
-
-
-
-    <div class="col-xs-2">
+    <div style="float:left;width:25%" class="col-md-6">
         <label for="numlote">Lote Interno</label>
-        <select class="form-control" id="numlote" style="max-width: none">
+        <select style="float: left; width: 100%; max-width: none" class="form-control" id="numlote" style="max-width: none">
             <option value="">Selecione o Lote</option>
         </select>
     </div>
-
-
-
 </div>
-
 
 <div class="row" style="margin-top: 50px; margin-left: 0px; margin-right: 0px;">
     <table id="itens_recebimento" class="table table-bordered table-condensed table-hover">
-        <thead>
+        <thead class="table-light">
             <tr>
                 <th>Marcar</th>
                 <th>Item</th>
@@ -58,15 +48,15 @@
     </table>
 </div>
 
-<div class="row" style="margin-top: 30px;">
-    <div class="col-xs-4">
-        <button class="btn btn-primary btn-block" type="submit" id="imprimir" data-loading-text="Aguarde...">Imprimir</button>
+<div class="row col-12" style="width:100%;margin-top: 30px;">
+    <div style="float:left;width:33%" class="col-md-4">
+        <button class="btn btn-primary btn-block" style="float: left; width: 100%; max-width: none"  type="submit" id="imprimir" data-loading-text="Aguarde...">Imprimir</button>
     </div>
-    <div class="col-xs-4">
-        <button class="btn btn-warning btn-block" type="submit" id="reset" data-loading-text="Aguarde..." data-toggle="tooltip" data-placement="top" title="Reseta apenas os itens">Reset</button>
+    <div style="float:left;width:34%" class="col-md-4">
+        <button class="btn btn-warning btn-block" style="float: left; width: 100%; max-width: none"  type="submit" id="reset" data-loading-text="Aguarde..." data-toggle="tooltip" data-placement="top" title="Reseta apenas os itens">Reset</button>
     </div>
-    <div class="col-xs-4">
-        <button class="btn btn-danger btn-block" type="submit" id="cancelar" data-loading-text="Aguarde..." data-toggle="tooltip" data-placement="top" title="Reseta toda a tela">Cancelar</button>
+    <div style="float:left;width:33%" class="col-md-4">
+        <button class="btn btn-danger btn-block" style="float: left; width: 100%; max-width: none"  type="submit" id="cancelar" data-loading-text="Aguarde..." data-toggle="tooltip" data-placement="top" title="Reseta toda a tela">Cancelar</button>
     </div>
 </div>
 
