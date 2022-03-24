@@ -172,3 +172,5 @@ C:\Users\Thiago Apolonio\Desktop\Nova pasta\_pickingweb_2_0\Picking_Web\obj\Debu
 C:\Users\Thiago Apolonio\Desktop\Nova pasta\_pickingweb_2_0\Picking_Web\obj\Debug\Picking_Web.csproj.CopyComplete
 C:\Users\Thiago Apolonio\Desktop\Nova pasta\_pickingweb_2_0\Picking_Web\obj\Debug\Picking_Web.dll
 C:\Users\Thiago Apolonio\Desktop\Nova pasta\_pickingweb_2_0\Picking_Web\obj\Debug\Picking_Web.pdb
+C:\Users\Thiago Apolonio\Desktop\Nova pasta\_pickingweb_2_0\Picking_Web\bin\Sap.Data.Hana.v4.5.dll
+C:\Users\Thiago Apolonio\Desktop\Nova pasta\_pickingweb_2_0\Picking_Web\bin\Sap.Data.Hana.v4.5.pdb

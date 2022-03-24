@@ -17,111 +17,150 @@
                 @using (Html.BeginForm("Salvar", "Empresas"))
                 {
                     @Html.AntiForgeryToken()
-                    <div class="form">
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        @Html.HiddenFor(model => model.Id)
+                <div class="form">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Id)
+                    <div class="row col-12">
+                        <div class="card col-md-12" style="background-color: #eef2f7; border: solid 1px; border-radius: 20px; border-color:gray;">
+                            <div class="card-header" style="background-color:#eef2f7 ">
+                                <H6 style="color: black; text-align: center">DADOS EMPRESA</H6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row col-12" style="width: 100%;">
+                                    <div class="col-md-6" style="float:right;width:50%">
+                                        <div class="checkbox">
+                                            @Html.LabelFor(model => model.Ativo, htmlAttributes: new { @class = "control-label" })
+                                            @Html.EditorFor(model => model.Ativo)
+                                            @Html.ValidationMessageFor(model => model.Ativo, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
 
-                        <div class="row col-12" style="width: 100%;">
-                            <div class="col-md-1" style="float:left;width:10%">
-                                <div class="checkbox">
-                                    @Html.LabelFor(model => model.Ativo, htmlAttributes: new { @class = "control-label" })
-                                    @Html.EditorFor(model => model.Ativo)
-                                    @Html.ValidationMessageFor(model => model.Ativo, "", new { @class = "text-danger" })
+                                    <div class="col-md-6" style="float:left;width:50%">
+                                        <div class="checkbox">
+                                            @Html.LabelFor(model => model.ContadorLote, htmlAttributes: new { @class = "control-label" })
+                                            @Html.EditorFor(model => model.ContadorLote)
+                                            @Html.ValidationMessageFor(model => model.ContadorLote, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <hr />
+                                    <div class="col-md-12" style="float:left;width:100%">
+                                        @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;max-width:none;", @required = "required" } })
+                                        @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="card col-md-6" style="background-color: #eef2f7; border: solid 1px; border-radius: 15px; border-color: gray; width: 51% ">
+                            <div class="card-header" style="background-color:#eef2f7 ">
+                                <H6 style="color: black; text-align: center">DADOS BANCO</H6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row col-12" style="width: 100%;">
+                                    <div class="col-md-4" style="float: left; width: 33%">
+                                        @Html.LabelFor(model => model.NomeBanco, htmlAttributes: new { @class = "control-label " })
+                                        @Html.EditorFor(model => model.NomeBanco, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;max-width:none;", @required = "required" } })
+                                        @Html.ValidationMessageFor(model => model.NomeBanco, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-4" style="float: left; width: 33%">
+                                        @Html.LabelFor(model => model.InstanciaBanco, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.InstanciaBanco, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;max-width:none;", @required = "required" } })
+                                        @Html.ValidationMessageFor(model => model.InstanciaBanco, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-4" style="float: left; width: 33%">
+                                        @Html.LabelFor(model => model.UsuarioBanco, htmlAttributes: new { @class = "control-label " })
+                                        @Html.EditorFor(model => model.UsuarioBanco, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;max-width:none;", @required = "required" } })
+                                        @Html.ValidationMessageFor(model => model.UsuarioBanco, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-4" style="float: left; width: 33%">
+                                        @Html.LabelFor(model => model.SenhaBanco, htmlAttributes: new { @class = "control-label " })
+                                        @Html.EditorFor(model => model.SenhaBanco, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;max-width:none;", @required = "required" } })
+                                        @Html.ValidationMessageFor(model => model.SenhaBanco, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-4" style="float:left;width:33%">
+                                        @Html.LabelFor(model => model.TiposBancoId, htmlAttributes: new { @class = "control-label" })
+                                        @Html.DropDownListFor(m => m.TiposBancoId, new SelectList(Model.TiposBanco, "Id", "Nome"), "Selecione o Tipo de Banco", new { @class = "form-control", @style = "width:100%;max-width:none;", @required = "required" })
+                                        @Html.ValidationMessageFor(model => model.TiposBancoId, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-4" style="float:left;width:33%">
+                                        @Html.LabelFor(model => model.Timer, htmlAttributes: new { @class = "control-label " })
+                                        @Html.EditorFor(model => model.Timer, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;max-width:none;" } })
+                                        @Html.ValidationMessageFor(model => model.Timer, "", new { @class = "text-danger", type = "numeric" })
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <br />
+
+                        <div style="width:2%"></div>
+
+                        <div class="card col-md-6" style="background-color: #eef2f7; border: solid 1px; border-radius: 20px; border-color:gray;width:47% ">
+                            <div class="card-header" style="background-color:#eef2f7 ">
+                                <H6 style="color:black;text-align:center">DADOS SAP</H6>
+                            </div>
+                            <div class="card-body">
+
+                                <div class="row col-12" style="width: 100%;">
+                                    <div class="col-md-6" style="float:left;width:50%">
+                                        @Html.LabelFor(model => model.UsuarioSap, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.UsuarioSap, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;max-width:none;", @required = "required" } })
+                                        @Html.ValidationMessageFor(model => model.UsuarioSap, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="col-md-6" style="float:left;width:50%">
+                                        @Html.LabelFor(model => model.SenhaSap, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.SenhaSap, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;max-width:none;", @required = "required" } })
+                                        @Html.ValidationMessageFor(model => model.SenhaSap, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="col-md-6" style="float: left; width: 50%">
+                                        @Html.LabelFor(model => model.LicencaSap, htmlAttributes: new { @class = "control-label " })
+                                        @Html.EditorFor(model => model.LicencaSap, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;max-width:none;" } })
+                                        @Html.ValidationMessageFor(model => model.LicencaSap, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6" style="float: left; width: 50%">
+                                        @Html.LabelFor(model => model.PortaSap, htmlAttributes: new { @class = "control-label " })
+                                        @Html.EditorFor(model => model.PortaSap, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;max-width:none;", @required = "required" } })
+                                        @Html.ValidationMessageFor(model => model.PortaSap, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="col-md-6" style="float:left;width:50%">
+                                        @Html.LabelFor(model => model.DepoPadrao, htmlAttributes: new { @class = "control-label " })
+                                        @Html.EditorFor(model => model.DepoPadrao, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;max-width:none;", @required = "required" } })
+                                        @Html.ValidationMessageFor(model => model.DepoPadrao, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6" style="float:left;width:50%">
+                                        @Html.LabelFor(model => model.DepoSapId, htmlAttributes: new { @class = "control-label " })
+                                        @Html.DropDownListFor(model => model.selectedDeposito, new MultiSelectList(Model.DepositoSAP, "Id", "Descricao"), new { @class = "form-control ", @style = "width:100%;max-width:none;", id = "select_deposito", multiple = "multiple" })
+                                        @Html.ValidationMessageFor(model => model.DepoSapId, "", new { @class = "text-danger" })
+                                    </div>
+
                                 </div>
                             </div>
-                            <div class="col-md-2" style="float:left;width:15%">
-                                <div class="checkbox">
-                                    @Html.LabelFor(model => model.ContadorLote, htmlAttributes: new { @class = "control-label" })
-                                    @Html.EditorFor(model => model.ContadorLote)
-                                    @Html.ValidationMessageFor(model => model.ContadorLote, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="col-md-3" style="float:left;width:25%">
-                                @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;max-width:none;" } })
-                                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-md-3" style="float:left;width:25%">
-                                @Html.LabelFor(model => model.UsuarioSap, htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.UsuarioSap, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;max-width:none;" } })
-                                @Html.ValidationMessageFor(model => model.UsuarioSap, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-md-3" style="float:left;width:25%">
-                                @Html.LabelFor(model => model.SenhaSap, htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.SenhaSap, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;max-width:none;" } })
-                                @Html.ValidationMessageFor(model => model.SenhaSap, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="row col-12" style="width: 100%;">
-                            <div class="col-md-3" style="float: left; width: 25%">
-                                @Html.LabelFor(model => model.LicencaSap, htmlAttributes: new { @class = "control-label " })
-                                @Html.EditorFor(model => model.LicencaSap, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;max-width:none;" } })
-                                @Html.ValidationMessageFor(model => model.LicencaSap, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-md-3" style="float: left; width: 25%">
-                                @Html.LabelFor(model => model.PortaSap, htmlAttributes: new { @class = "control-label " })
-                                @Html.EditorFor(model => model.PortaSap, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;max-width:none;" } })
-                                @Html.ValidationMessageFor(model => model.PortaSap, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-md-3" style="float:left;width:25%">
-                                @Html.LabelFor(model => model.DepoPadrao, htmlAttributes: new { @class = "control-label " })
-                                @Html.EditorFor(model => model.DepoPadrao, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;max-width:none;" } })
-                                @Html.ValidationMessageFor(model => model.DepoPadrao, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-md-3" style="float:left;width:25%">
-                                @Html.LabelFor(model => model.TiposBancoId, htmlAttributes: new { @class = "control-label" })
-                                @Html.DropDownListFor(m => m.TiposBancoId, new SelectList(Model.TiposBanco, "Id", "Nome"), "Selecione o Tipo de Banco", new { @class = "form-control", @style = "width:100%;max-width:none;" })
-                                @Html.ValidationMessageFor(model => model.TiposBancoId, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="row col-12" style="width: 100%;">
-                            <div class="col-md-3" style="float: left; width: 25%">
-                                @Html.LabelFor(model => model.InstanciaBanco, htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.InstanciaBanco, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;max-width:none;" } })
-                                @Html.ValidationMessageFor(model => model.InstanciaBanco, "", new { @class = "text-danger" })
-
-                            </div>
-                            <div class="col-md-3" style="float: left; width: 25%">
-                                @Html.LabelFor(model => model.NomeBanco, htmlAttributes: new { @class = "control-label " })
-                                @Html.EditorFor(model => model.NomeBanco, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;max-width:none;" } })
-                                @Html.ValidationMessageFor(model => model.NomeBanco, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-md-3" style="float: left; width: 25%">
-                                @Html.LabelFor(model => model.UsuarioBanco, htmlAttributes: new { @class = "control-label " })
-                                @Html.EditorFor(model => model.UsuarioBanco, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;max-width:none;" } })
-                                @Html.ValidationMessageFor(model => model.UsuarioBanco, "", new { @class = "text-danger" })
-
-                            </div>
-                            <div class="col-md-3" style="float: left; width: 25%">
-                                @Html.LabelFor(model => model.SenhaBanco, htmlAttributes: new { @class = "control-label " })
-                                @Html.EditorFor(model => model.SenhaBanco, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;max-width:none;" } })
-                                @Html.ValidationMessageFor(model => model.SenhaBanco, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="row col-12" style="width: 100%;">
-                       
-
-                            <div class="col-md-3" style="float:left;width:25%">
-                                @Html.LabelFor(model => model.Timer, htmlAttributes: new { @class = "control-label " })
-                                @Html.EditorFor(model => model.Timer, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;max-width:none;" } })
-                                @Html.ValidationMessageFor(model => model.Timer, "", new { @class = "text-danger", type = "numeric" })
-                            </div>
-                        </div>
-
-                        <hr />
-
-                        <div class="row col-12" style="width: 100%;">
-                            <div class="col-md-6" style="float:left;width:50%">
-                                <input type="submit" style="float: left; width: 100%; max-width: none; " value="Salvar" class="btn btn-success" />
-                            </div>
-
-                            <div class="col-md-6" style="float:left;width:50%">
-                                <button type="button" style="width: 100%; max-width: none;" class="btn btn-danger " data-bs-dismiss="modal">Fechar</button>
-                            </div>
-
                         </div>
 
                     </div>
+
+
+
+                    <hr />
+
+                    <div class="row col-12" style="width: 100%;">
+                        <div class="col-md-6" style="float:left;width:50%">
+                            <input type="submit" style="float: left; width: 100%; max-width: none; " value="Salvar" class="btn btn-success" />
+                        </div>
+
+                        <div class="col-md-6" style="float:left;width:50%">
+                            <button type="button" style="width: 100%; max-width: none;" class="btn btn-danger " data-bs-dismiss="modal">Fechar</button>
+                        </div>
+
+                    </div>
+
+                </div>
                 }
             </div>
         </div>

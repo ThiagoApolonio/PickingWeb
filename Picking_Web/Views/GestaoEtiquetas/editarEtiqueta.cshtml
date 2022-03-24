@@ -5,72 +5,81 @@
     Layout = null;
 
 }
-<div class="modal fade pequeno" id="ModalEditEtiqueta" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade" id="ModalEditEtiqueta" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-full-width">
         <div class="modal-content">
-            <div class="modal-body">
+
+            <div class="modal-body" style="width: 100%">
+
                 @using (Html.BeginForm("Salvar", "GestaoEtiquetas", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
                     @Html.AntiForgeryToken()
-
-                    <div style="align-content:center;width:100%">
-
+                    <div class="form">
                         @Html.ValidationSummary(true, "Por favor, corrija os erro(s) abaixo:")
                         @Html.HiddenFor(m => m.Id)
+                        <div class="row col-12">
+                            <div class="card col-md-12" style="background-color: #eef2f7; border: solid 1px; border-radius: 20px; border-color:gray;margin-left:10px;width:100%">
+                                <div class="card-header" style="background-color:#eef2f7 ">
+                                    <H6 style="color: black; text-align: center">DADOS EMPRESA</H6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row col-12" style="width: 100%;">
+                                        <div class="col-md-6" style="float:left;width:50%">
+                                            @Html.LabelFor(model => model.EmpresaId, htmlAttributes: new { @class = "control-label " })
+                                            @Html.DropDownListFor(m => m.EmpresaId, new SelectList(Model.Empresas, "Id", "Nome"), "Selecione a Empresa", new { @class = "form-control", @style = "width:100%", id = "select_empresa", onchange = "CarregarUsuarios();" })
+                                            @Html.ValidationMessageFor(model => model.EmpresaId, "", new { @class = "text-danger" })
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.EmpresaId, htmlAttributes: new { @class = "control-label col-md-12" })
-                            <div class="col-md-12">
-                                @Html.DropDownListFor(m => m.EmpresaId, new SelectList(Model.Empresas, "Id", "Nome"), "Selecione a Empresa", new { @class = "form-control", @style = "width:100%", id = "select_empresa", onchange = "CarregarUsuarios();" })
-                                @Html.ValidationMessageFor(model => model.EmpresaId, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
+                                        </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-12" })
-                            <div class="col-md-12">
-                                @Html.DropDownListFor(m => m.UserId, new SelectList(Model.Users, "Id", "UserName"), "Selecione o Usuário", new { @class = "form-control", @style = "width:100%", id = "select_usuario" })
-                                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
+                                        <div class="col-md-6" style="float:left;width:50%">
+                                            @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label " })
+                                            @Html.DropDownListFor(m => m.UserId, new SelectList(Model.Users, "Id", "UserName"), "Selecione o Usuário", new { @class = "form-control", @style = "width:100%", id = "select_usuario" })
+                                            @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.NomeImpressoraEtiqueta, htmlAttributes: new { @class = "control-label col-md-12" })
-                            <div class="col-md-12">
-                                @Html.DropDownListFor(m => m.NomeImpressoraEtiqueta, new SelectList(Model.Impressoras, "Id", "Nome"), "Selecione a Impressora", new { @class = "form-control", @style = "width:100%", id = "select_impressora" })
-                                @Html.ValidationMessageFor(model => model.NomeImpressoraEtiqueta, "", new { @class = "text-danger" })
-                            </div>
+                                        </div>
+
+                                        <div class="col-md-6" style="float:left;width:50%">
+                                            @Html.LabelFor(model => model.NomeImpressoraEtiqueta, htmlAttributes: new { @class = "control-label " })
+                                            @Html.DropDownListFor(m => m.NomeImpressoraEtiqueta, new SelectList(Model.Impressoras, "Id", "Nome"), "Selecione a Impressora", new { @class = "form-control", @style = "width:100%", id = "select_impressora" })
+                                            @Html.ValidationMessageFor(model => model.NomeImpressoraEtiqueta, "", new { @class = "text-danger" })
+
+                                        </div>
 
 
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.IP, htmlAttributes: new { @class = "control-label col-md-12" })
-                                <div class="col-md-12">
-                                    @Html.EditorFor(model => model.IP, new { htmlAttributes = new { @class = "form-control", @style = "width:100%" } })
-                                    @Html.ValidationMessageFor(model => model.IP, "", new { @class = "text-danger" })
+                                        <div class="col-md-6" style="float:left;width:50%">
+                                            @Html.LabelFor(model => model.IP, htmlAttributes: new { @class = "control-label " })
+                                            @Html.EditorFor(model => model.IP, new { htmlAttributes = new { @class = "form-control", @style = "width:100%" } })
+                                            @Html.ValidationMessageFor(model => model.IP, "", new { @class = "text-danger" })
+
+                                        </div>
+
+
+                                        <div class="col-md-6" style="float:left;width:50%">
+                                            @Html.LabelFor(model => model.Porta, htmlAttributes: new { @class = "control-label " })
+                                            @Html.EditorFor(model => model.Porta, new { htmlAttributes = new { @class = "form-control", @style = "width:100%" } })
+                                            @Html.ValidationMessageFor(model => model.Porta, "", new { @class = "text-danger" })
+
+                                        </div>
+
+
+                                    </div>
                                 </div>
                             </div>
-
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Porta, htmlAttributes: new { @class = "control-label col-md-12" })
-                                <div class="col-md-12">
-                                    @Html.EditorFor(model => model.Porta, new { htmlAttributes = new { @class = "form-control", @style = "width:100%" } })
-                                    @Html.ValidationMessageFor(model => model.Porta, "", new { @class = "text-danger" })
+                            <hr />
+                            <div class="row col-12" style="width: 100%; margin-left: 10px">
+                                <div class="col-md-6" style="float:left;width:50%">
+                                    <input type="submit" style="float: left; width: 100%; max-width: none; " value="Salvar" class="btn btn-success" />
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <div class="col-md-offset col-md modal-footer">
-                                    <input type="submit" value="Salvar" class="btn btn-primary" />
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                <div class="col-md-6" style="float:left;width:50%">
+                                    <button type="button" style="width: 100%; max-width: none;" class="btn btn-danger " data-bs-dismiss="modal">Fechar</button>
                                 </div>
+
                             </div>
                         </div>
-
-
                     </div>
                 }
             </div>
         </div>
     </div>
-    </div>
+</div>

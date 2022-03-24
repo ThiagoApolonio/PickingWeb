@@ -185,6 +185,7 @@
                         e.classList.remove("col-md-6")
                 })
         },
+        ColumnSettings: { width: "100%" },
         columns: [
             {
                 data: "tipo"
@@ -257,6 +258,7 @@
             method: "GET",
             error: _DEFAULT_ERROR_TREATMENT
         },
+        ColumnSettings: { width: "100%" },
         columns: columns_default.slice(0, 8),
         language: {
             paginate: {

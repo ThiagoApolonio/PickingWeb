@@ -45,7 +45,7 @@
         },
         {
             data: "prioridade",
-            render: function(data, type, row) {
+            render: function (data, type, row) {
                 return row._prioridade === 'S' ? "<span class='item-prioritario'>" + data + "</span>" : data;
             }
         },
@@ -77,16 +77,16 @@
             data: "dataInicio"
         },
         {
-            data: "numDoc", order:false,
+            data: "numDoc", order: false,
             className: 'td-button',
-            render: function(data, type, row) {
+            render: function (data, type, row) {
                 return "<button data-numdoc-id='" + data + "' type='button' class='btn btn-danger js-cancelar-picking'><span class='mdi mdi-trash-can'></span >&nbsp;</button>";
             }
         },
         {
             data: "numDoc",
             className: 'td-button',
-            render: function(data, type, row) {
+            render: function (data, type, row) {
                 return "<button data-numdoc-id='" +
                     data +
                     "' data-separador='" + row.operador + "' type='button' class='btn btn-primary js-imprimir-picking'><span class='mdi mdi-printer-check'></span >&nbsp;</button>";
@@ -95,23 +95,31 @@
         {
             data: "numDoc",
             className: 'td-button',
-            render: function(data, type, row) {
+            render: function (data, type, row) {
                 return "<button data-numdoc-id='" + data + "' data-operador-id='" + row.operadorId + "' type='button' class='btn btn-success js-confirmar-picking'><span class='mdi mdi-check-bold'></span >&nbsp;</button>";
             }
         }
     ];
-    
+
     var datatable_documento_em_separacao = $("#acompanhamento_em_separacao").DataTable({
         order: [],
-        searching: false,
-   
         paging: false,
-        info: false,
         ajax: {
             url: GetURLDocumentoEmSeparacao(),
             dataSrc: "",
             method: "GET",
             error: _DEFAULT_ERROR_TREATMENT
+        },
+        language: {
+            paginate: {
+                previous: "Anterior",
+                next: "Próximo",
+                first: "Primeiro",
+                last: "Ultimo",
+            },
+            info: "Mostrando de _START_ até _END_ de _TOTAL_ registros    <u class='dataTables_info' title='_TOTAL_' id='totalSeparacao_info' totalTabela='_TOTAL_'></u>",
+            lengthMenu: 'Resultados por paginas <select class=\'form-select form-select-sm ms-1 me-1\'><option value="1">1</option><option value="5">5</option><option value="15">15</option><option value="-1">Todos</option></select>'
+            , search: "Buscar", searchPlaceholder: "Buscar por nome..."
         },
         //columns: columns_default,
         columns: [
@@ -181,19 +189,27 @@
                 }
             }
         ],
-      
+
     });
     var datatable_documento_aguardando_conferencia = $("#acompanhamento_aguardando_conferencia").DataTable({
         order: [],
-        searching: false,
-    
         paging: false,
-        info: false,
         ajax: {
             url: GetURLDocumentoAguardandoConferencia(),
             dataSrc: "",
             method: "GET",
             error: _DEFAULT_ERROR_TREATMENT
+        },
+        language: {
+            paginate: {
+                previous: "Anterior",
+                next: "Próximo",
+                first: "Primeiro",
+                last: "Ultimo",
+            },
+            info: "Mostrando de _START_ até _END_ de _TOTAL_ registros   <i id='totalconferencia' totalTabela='_TOTAL_'></i>",
+            lengthMenu: 'Resultados por paginas <select class=\'form-select form-select-sm ms-1 me-1\'><option value="1">1</option><option value="5">5</option><option value="15">15</option><option value="-1">Todos</option></select>'
+            , search: "Buscar", searchPlaceholder: "Buscar por nome..."
         },
         //columns: columns_default.slice(0, 16),
         columns: [
@@ -263,19 +279,27 @@
                 }
             }
         ],
-    
+
     });
     var datatable_documento_em_conferencia = $("#acompanhamento_em_conferencia").DataTable({
         order: [],
-        searching: false,
- 
         paging: false,
-        info:false,
         ajax: {
             url: GetURLDocumentoEmConferencia(),
             dataSrc: "",
             method: "GET",
             error: _DEFAULT_ERROR_TREATMENT
+        },
+        language: {
+            paginate: {
+                previous: "Anterior",
+                next: "Próximo",
+                first: "Primeiro",
+                last: "Ultimo",
+            },
+            info: "Mostrando de _START_ até _END_ de _TOTAL_ registros   <i id='_TOTAL_'></i>",
+            lengthMenu: 'Resultados por paginas <select class=\'form-select form-select-sm ms-1 me-1\'><option value="1">1</option><option value="5">5</option><option value="15">15</option><option value="-1">Todos</option></select>'
+            , search: "Buscar", searchPlaceholder: "Buscar por nome..."
         },
         //columns: columns_default.slice(0, 14),
         columns: [
@@ -338,19 +362,27 @@
                 }
             }
         ],
-      
+
     });
     var datatable_documento_aguardando_embalagens = $("#acompanhamento_aguardando_embalagens").DataTable({
         order: [],
-        searching: false,
-     
         paging: false,
-        info: false,
         ajax: {
             url: GetURLDocumentoAguardandoEmbalagens(),
             dataSrc: "",
             method: "GET",
             error: _DEFAULT_ERROR_TREATMENT
+        },
+        language: {
+            paginate: {
+                previous: "Anterior",
+                next: "Próximo",
+                first: "Primeiro",
+                last: "Ultimo",
+            },
+            info: "Mostrando de _START_ até _END_ de _TOTAL_ registros   <i id='_TOTAL_'></i>",
+            lengthMenu: 'Resultados por paginas <select class=\'form-select form-select-sm ms-1 me-1\'><option value="1">1</option><option value="5">5</option><option value="15">15</option><option value="-1">Todos</option></select>'
+            , search: "Buscar", searchPlaceholder: "Buscar por nome..."
         },
         columns: [
             {
@@ -427,94 +459,27 @@
                 }
             }
         ],
-    
+
     });
     var datatable_documento_em_embalagens = $("#acompanhamento_em_embalagens").DataTable({
         order: [],
-        searching: false,
-  
         paging: false,
-        info: false,
         ajax: {
             url: GetURLDocumentoEmEmbalagens(),
             dataSrc: "",
             method: "GET",
             error: _DEFAULT_ERROR_TREATMENT
         },
-        //columns: columns_default.slice(0, 14),
-        columns: [
-            {
-                data: "numDoc"
+        language: {
+            paginate: {
+                previous: "Anterior",
+                next: "Próximo",
+                first: "Primeiro",
+                last: "Ultimo",
             },
-            {
-                data: "numPk"
-            },
-            {
-                data: "localFisico"
-            },
-            {
-                data: "prioridade",
-                render: function (data, type, row) {
-                    return row._prioridade === 'S' ? "<span class='item-prioritario'>" + data + "</span>" : data;
-                }
-            },
-            {
-                data: "nomeCliente"
-            },
-            {
-                data: "statusPicking"
-            },
-            {
-                data: "cidade"
-            },
-            {
-                data: "dataEntrega"
-            },
-            {
-                data: "vendedor"
-            },
-            {
-                data: "operador"
-            },
-            {
-                data: "observacoes"
-            },
-            {
-                data: "horaInicio"
-            },
-            {
-                data: "dataInicio"
-            },
-            {
-                data: "numDoc",
-                className: 'td-button',
-                render: function (data, type, row) {
-                    return "<button data-numdoc-id='" + data + "' data-numpk-id='" + row.numPk + "' type='button' class='btn btn-danger js-cancelar-picking'><span class='mdi mdi-trash-can'></span >&nbsp;</button>";
-                }
-            },
-            {
-                data: "numDoc",
-                className: 'td-button',
-                render: function (data, type, row) {
-                    return "<button data-numdoc-id='" +
-                        data +
-                        "' data-separador='" + row.operador + "' data-numpk-id='" + row.numPk + "' type='button' class='btn btn-primary js-imprimir-picking'><span class='mdi mdi-printer-check'></span >&nbsp;</button>";
-                }
-            }
-        ],
-    
-    });
-    var datatable_documento_em_faturamento = $("#acompanhamento_em_faturamento").DataTable({
-        order: [],
-        searching: false,
-     
-        paging: false,
-        info: false,
-        ajax: {
-            url: GetURLDocumentoEmFaturamento(),
-            dataSrc: "",
-            method: "GET",
-            error: _DEFAULT_ERROR_TREATMENT
+            info: "Mostrando de _START_ até _END_ de _TOTAL_ registros   <i id='_TOTAL_'></i>",
+            lengthMenu: 'Resultados por paginas <select class=\'form-select form-select-sm ms-1 me-1\'><option value="1">1</option><option value="5">5</option><option value="15">15</option><option value="-1">Todos</option></select>'
+            , search: "Buscar", searchPlaceholder: "Buscar por nome..."
         },
         //columns: columns_default.slice(0, 14),
         columns: [
@@ -577,24 +542,124 @@
                 }
             }
         ],
-      
+
+    });
+    var datatable_documento_em_faturamento = $("#acompanhamento_em_faturamento").DataTable({
+        order: [],
+        paging: false,
+        ajax: {
+            url: GetURLDocumentoEmFaturamento(),
+            dataSrc: "",
+            method: "GET",
+            error: _DEFAULT_ERROR_TREATMENT
+        },
+        language: {
+            paginate: {
+                previous: "Anterior",
+                next: "Próximo",
+                first: "Primeiro",
+                last: "Ultimo",
+            },
+            info: "Mostrando de _START_ até _END_ de _TOTAL_ registros   <i id='_TOTAL_'></i>",
+            lengthMenu: 'Resultados por paginas <select class=\'form-select form-select-sm ms-1 me-1\'><option value="1">1</option><option value="5">5</option><option value="15">15</option><option value="-1">Todos</option></select>'
+            , search: "Buscar", searchPlaceholder: "Buscar por nome..."
+        },
+        //columns: columns_default.slice(0, 14),
+        columns: [
+            {
+                data: "numDoc"
+            },
+            {
+                data: "numPk"
+            },
+            {
+                data: "localFisico"
+            },
+            {
+                data: "prioridade",
+                render: function (data, type, row) {
+                    return row._prioridade === 'S' ? "<span class='item-prioritario'>" + data + "</span>" : data;
+                }
+            },
+            {
+                data: "nomeCliente"
+            },
+            {
+                data: "statusPicking"
+            },
+            {
+                data: "cidade"
+            },
+            {
+                data: "dataEntrega"
+            },
+            {
+                data: "vendedor"
+            },
+            {
+                data: "operador"
+            },
+            {
+                data: "observacoes"
+            },
+            {
+                data: "horaInicio"
+            },
+            {
+                data: "dataInicio"
+            },
+            {
+                data: "numDoc",
+                className: 'td-button',
+                render: function (data, type, row) {
+                    return "<button data-numdoc-id='" + data + "' data-numpk-id='" + row.numPk + "' type='button' class='btn btn-danger js-cancelar-picking'><span class='mdi mdi-trash-can'></span >&nbsp;</button>";
+                }
+            },
+            {
+                data: "numDoc",
+                className: 'td-button',
+                render: function (data, type, row) {
+                    return "<button data-numdoc-id='" +
+                        data +
+                        "' data-separador='" + row.operador + "' data-numpk-id='" + row.numPk + "' type='button' class='btn btn-primary js-imprimir-picking'><span class='mdi mdi-printer-check'></span >&nbsp;</button>";
+                }
+            }
+        ],
+
     });
 
     var RefreshDatatables = function () {
+
+
         datatable_documento_em_separacao.ajax.url(GetURLDocumentoEmSeparacao()).load();
         datatable_documento_aguardando_conferencia.ajax.url(GetURLDocumentoAguardandoConferencia()).load();
         datatable_documento_em_conferencia.ajax.url(GetURLDocumentoEmConferencia()).load();
         datatable_documento_aguardando_embalagens.ajax.url(GetURLDocumentoAguardandoEmbalagens()).load();
         datatable_documento_em_embalagens.ajax.url(GetURLDocumentoEmEmbalagens()).load();
         datatable_documento_em_faturamento.ajax.url(GetURLDocumentoEmFaturamento()).load();
+        var IDs = ["Row_acompanhamento_em_separacao", "Row_acompanhamento_aguardando_conferencia", "Row_acompanhamento_aguardando_embalagens", "Row_acompanhamento_em_embalagens", "Row_acompanhamento_em_faturamento"];
+        var IDsCount = ["separacaoCount", "aguardandoConferenciaCount", "aguardandoEmbalagemCount", "emEmbalagemCount", "aguardandoFaturamentoCount"];
+        for (var i = 0; i < IDs.length; i++) {
+            var validation = document.getElementById(IDs[i]).getElementsByTagName("tr");
+            if (validation[0].textContent == "No data available in table") {
+                document.getElementById(IDsCount[i]).textContent = "Tabela Vazia !";
+            }
+            else if (validation[0].textContent == "Loading...") {
+                document.getElementById(IDsCount[i]).textContent = "Carregando...";
+            }
+
+            else {
+                document.getElementById(IDsCount[i]).textContent = document.getElementById(IDs[i]).getElementsByTagName("tr").length;
+            }
+        }
     };
 
     $tables = $("#acompanhamento_em_separacao, #acompanhamento_aguardando_conferencia, #acompanhamento_em_conferencia, #acompanhamento_aguardando_embalagens, #acompanhamento_em_embalagens, #acompanhamento_em_faturamento");
 
-    $tables.on("click", ".js-cancelar-picking", function() {
+    $tables.on("click", ".js-cancelar-picking", function () {
 
         var button = $(this);
-        
+
         bootbox.confirm("Deseja cancelar a Lista de Picking?",
             function (result) {
                 if (result) {
@@ -624,7 +689,7 @@
     $tables.on("click", ".js-imprimir-picking", function () {
 
         var button = $(this);
-        
+
         bootbox.confirm("Deseja reimprimir a Lista de Picking?",
             function (result) {
                 if (result) {
@@ -645,6 +710,7 @@
                         success: function (data) {
                             toastr.clear();
                             toastr.success("Lista de Picking reimpressa com sucesso");
+                            RefreshDatatables();
                         },
                         error: _DEFAULT_ERROR_TREATMENT
                     });
@@ -654,7 +720,7 @@
     });
 
     $("#acompanhamento_em_separacao").on("click", ".js-confirmar-picking", function () {
-        
+
         var button = $(this),
             div_id_name = "detalhe_acompanhamento_em_separacao",
             btn_add_lista_classname = "btn-add-lista",
@@ -687,7 +753,7 @@
                                     empresa_id: empresa_id,
                                     numpk: $("#" + div_id_name + " #numpk").val(),
                                     numdoc: $("#" + div_id_name + " #numdoc").val(),
-                                    operador: operador, 
+                                    operador: operador,
                                     local: $("#" + div_id_name + " #local").val(),
                                 },
                                 beforeSend: function () {
@@ -698,6 +764,7 @@
 
                                     toastr.clear();
                                     bootbox.hideAll();
+
                                     toastr.success("Confirmado com sucesso.");
 
                                     RefreshDatatables();
@@ -726,9 +793,9 @@
                 url: DefaultApiPath + "/detalheencerramentoseparacao?empresa_id=" + empresa_id,
                 method: "GET",
                 success: function (data) {
-
+                    RefreshDatatables();
                     $('#' + div_id_name).html($('#form_encerramento_separacao_detalhe').html());
-                    
+
                     if (data.operadores) {
                         var options = "<option value=''>Escolha um Operador</option>";
                         for (var i = 0; i < data.operadores.length; i++) {
@@ -838,6 +905,7 @@
 
                     $('#' + div_id_name + ' #inicio_numdoc').val(num_doc);
                     $('#' + div_id_name + ' #inicio_numpk').val(num_pk);
+                    RefreshDatatables();
                 }
             });
         } else {
@@ -933,6 +1001,7 @@
 
                     $('#' + div_id_name + ' #inicio_numdoc').val(num_doc);
                     $('#' + div_id_name + ' #inicio_numpk').val(num_pk);
+                    RefreshDatatables();
                 }
             });
         } else {
@@ -947,11 +1016,11 @@
             title: 'Alterar Local Físico do Pedido ' + pedido,
             size: 'small',
             message: '<form class="bootbox-form" >' +
-            '<div class="form-group">' +
-            '<label class="control-label col-md-2">Local Físico</label>' +
-            '<input class="bootbox-input bootbox-input-text form-control" type="text" id="trocar_local_fisico">' +
-            '</div>' +
-            '</form>',
+                '<div class="form-group">' +
+                '<label class="control-label col-md-2">Local Físico</label>' +
+                '<input class="bootbox-input bootbox-input-text form-control" type="text" id="trocar_local_fisico">' +
+                '</div>' +
+                '</form>',
             buttons: {
                 cancel: {
                     label: 'Cancelar',
@@ -988,7 +1057,7 @@
             },
         });
     });
-    sizeOfThings();
+
     $("#botao_pesquisa").click(function (e) {
         e.preventDefault();
         RefreshDatatables();
@@ -1008,8 +1077,9 @@
 
 function countPendente() {
     var empresa_id = document.getElementById("script_acompanhamento_picking").getAttribute("data-empresa");
- 
+
     //AcompanhamentoPicking
+
     $.ajax({
         url: "/API/Picking/ListaDocumentosEmSeparacaoCount?empresa_id=" + empresa_id,
         method: "GET",
@@ -1018,8 +1088,9 @@ function countPendente() {
         },
         success: function (data) {
 
+
             let el = document.getElementById("separacaoCount");
-            el.textContent =  data;
+            el.textContent = data
         },
         error: _DEFAULT_ERROR_TREATMENT
     });
@@ -1033,7 +1104,7 @@ function countPendente() {
         success: function (data) {
 
             let el = document.getElementById("emEmbalagemCount");
-            el.textContent =  data ;
+            el.textContent = data;
         },
         error: _DEFAULT_ERROR_TREATMENT
     });
@@ -1075,7 +1146,7 @@ function countPendente() {
         success: function (data) {
 
             let el = document.getElementById("aguardandoConferenciaCount");
-            el.textContent =  data;
+            el.textContent = data;
         },
         error: _DEFAULT_ERROR_TREATMENT
     });
@@ -1087,7 +1158,7 @@ function countPendente() {
             empresa_id: empresa_id,
         },
         success: function (data) {
-            var icon = "<i class='mdi mdi-chevron-down accordion-arrow'></i>";
+
             let el = document.getElementById("aguardandoFaturamentoCount");
             el.textContent = data;
         },
@@ -1095,11 +1166,4 @@ function countPendente() {
     });
 
 };
-
-function sizeOfThings() {
-
-    document.body.style.zoom = "75%"  
-
-};
-
 

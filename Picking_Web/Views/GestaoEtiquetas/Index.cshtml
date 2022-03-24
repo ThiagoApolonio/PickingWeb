@@ -51,17 +51,17 @@
                     <div>
                         <table id="gestao_etiquetas" class="table table-centered w-100 dt-responsive nowrap">
                             <thead class="table-light">
-                                <tr>
+                                <tr style="text-align:center;">
                                     <th>Identificação</th>
                                     <th>Empresa</th>
                                     <th>Usuário</th>
                                     <th>Impressora</th>
-                                    <th>Deletar</th>
-                                    <th>Testar</th>
+
+                                    <th>Açoes</th>
                                 </tr>
                             </thead>
-                            <tbody></tbody>
-                        </table>
+                            <tbody style ="color:black;text-align:center"></tbody>
+</table>
                     </div>
                 </div>
             </div>
@@ -106,7 +106,7 @@
                     {
                         data: "id",
                         render: function (data, type, impressora) {
-                            return "<a class='edit' idEtiqueta='" + impressora.id + "'>" + data + "</a>";
+                            return "<a idEtiqueta='" + impressora.id + "'>" + data + "</a>";
                         }
                     },
                     {
@@ -118,20 +118,15 @@
                     {
                         data: "nomeImpressoraEtiqueta"
                     },
+                  
                     {
                         data: "id",
                         render: function (data, type, empresa) {
                             return "<button data-gestao-id='" +
+                                data +
+                                "' type='button' class='btn btn-primary js-teste'><span class='mdi mdi-printer-check'></span >&nbsp;</button> <input type='submit' value='Editar' class='btn btn-primary edit' idEtiqueta='" + data + "'/> <button data-gestao-id='" +
                                 data +
                                 "' type='button' class='btn btn-danger js-delete'><span class='mdi mdi-trash-can-outline'></span >&nbsp;</button>";
-                        }
-                    },
-                    {
-                        data: "id",
-                        render: function (data, type, empresa) {
-                            return "<button data-gestao-id='" +
-                                data +
-                                "' type='button' class='btn btn-primary js-teste'><span class='mdi mdi-printer-check'></span >&nbsp;</button>";
                         }
                     }
                 ],
@@ -192,7 +187,7 @@
             var id = $(this).attr("idEtiqueta");
             var dialog = bootbox.dialog({
                 title: 'Editar Etiqueta',
-                size: 'small',
+                size: 'medio', closeButton: "",
                 message: '<div id="editEtiqueta"><p><i class="fa fa-spin fa-spinner"></i> Aguarde... Isso pode levar ate 1min</p></div>',
 
             });

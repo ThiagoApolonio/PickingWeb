@@ -11,12 +11,12 @@ namespace Picking_Web.ViewModels
         [Required]
         public string Nome { get; set; }
 
-        [Display(Name = "Ativo?")]
+        [Display(Name = "Ativa ?")]
         public bool Ativo { get; set; }
-        [Display(Name = "Controle de Lote?")]
+        [Display(Name = "Controle de Lote ?")]
         public bool ContadorLote { get; set; }
 
-        [Display(Name = "Licenciado?")]
+        [Display(Name = "Licenciado ?")]
         public bool Licenciado { get; set; }
 
 

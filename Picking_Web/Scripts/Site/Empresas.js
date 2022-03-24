@@ -28,7 +28,7 @@
                 data: "nome",
 
                 render: function (data, type, empresa) {
-                    return "<a data-empresa-edit='" + empresa.id + "'class='edit'>" + data + "</a>";
+                    return "<a data-empresa-edit='" + empresa.id + "'>" + data + "</a>";
                 }
             },
             {
@@ -57,7 +57,7 @@
                 render: function (data, type, empresa) {
                     return "<button data-empresa-id='" +
                         data +
-                        "' type='button' class='btn btn-danger js-delete'><span class='mdi mdi-trash-can-outline'></span >&nbsp;</button>";
+                        "' type='button' class='btn btn-danger js-delete'><span class='mdi mdi-trash-can-outline'></span >&nbsp;</button>  <input type='submit' value='Editar' class='btn btn-primary edit' data-empresa-edit='" + empresa.id + "'/>";
                 }
             }
         ],
@@ -102,7 +102,7 @@
         var id = $(this).attr("data-empresa-edit");
         var dialog = bootbox.dialog({
             title: 'Editar Empresa',
-            size: 'large',
+            size: 'large', closeButton:"",
             message: '<div data-empresa-edit="' + id + '" id="editEmpresa"><p><i class="fa fa-spin fa-spinner"></i> Aguarde... Isso pode levar ate 1min</p></div>',
 
         });
@@ -181,9 +181,3 @@ function testar_conexao() {
         }
     );
 };
-
-$(function () {
-    $("#select_deposito").chosen({
-        width: "30%"
-    });
-});

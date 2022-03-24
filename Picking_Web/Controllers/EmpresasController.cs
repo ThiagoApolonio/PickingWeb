@@ -93,7 +93,8 @@ namespace Picking_Web.Controllers
             if (!ModelState.IsValid)
             {
                 SetUserIdInViewBag();
-                return View("FormEmpresa", viewModel);
+                
+                return View("Index", viewModel);
             }
 
             if (viewModel.Id == 0)

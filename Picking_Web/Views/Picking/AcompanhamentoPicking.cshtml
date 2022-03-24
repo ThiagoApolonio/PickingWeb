@@ -1,7 +1,7 @@
 ﻿@using Picking_Web.Models
 @{
     ViewBag.Title = "Acompanhamento de Picking";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    Layout = "~/Views/Shared/_Picking.cshtml";
     string ControllerName = "picking";
     string pode_ver_separacao = User.IsInRole(Privilegios.PodeGerenciarListaPicking) ? "" : "display:none;";
     string pode_ver_conferencia = User.IsInRole(Privilegios.PodeConferirCodigoBarras) ? "" : "display:none;";
@@ -17,7 +17,7 @@
     </div>
 
     <div id="lista_picking_docs_pendentes_filter" class=" col-md-5" role="search" style="float: left; width: 40%;">
-
+      
         <div style="float: left; width: 80%">
 
             <input style="float: left; width: 100%; max-width: none" type="text" class="form-control" placeholder="Pesquisar Pedido" id="campo_pesquisa">
@@ -71,11 +71,11 @@
 
                     @*<h4>EM SEPARAÇÃO</h4>*@
 
-                    <table id="acompanhamento_em_separacao" style="width:100%;">
+                    <table id="acompanhamento_em_separacao" index style="width:100%;">
 
                         <thead style="color:black">
 
-                            <tr>
+                            <tr style="text-align:center;">
                                 <th>Pedido</th>
                                 <th>Picking</th>
                                 <th>Local Físico</th>
@@ -96,7 +96,7 @@
 
                         </thead>
 
-                        <tbody align="center" style="color:black;">
+                        <tbody align="center" id="Row_acompanhamento_em_separacao" style="color:black;">
                         </tbody>
 
                     </table>
@@ -149,7 +149,7 @@
 
                         <thead style="color:black">
 
-                            <tr>
+                            <tr style="text-align:center;">
 
                                 <th>Pedido</th>
                                 <th>Picking</th>
@@ -172,7 +172,7 @@
 
                         </thead>
 
-                        <tbody align="center" style="color:black;"></tbody>
+                        <tbody align="center"  id="Row_acompanhamento_aguardando_conferencia"  style="color:black;"></tbody>
 
                     </table>
 
@@ -224,7 +224,7 @@
 
                         <thead style="color:black">
 
-                            <tr>
+                            <tr style="text-align:center;">
 
                                 <th>Pedido</th>
                                 <th>Picking</th>
@@ -247,7 +247,7 @@
 
                         </thead>
 
-                        <tbody align="center" style="color:black;">
+                        <tbody align="center" id="Row_acompanhamento_aguardando_embalagens" style="color:black;">
                         </tbody>
 
                     </table>
@@ -300,7 +300,7 @@
 
                         <thead style="color:black">
 
-                            <tr>
+                            <tr style="text-align:center;">
                                 <th>Pedido</th>
                                 <th>Picking</th>
                                 <th>Local Físico</th>
@@ -320,7 +320,7 @@
 
                         </thead>
 
-                        <tbody align="center" style="color:black;">
+                        <tbody align="center" id="Row_acompanhamento_em_embalagens" style="color:black;">
                         </tbody>
 
                     </table>
@@ -373,8 +373,7 @@
 
                         <thead style="color:black">
 
-                            <tr>
-
+                            <tr style="text-align:center;">
                                 <th>Pedido</th>
                                 <th>Picking</th>
                                 <th>Local Físico</th>
@@ -395,7 +394,7 @@
 
                         </thead>
 
-                        <tbody align="center" style="color:black;">
+                        <tbody align="center" id="Row_acompanhamento_em_faturamento" style="color:black;">
                         </tbody>
 
                     </table>
@@ -420,6 +419,18 @@
 {
     <script type="text/javascript">
         var DefaultApiPath = '@(Url.Action("", "api/" + ControllerName))';
+        $(document).ready(function () {
+            sizeOfThings();
+            function sizeOfThings() {
+
+              
+           
+               
+
+
+            };
+
+        });
         InitWS("@userid");
     </script>
     <script id="script_acompanhamento_picking" src="~/Scripts/Site/AcompanhamentoPicking.js" data-empresa="@empresa" data-timer="@timer"></script>

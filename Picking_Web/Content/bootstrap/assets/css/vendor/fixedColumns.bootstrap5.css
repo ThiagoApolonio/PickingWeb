@@ -46,6 +46,7 @@ div.dataTables_scrollBody {
 div.dataTables_scrollFootInner table.table-bordered tr th:first-child,
 div.dataTables_scrollHeadInner table.table-bordered tr th:first-child {
   border-left: 1px solid #ddd !important;
+  width:100%;
 }
 
 tr.dt-rowReorder-moving td.dtfc-fixed-left,
